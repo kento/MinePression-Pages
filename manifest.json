@@ -1,20 +1,22 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.2.0",
+  "generator_version": "1.3.0",
   "classification": "public",
-  "generated_at": "2026-09-21T15:02:02+00:00",
+  "generated_at": "2026-09-21T16:24:21+00:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "8417e547872082d33ee00010acf82a3b736ecf6b",
+  "control_commit": "11d9bd7309b4238e3c77901d051af91610d946e5",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
     "warmed_loop_source_commit": "171733f4450d8051f7b980e25d6986bcaf379d59",
-    "warmed_loop_raw_sha256": "e2c955edac6f76297db25aae42e7c4b56d6d3b94df3c9333ed2d298ee8abc23a"
+    "warmed_loop_raw_sha256": "e2c955edac6f76297db25aae42e7c4b56d6d3b94df3c9333ed2d298ee8abc23a",
+    "census_source_base_commit": "8417e547872082d33ee00010acf82a3b736ecf6b",
+    "census_raw_sha256": "dca02f8f9bf29206de6d9dd1bcd4eae18358b5f7e1a37cf0a5a79cd53e274b0d"
   },
   "harness": {
     "harness_id": "kento-common",
-    "harness_version": "0.3.2",
-    "source_commit": "2130012d3e320a349353060c25264c4e77888861"
+    "harness_version": "0.3.3",
+    "source_commit": "a44e4726dde5bb40db18536e33ba64451b093041"
   },
   "input_sha256": {
     "all-zero/compression_results.csv": "558a824c039b46c9d8f0f82c5cbce840b8884f1126046709264ee09149284a07",
@@ -27,16 +29,23 @@
     "bzip2-10byte/20260921_005_run-metadata.json": "fcc2c0b73544aa8a93c037f7bb71c2c448431a3a5cef864f61a2466928c356f4",
     "bzip2-warmed-loop/20260921_007_fugaku-warmed-loops.jsonl": "e2c955edac6f76297db25aae42e7c4b56d6d3b94df3c9333ed2d298ee8abc23a",
     "bzip2-warmed-loop/20260921_008_warmed-loop-summary.json": "3fdd094248bcd3605882cc9019f1e1f12fe57f445857391d1583d8fee19e2bc2",
-    "bzip2-warmed-loop/20260921_009_warmed-loop-run-metadata.json": "8dec2499e71b0c44eb935316a044ed53ed66e98c1a50e77b876c69e27e87bba8"
+    "bzip2-warmed-loop/20260921_009_warmed-loop-run-metadata.json": "8dec2499e71b0c44eb935316a044ed53ed66e98c1a50e77b876c69e27e87bba8",
+    "bzip2-20bit-census/20260922_011_fugaku-20bit-census.jsonl": "dca02f8f9bf29206de6d9dd1bcd4eae18358b5f7e1a37cf0a5a79cd53e274b0d",
+    "bzip2-20bit-census/20260922_012_bzip2-20bit-census-summary.json": "fb2152325955c79b14426fe859f3e1ee785bfe23b5105e9372b4cde279f4f790",
+    "bzip2-20bit-census/20260922_013_bzip2-20bit-census-run-metadata.json": "95b64b2969323b9bff2909e0097f2717cb1d370acf1e04e0b139584d0976de62",
+    "bzip2-20bit-census/20260922_015_bzip2-20bit-census-histograms.svg": "b4e6c5a48730bc9a20acc51155d61b91aeabe4526dfeae6de97d18bba6a8336e"
   },
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "7371d669f041853b21d55d3e9307f81079002fa456c907cf14bd57ba0130f571",
+    "README.md": "7b4e9d2bd3416a44ca34c4e3df54aada3081157824669c1f77f4b6e09fbcaf7b",
     "assets/site.css": "ca2230c7de06311620a6611dbd1d7a91d9f0dd03677c114ecf1a783849eb7d51",
     "assets/site.js": "1ae8dc82b158b74c0ea77feb9c1b079c86b76eda67a9a3cf54edc84d6ce458ab",
     "data/bzip2-10byte-run.json": "32bfe56152e205d70295a5d4be2f723f31884f6695da563b50dc555ce77c1ac5",
     "data/bzip2-10byte-summary.json": "c132989eae8855286e04c6d0d9def9779f2586674f68104afdda9848f10dd10b",
+    "data/bzip2-20bit-census-run.json": "4b5ddb3e22ded4ab899fa01db1468de832ab003f551a0465db6bec1b1e1d0e11",
+    "data/bzip2-20bit-census-summary.json": "fb2152325955c79b14426fe859f3e1ee785bfe23b5105e9372b4cde279f4f790",
+    "data/bzip2-20bit-census.jsonl": "dca02f8f9bf29206de6d9dd1bcd4eae18358b5f7e1a37cf0a5a79cd53e274b0d",
     "data/bzip2-warmed-loop-run.json": "d2205ffaefc31ea1c0f3cdeaefb8a99935ed21713d7eeacc0e9471665a02f7fe",
     "data/bzip2-warmed-loop-summary.json": "3fdd094248bcd3605882cc9019f1e1f12fe57f445857391d1583d8fee19e2bc2",
     "data/bzip2-warmed-loops.jsonl": "e2c955edac6f76297db25aae42e7c4b56d6d3b94df3c9333ed2d298ee8abc23a",
@@ -44,8 +53,9 @@
     "data/methodology.json": "4caacd22c681793456cc6f45ebee498b996af45660b7ae654e308e2859e3fe7e",
     "figures/bzip2-10byte-period2.svg": "85f8579fd172426182ca90abdee80e6ddbc41b215a81facd2abc25a10263b117",
     "figures/bzip2-10byte-sample.svg": "686f4756b4b79a58c642a2d04b3025f32601944760b3a5b69c416aa810b32292",
+    "figures/bzip2-20bit-census.svg": "b4e6c5a48730bc9a20acc51155d61b91aeabe4526dfeae6de97d18bba6a8336e",
     "figures/three-patterns.svg": "86bf5917514cf79f5902a0ac463b319865f508f26bc3de03d94c1b300f59d493",
-    "index.html": "c7f6362f62283f49818a08fa415c352ac19b167b77d8d36a65648e5afbb4ada7"
+    "index.html": "c12269a2709043eb16798eef4a6221cc4ef0cb38bc0159042ad5c7940256f4e3"
   },
   "validation": {
     "unique_measurements": 288,
@@ -59,7 +69,11 @@
     "pilot_scheduler_receipt": "success reviewed privately; minimized digest published",
     "warmed_loop_validation": "passed",
     "warmed_loop_conditions": 10,
-    "warmed_loop_scheduler_receipt": "success reviewed privately; minimized digest published"
+    "warmed_loop_scheduler_receipt": "success reviewed privately; minimized digest published",
+    "census_validation": "passed",
+    "census_inputs": 1048576,
+    "census_within_30_seconds": true,
+    "census_scheduler_receipt": "success reviewed privately; minimized digest published"
   },
   "limitations": [
     "Historical size measurements; no 1 GB rerun in this publication task.",
@@ -67,6 +81,7 @@
     "Historical baseline is one toolchain on periodic inputs, not a speed or general-corpus ranking.",
     "10-byte pilot histograms are a deterministic proxy sample and separate exact period-divides-2 family, not a census.",
     "Warmed-loop estimates exclude startup and use one worker; only the one-byte input set is exhaustive.",
+    "The exact census covers the declared zero-left-padded low-20-bit subset, not all 2^80 ten-byte inputs.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
     "Manifest file digests exclude the manifest itself."

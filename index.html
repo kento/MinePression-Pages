@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MinePression研究の現在地。10 B bzip2全探索の富岳実測見積もり、反復バイト列288件の圧縮実験、未解決の問いと次の作業をまとめた研究ノート。">
+  <meta name="description" content="MinePression研究の現在地。10 B bzip2低位20 bit全列挙の富岳実測、反復バイト列288件の圧縮実験、未解決の問いと次の作業をまとめた研究ノート。">
   <meta name="theme-color" content="#142d35">
   <title>MinePression — 研究の現在地</title>
   <link rel="stylesheet" href="assets/site.css">
@@ -22,7 +22,7 @@
       <h1 id="hero-title">圧縮の可能性を、<br>小さな実験から。</h1>
       <p class="hero-description">完全版MinePressionに向けた研究の現在地。<br class="desktop-only">分かったこと、まだ分からないこと、次に試すことをここから。</p>
       <div class="hero-actions"><a class="button primary" href="#bzip2-pilot">最新の結果を見る <span aria-hidden="true">↗</span></a><a class="text-link" href="#results">反復列の基準値へ <span aria-hidden="true">→</span></a></div>
-      <p class="updated">ページ更新 2026-09-21 <span>／</span> 富岳パイロット測定 2026.09.21</p>
+      <p class="updated">ページ更新 2026-09-21 <span>／</span> 富岳20-bit全列挙 2026.09.22</p>
     </div>
     <aside class="checkpoint" aria-labelledby="checkpoint-title">
       <div class="checkpoint-top"><p class="eyebrow">30-SECOND CATCH-UP</p><span class="pill">いまは基礎実験</span></div>
@@ -30,7 +30,7 @@
       <ol class="catchup-list">
         <li><span>01</span><div><h3>目的は、完全版の設計を決めること。</h3><p>既存実装を参照しながらPoCを積み重ねる。製品としての完全版は、まだこれから。</p></div></li>
         <li><span>02</span><div><h3>規則的な入力の圧縮特性を測った。</h3><p>6形式を1 B〜1 GBで比較。今回の測定は既存コーデックの基準値で、MinePressionの性能ではない。</p></div></li>
-        <li><span>03</span><div><h3>1件はµs〜ms、それでも全空間は巨大。</h3><p>立ち上げを除く単一workerのloop時間を5サイズで実測。入力内容の影響と、全探索の規模を分けて考える。</p></div></li>
+        <li><span>03</span><div><h3>20-bit部分集合は14.7秒で全列挙できた。</h3><p>10 Bへゼロ埋めした1,048,576件を直接実測。ただし10 B全空間は2<sup>80</sup>通りで、対象を区別する必要があります。</p></div></li>
       </ol>
     </aside>
   </section>
@@ -43,19 +43,21 @@
   </div>
 
   <section id="bzip2-pilot" class="section pilot-section" aria-labelledby="pilot-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · FUGAKU WARMED LOOP</p><h2 id="pilot-title">1回の圧縮は、実際に何秒か。</h2></div><span class="badge verified">単一worker実測</span></div>
-    <p class="section-intro">入力生成 → libbzip2で独立streamを圧縮 → 全体・Payloadの圧縮率を計算 → 2値を配列へ保存。<br>同じprocessで2回warmup後、5回のloop時間から1入力あたりの中央値を求めました。</p>
-    <div class="pilot-verdict"><div><p class="eyebrow">00000 → FFFFF · 20-bit全1,048,576件</p><p class="pilot-estimate">13.882<span>秒 / 単一worker（10 Bへゼロ埋め）</span></p><p>proxyの速度なら21.788秒。ジョブ・node・processの立ち上げ時間は含みません。</p></div><dl><dt>主測定</dt><dd>0からの連番 / 決定的proxy</dd><dt>入力長</dt><dd>1 / 10 / 100 / 1,000 / 10,000 B</dd><dt>設定</dt><dd>libbzip2 1.0.8、100 kB block、workFactor 30、単一worker</dd></dl></div>
-    <p class="pilot-caution">00000〜FFFFFは20-bit整数を10 Bの下位bitsへ置き、上位を0で埋める解釈です。ASCII 5文字または3 B packed値なら別測定が必要です。測定した連番batchは0xA5FFまでなので、13.9秒は全20-bit域の直接実測ではなく外挿です。</p>
+    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · FUGAKU EXACT CENSUS</p><h2 id="pilot-title">20-bit全列挙は、30秒以内に終わるか。</h2></div><span class="badge verified">1,048,576件・実測完了</span></div>
+    <p class="section-intro">入力生成 → libbzip2で独立streamを圧縮 → 全体・Payloadの圧縮率を計算 → 2値を配列へ保存。<br>8,192件のwarmup後、00000〜FFFFFを10 Bへゼロ埋めして直接全列挙しました。</p>
+    <div class="pilot-verdict"><div><p class="eyebrow">00000 → FFFFF · 20-bit全1,048,576件</p><p class="pilot-estimate">14.714<span>秒 / 単一worker（1件 14.032 µs）</span></p><p>事前見積もりは連番13.882秒、proxy21.788秒。実測はその範囲内でした。</p></div><dl><dt>対象</dt><dd>低位20 bitsを全列挙、上位60 bitsは0</dd><dt>平均比率</dt><dd>全体 446.2824% / Payload 298.8487%</dd><dt>設定</dt><dd>libbzip2 1.0.8、100 kB block、workFactor 30、単一worker</dd></dl></div>
+    <p class="pilot-caution">30秒以内を実測で確認しました。ただしこれは宣言した20-bit部分集合の完全列挙で、10 B全空間2<sup>80</sup>通りの完全列挙ではありません。ASCII 5文字または3 B packed値なら別測定が必要です。</p>
+
+    <figure class="pilot-figure"><figcaption><h3>全体とPayloadの圧縮率分布</h3><p>横軸は圧縮率、縦軸は発生件数。10 Bを独立streamにする固定費が大きく、対象全件で元の10 Bより大きくなりました。</p></figcaption><a href="figures/bzip2-20bit-census.svg"><img src="figures/bzip2-20bit-census.svg" width="1200" height="800" loading="lazy" alt="10 Bへゼロ埋めした低位20 bit全入力の、stream全体とPayloadの圧縮率ヒストグラム"></a></figure>
 
     <div class="table-scroll comparison"><table><caption>1入力あたりの中央値。1 KB = 1,000 B。</caption><thead><tr><th scope="col">入力長</th><th scope="col">0からの連番</th><th scope="col">proxy</th><th scope="col">時間比</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>9.829 µs</td><td>9.780 µs</td><td>1.00倍</td></tr><tr><th scope="row">10 B</th><td>13.239 µs</td><td>20.779 µs</td><td>1.57倍</td></tr><tr><th scope="row">100 B</th><td>15.202 µs</td><td>149.184 µs</td><td>9.81倍</td></tr><tr><th scope="row">1 KB</th><td>36.753 µs</td><td>1.214 ms</td><td>33.02倍</td></tr><tr><th scope="row">10 KB</th><td>247.890 µs</td><td>6.180 ms</td><td>24.93倍</td></tr></tbody></table></div>
     <p class="chart-note">連番は大きな入力ほど上位byteが0に偏ります。proxyは入力全体を埋める感度比較で、母集団からの独立一様標本ではありません。生成方法の費用もloop内です。5回の観測範囲は公開JSONに保存しています。</p>
 
     <details class="explanation"><summary>全byte列へ外挿すると、どのくらいになるか</summary><div class="table-scroll"><table><caption>単一workerの条件付き外挿。1 Bだけは全256入力を各batchで反復実行。</caption><thead><tr><th scope="col">入力長</th><th scope="col">母集団</th><th scope="col">連番速度</th><th scope="col">proxy速度</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>2<sup>8</sup></td><td>2.516 ms（実測集合）</td><td>2.504 ms（実測集合）</td></tr><tr><th scope="row">10 B</th><td>2<sup>80</sup></td><td>5.072×10<sup>11</sup>年</td><td>7.960×10<sup>11</sup>年</td></tr><tr><th scope="row">100 B</th><td>2<sup>800</sup></td><td>3.212×10<sup>228</sup>年</td><td>3.152×10<sup>229</sup>年</td></tr><tr><th scope="row">1 KB</th><td>2<sup>8000</sup></td><td>2.024×10<sup>2396</sup>年</td><td>6.682×10<sup>2397</sup>年</td></tr><tr><th scope="row">10 KB</th><td>2<sup>80000</sup></td><td>1.972×10<sup>24071</sup>年</td><td>4.915×10<sup>24072</sup>年</td></tr></tbody></table></div><p>時間 = 2<sup>8n</sup> × 1入力の中央値。10 B以上は全母集団の平均や上下限ではありません。入力内容による時間差が大きいため、両系列を併記しています。</p></details>
-    <details class="explanation"><summary>計測区間と検証範囲</summary><p>配列・bufferの確保とpage touch、iteration数の校正、2回のwarmup、配列の集計、JSON出力、復元検査は計測外です。各入力を独立streamにするlibbzip2初期化・memory確保は圧縮呼出しに含みます。全条件で同じiteration数を5回反復し、圧縮率配列の件数・sum・rangeと最後の入力の復元を検証しました。</p><p>jobは48秒で正常終了しましたが、この値は1入力時間や課金時間の推定には使いません。scheduler receipt、A64FX binary digest、source/raw digestはprivate記録と照合済みです。</p></details>
+    <details class="explanation"><summary>計測区間と検証範囲</summary><p>配列・bufferの確保とpage touch、warmup、配列の集計、histogram生成、JSON出力、復元検査は計測外です。各入力を独立streamにするlibbzip2初期化・memory確保は圧縮呼出しに含みます。母集団、端点、配列件数、両histogramの件数・加重和・範囲と最後の入力の復元を検証しました。</p><p>job全体は17秒で正常終了しましたが、この値は1入力時間の判定には使いません。scheduler receipt、A64FX binary digest、source/raw digestはprivate記録と照合済みです。</p></details>
 
     <details class="explanation"><summary>参考：最初の48-worker pilotで得た圧縮率分布</summary><p>時間の説明を改める前に実行したpilotです。時間見積もりの正本ではありませんが、10 B入力の圧縮率分布という別の証拠として保持します。擬似乱数proxy 3,145,728件と、周期1・2の全65,536件は別集団です。</p><div class="pilot-figures"><figure class="pilot-figure"><figcaption><h3>proxy標本</h3><p>全体470〜630%、Payload323.75〜487.5%。</p></figcaption><a href="figures/bzip2-10byte-sample.svg"><img src="figures/bzip2-10byte-sample.svg" width="1200" height="800" loading="lazy" alt="10 B proxy標本の全体・Payload圧縮率ヒストグラム"></a></figure><figure class="pilot-figure"><figcaption><h3>周期1・2の全列挙</h3><p>全体370〜400%、Payload226.25〜255%。80-bit全空間での重みは2のマイナス64乗です。</p></figcaption><a href="figures/bzip2-10byte-period2.svg"><img src="figures/bzip2-10byte-period2.svg" width="1200" height="800" loading="lazy" alt="10 B周期1・2入力の全体・Payload圧縮率ヒストグラム"></a></figure></div><p>Payloadは外側のBZh headerと終端・paddingを除きますが、内部block header、CRC、符号表、制御情報を含みます。</p></details>
-    <div class="download-row"><a href="data/bzip2-warmed-loop-summary.json" download>5サイズの実測・外挿 JSON ↓</a><a href="data/bzip2-warmed-loops.jsonl" download>検証可能なraw JSONL ↓</a><a href="data/bzip2-warmed-loop-run.json">実行条件・検証記録 ↗</a><a href="#next">この結果から次に考えること ↓</a></div>
+    <div class="download-row"><a href="data/bzip2-20bit-census-summary.json" download>20-bit全列挙の集計 JSON ↓</a><a href="data/bzip2-20bit-census.jsonl" download>全列挙raw JSONL ↓</a><a href="data/bzip2-20bit-census-run.json">実行条件・検証記録 ↗</a><a href="data/bzip2-warmed-loop-summary.json" download>事前の5サイズ測定 ↓</a><a href="data/bzip2-warmed-loops.jsonl" download>事前測定のraw JSONL ↓</a><a href="#next">この結果から次に考えること ↓</a></div>
   </section>
 
   <section id="results" class="section" aria-labelledby="results-title">
@@ -97,7 +99,7 @@
       <article><div class="timeline-date">2026<span>RESTRICTED INPUT</span></div><div class="timeline-body"><span class="badge">PoC・保管</span><h3>入力がASCIIなどに限られるなら？</h3><p>98種類の文字集合を仮定したbase-98表現、英語頻度を使ったrANSなどを検討。限定した入力条件のもとでの可能性を探った試作です。</p><p class="muted">正確性・統合・可搬性に既知の課題があります。過去の性能記述をそのまま採用せず、有用な部分だけを再検証して完成版へ取り込む方針です。</p></div></article>
       <article><div class="timeline-date">2026.09<span>BASELINE</span></div><div class="timeline-body"><span class="badge verified">実測済み・288件</span><h3>反復バイト列を、既存6形式で比較</h3><p>全0列を10 MBまで測定し、周期2・周期6を加えて3パターンとも1 GBへ拡張。全体とペイロードの圧縮率、展開一致、ハッシュを保存しています。</p><a class="text-link" href="#results">上の結果へ戻る ↑</a></div></article>
       <article><div class="timeline-date">OPEN QUESTION<span>DISTRIBUTION</span></div><div class="timeline-body exploratory"><span class="badge pending">検討中・再現記録が未整備</span><h3>100 Bの全入力にzstdをかけると？</h3><p>対象は「256種類の同じバイトの列」ではなく、長さ100 Bの全 <strong>2<sup>800</sup> 通り</strong>。全探索をせずに、圧縮後サイズの分布を推定できるか、という問いです。</p><p>当時の作業メモには「一様擬似乱数1,000万標本がすべて113 B」とあります。ただしサンプラーと生ログが正本に残っておらず、ここでは<strong>未再現の観察</strong>として扱います。厳密な分布が求まったわけではありません。</p><p class="muted">113 Bは、その設定での100 Bの無圧縮ブロックと13 Bの形式情報に対応します。稀な規則的入力の裾は一様標本だけでは捉えにくく、別途調べる必要があります。</p><a class="text-link" href="#next">次の実験で記録を整える →</a></div></article>
-      <article><div class="timeline-date">2026.09.21<span>FEASIBILITY</span></div><div class="timeline-body"><span class="badge verified">富岳実測・外挿</span><h3>bzip2の1入力時間を5サイズで測る</h3><p>単一workerの連続loopをwarmup後に5回測定。1 Bで約9.8 µs、10 KBは連番で0.248 ms、proxyで6.180 ms。20-bit全列挙を10 Bへゼロ埋めする見積もりは約13.9秒です。</p><a class="text-link" href="#bzip2-pilot">実測条件と全空間への外挿へ ↑</a></div></article>
+      <article><div class="timeline-date">2026.09.21–22<span>FEASIBILITY</span></div><div class="timeline-body"><span class="badge verified">富岳実測・20-bit全列挙</span><h3>bzip2の1入力時間を測り、見積もりを直接検証</h3><p>単一workerの連続loopを5サイズで測定し、続いて10 Bへゼロ埋めした低位20 bitの1,048,576件を全列挙。見積もり13.9〜21.8秒に対し、実測14.714秒で完了しました。</p><a class="text-link" href="#bzip2-pilot">実測結果と分布へ ↑</a></div></article>
     </div>
   </section>
 
