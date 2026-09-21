@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MinePression研究の現在地。反復バイト列288件の圧縮実験、保存したPoC、未解決の問い、次に再開する作業をまとめた研究ノート。">
+  <meta name="description" content="MinePression研究の現在地。10 B bzip2全探索の富岳実測見積もり、反復バイト列288件の圧縮実験、未解決の問いと次の作業をまとめた研究ノート。">
   <meta name="theme-color" content="#142d35">
   <title>MinePression — 研究の現在地</title>
   <link rel="stylesheet" href="assets/site.css">
@@ -13,16 +13,16 @@
 <a class="skip" href="#main">本文へ移動</a>
 <header class="site-header">
   <a class="brand" href="#"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>MinePression<span class="brand-note">RESEARCH NOTES</span></a>
-  <nav aria-label="主なセクション"><a href="#results">実験結果</a><a href="#history">研究の経緯</a><a href="#next">再開する</a></nav>
+  <nav aria-label="主なセクション"><a href="#bzip2-pilot">最新実験</a><a href="#history">研究の経緯</a><a href="#next">再開する</a></nav>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot"></span> RESEARCH IN PROGRESS <span class="edition">研究ノート / 01</span></p>
+      <p class="eyebrow"><span class="status-dot"></span> RESEARCH IN PROGRESS <span class="edition">研究ノート / 02</span></p>
       <h1 id="hero-title">圧縮の可能性を、<br>小さな実験から。</h1>
       <p class="hero-description">完全版MinePressionに向けた研究の現在地。<br class="desktop-only">分かったこと、まだ分からないこと、次に試すことをここから。</p>
-      <div class="hero-actions"><a class="button primary" href="#results">実験結果を見渡す <span aria-hidden="true">↗</span></a><a class="text-link" href="#next">どこから再開する？ <span aria-hidden="true">→</span></a></div>
-      <p class="updated">ページ更新 2026-09-21 <span>／</span> 反復列の測定 2026.09.06–07（JST）</p>
+      <div class="hero-actions"><a class="button primary" href="#bzip2-pilot">最新の結果を見る <span aria-hidden="true">↗</span></a><a class="text-link" href="#results">反復列の基準値へ <span aria-hidden="true">→</span></a></div>
+      <p class="updated">ページ更新 2026-09-21 <span>／</span> 富岳パイロット測定 2026.09.21</p>
     </div>
     <aside class="checkpoint" aria-labelledby="checkpoint-title">
       <div class="checkpoint-top"><p class="eyebrow">30-SECOND CATCH-UP</p><span class="pill">いまは基礎実験</span></div>
@@ -30,7 +30,7 @@
       <ol class="catchup-list">
         <li><span>01</span><div><h3>目的は、完全版の設計を決めること。</h3><p>既存実装を参照しながらPoCを積み重ねる。製品としての完全版は、まだこれから。</p></div></li>
         <li><span>02</span><div><h3>規則的な入力の圧縮特性を測った。</h3><p>6形式を1 B〜1 GBで比較。今回の測定は既存コーデックの基準値で、MinePressionの性能ではない。</p></div></li>
-        <li><span>03</span><div><h3>次は、100 B入力の分布を再現する。</h3><p>一様ランダムと稀な規則性を分けて調べ、seed探索の可能性とコストを考える。</p></div></li>
+        <li><span>03</span><div><h3>1件はµs〜ms、それでも全空間は巨大。</h3><p>立ち上げを除く単一workerのloop時間を5サイズで実測。入力内容の影響と、全探索の規模を分けて考える。</p></div></li>
       </ol>
     </aside>
   </section>
@@ -42,8 +42,24 @@
     <div><span class="metric-number">1 B <em>→</em> 1 GB</span><span>16サイズ・10進単位</span></div>
   </div>
 
+  <section id="bzip2-pilot" class="section pilot-section" aria-labelledby="pilot-title">
+    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · FUGAKU WARMED LOOP</p><h2 id="pilot-title">1回の圧縮は、実際に何秒か。</h2></div><span class="badge verified">単一worker実測</span></div>
+    <p class="section-intro">入力生成 → libbzip2で独立streamを圧縮 → 全体・Payloadの圧縮率を計算 → 2値を配列へ保存。<br>同じprocessで2回warmup後、5回のloop時間から1入力あたりの中央値を求めました。</p>
+    <div class="pilot-verdict"><div><p class="eyebrow">00000 → FFFFF · 20-bit全1,048,576件</p><p class="pilot-estimate">13.882<span>秒 / 単一worker（10 Bへゼロ埋め）</span></p><p>proxyの速度なら21.788秒。ジョブ・node・processの立ち上げ時間は含みません。</p></div><dl><dt>主測定</dt><dd>0からの連番 / 決定的proxy</dd><dt>入力長</dt><dd>1 / 10 / 100 / 1,000 / 10,000 B</dd><dt>設定</dt><dd>libbzip2 1.0.8、100 kB block、workFactor 30、単一worker</dd></dl></div>
+    <p class="pilot-caution">00000〜FFFFFは20-bit整数を10 Bの下位bitsへ置き、上位を0で埋める解釈です。ASCII 5文字または3 B packed値なら別測定が必要です。測定した連番batchは0xA5FFまでなので、13.9秒は全20-bit域の直接実測ではなく外挿です。</p>
+
+    <div class="table-scroll comparison"><table><caption>1入力あたりの中央値。1 KB = 1,000 B。</caption><thead><tr><th scope="col">入力長</th><th scope="col">0からの連番</th><th scope="col">proxy</th><th scope="col">時間比</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>9.829 µs</td><td>9.780 µs</td><td>1.00倍</td></tr><tr><th scope="row">10 B</th><td>13.239 µs</td><td>20.779 µs</td><td>1.57倍</td></tr><tr><th scope="row">100 B</th><td>15.202 µs</td><td>149.184 µs</td><td>9.81倍</td></tr><tr><th scope="row">1 KB</th><td>36.753 µs</td><td>1.214 ms</td><td>33.02倍</td></tr><tr><th scope="row">10 KB</th><td>247.890 µs</td><td>6.180 ms</td><td>24.93倍</td></tr></tbody></table></div>
+    <p class="chart-note">連番は大きな入力ほど上位byteが0に偏ります。proxyは入力全体を埋める感度比較で、母集団からの独立一様標本ではありません。生成方法の費用もloop内です。5回の観測範囲は公開JSONに保存しています。</p>
+
+    <details class="explanation"><summary>全byte列へ外挿すると、どのくらいになるか</summary><div class="table-scroll"><table><caption>単一workerの条件付き外挿。1 Bだけは全256入力を各batchで反復実行。</caption><thead><tr><th scope="col">入力長</th><th scope="col">母集団</th><th scope="col">連番速度</th><th scope="col">proxy速度</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>2<sup>8</sup></td><td>2.516 ms（実測集合）</td><td>2.504 ms（実測集合）</td></tr><tr><th scope="row">10 B</th><td>2<sup>80</sup></td><td>5.072×10<sup>11</sup>年</td><td>7.960×10<sup>11</sup>年</td></tr><tr><th scope="row">100 B</th><td>2<sup>800</sup></td><td>3.212×10<sup>228</sup>年</td><td>3.152×10<sup>229</sup>年</td></tr><tr><th scope="row">1 KB</th><td>2<sup>8000</sup></td><td>2.024×10<sup>2396</sup>年</td><td>6.682×10<sup>2397</sup>年</td></tr><tr><th scope="row">10 KB</th><td>2<sup>80000</sup></td><td>1.972×10<sup>24071</sup>年</td><td>4.915×10<sup>24072</sup>年</td></tr></tbody></table></div><p>時間 = 2<sup>8n</sup> × 1入力の中央値。10 B以上は全母集団の平均や上下限ではありません。入力内容による時間差が大きいため、両系列を併記しています。</p></details>
+    <details class="explanation"><summary>計測区間と検証範囲</summary><p>配列・bufferの確保とpage touch、iteration数の校正、2回のwarmup、配列の集計、JSON出力、復元検査は計測外です。各入力を独立streamにするlibbzip2初期化・memory確保は圧縮呼出しに含みます。全条件で同じiteration数を5回反復し、圧縮率配列の件数・sum・rangeと最後の入力の復元を検証しました。</p><p>jobは48秒で正常終了しましたが、この値は1入力時間や課金時間の推定には使いません。scheduler receipt、A64FX binary digest、source/raw digestはprivate記録と照合済みです。</p></details>
+
+    <details class="explanation"><summary>参考：最初の48-worker pilotで得た圧縮率分布</summary><p>時間の説明を改める前に実行したpilotです。時間見積もりの正本ではありませんが、10 B入力の圧縮率分布という別の証拠として保持します。擬似乱数proxy 3,145,728件と、周期1・2の全65,536件は別集団です。</p><div class="pilot-figures"><figure class="pilot-figure"><figcaption><h3>proxy標本</h3><p>全体470〜630%、Payload323.75〜487.5%。</p></figcaption><a href="figures/bzip2-10byte-sample.svg"><img src="figures/bzip2-10byte-sample.svg" width="1200" height="800" loading="lazy" alt="10 B proxy標本の全体・Payload圧縮率ヒストグラム"></a></figure><figure class="pilot-figure"><figcaption><h3>周期1・2の全列挙</h3><p>全体370〜400%、Payload226.25〜255%。80-bit全空間での重みは2のマイナス64乗です。</p></figcaption><a href="figures/bzip2-10byte-period2.svg"><img src="figures/bzip2-10byte-period2.svg" width="1200" height="800" loading="lazy" alt="10 B周期1・2入力の全体・Payload圧縮率ヒストグラム"></a></figure></div><p>Payloadは外側のBZh headerと終端・paddingを除きますが、内部block header、CRC、符号表、制御情報を含みます。</p></details>
+    <div class="download-row"><a href="data/bzip2-warmed-loop-summary.json" download>5サイズの実測・外挿 JSON ↓</a><a href="data/bzip2-warmed-loops.jsonl" download>検証可能なraw JSONL ↓</a><a href="data/bzip2-warmed-loop-run.json">実行条件・検証記録 ↗</a><a href="#next">この結果から次に考えること ↓</a></div>
+  </section>
+
   <section id="results" class="section" aria-labelledby="results-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / MEASURED BASELINE</p><h2 id="results-title">規則性は、どれほど小さくなるか。</h2></div><span class="badge verified">実測済み</span></div>
+    <div class="section-heading"><div><p class="eyebrow">02 / MEASURED BASELINE</p><h2 id="results-title">規則性は、どれほど小さくなるか。</h2></div><span class="badge verified">実測済み</span></div>
     <p class="section-intro">同じ規則が繰り返される入力を圧縮すると、形式ごとに異なる「下限」が見えてきます。<br>まずは全体を見て、入力と指標を切り替えて比べてください。</p>
     <div class="chart-card">
       <div class="chart-controls" id="chart-controls" hidden>
@@ -74,28 +90,30 @@
   </section>
 
   <section id="history" class="section history-section" aria-labelledby="history-title">
-    <div class="section-heading"><div><p class="eyebrow">02 / RESEARCH TRAIL</p><h2 id="history-title">ここまでに、何を試したか。</h2></div></div>
+    <div class="section-heading"><div><p class="eyebrow">03 / RESEARCH TRAIL</p><h2 id="history-title">ここまでに、何を試したか。</h2></div></div>
     <p class="section-intro">実装の参照資料、条件を限定したPoC、基準となる実測を分けて保存しています。<br>過去の試作を、完成版と取り違えないための地図です。</p>
     <div class="timeline">
       <article><div class="timeline-date">2025.02<span>REFERENCE</span></div><div class="timeline-body"><span class="badge">参照版・保存</span><h3>原型となるMPress実装</h3><p>seedから生成した擬似乱数列でXOR変換し、圧縮して候補を選ぶ仕組み。本体・テスト・Sphinx文書を、今後の設計資料として変更せずに保持しています。</p><p class="muted">まだ分からないこと：変換・探索の効果が、seed等の保存コストと計算時間を上回る条件。XORという名称だけで暗号学的な安全性は保証されません。</p></div></article>
       <article><div class="timeline-date">2026<span>RESTRICTED INPUT</span></div><div class="timeline-body"><span class="badge">PoC・保管</span><h3>入力がASCIIなどに限られるなら？</h3><p>98種類の文字集合を仮定したbase-98表現、英語頻度を使ったrANSなどを検討。限定した入力条件のもとでの可能性を探った試作です。</p><p class="muted">正確性・統合・可搬性に既知の課題があります。過去の性能記述をそのまま採用せず、有用な部分だけを再検証して完成版へ取り込む方針です。</p></div></article>
       <article><div class="timeline-date">2026.09<span>BASELINE</span></div><div class="timeline-body"><span class="badge verified">実測済み・288件</span><h3>反復バイト列を、既存6形式で比較</h3><p>全0列を10 MBまで測定し、周期2・周期6を加えて3パターンとも1 GBへ拡張。全体とペイロードの圧縮率、展開一致、ハッシュを保存しています。</p><a class="text-link" href="#results">上の結果へ戻る ↑</a></div></article>
       <article><div class="timeline-date">OPEN QUESTION<span>DISTRIBUTION</span></div><div class="timeline-body exploratory"><span class="badge pending">検討中・再現記録が未整備</span><h3>100 Bの全入力にzstdをかけると？</h3><p>対象は「256種類の同じバイトの列」ではなく、長さ100 Bの全 <strong>2<sup>800</sup> 通り</strong>。全探索をせずに、圧縮後サイズの分布を推定できるか、という問いです。</p><p>当時の作業メモには「一様擬似乱数1,000万標本がすべて113 B」とあります。ただしサンプラーと生ログが正本に残っておらず、ここでは<strong>未再現の観察</strong>として扱います。厳密な分布が求まったわけではありません。</p><p class="muted">113 Bは、その設定での100 Bの無圧縮ブロックと13 Bの形式情報に対応します。稀な規則的入力の裾は一様標本だけでは捉えにくく、別途調べる必要があります。</p><a class="text-link" href="#next">次の実験で記録を整える →</a></div></article>
+      <article><div class="timeline-date">2026.09.21<span>FEASIBILITY</span></div><div class="timeline-body"><span class="badge verified">富岳実測・外挿</span><h3>bzip2の1入力時間を5サイズで測る</h3><p>単一workerの連続loopをwarmup後に5回測定。1 Bで約9.8 µs、10 KBは連番で0.248 ms、proxyで6.180 ms。20-bit全列挙を10 Bへゼロ埋めする見積もりは約13.9秒です。</p><a class="text-link" href="#bzip2-pilot">実測条件と全空間への外挿へ ↑</a></div></article>
     </div>
   </section>
 
   <section id="next" class="section next-section" aria-labelledby="next-title">
-    <div class="section-heading"><div><p class="eyebrow">03 / PICK UP THE THREAD</p><h2 id="next-title">次は、ここから再開する。</h2></div><span class="badge pending">提案・未実施</span></div>
+    <div class="section-heading"><div><p class="eyebrow">04 / PICK UP THE THREAD</p><h2 id="next-title">次は、ここから再開する。</h2></div><span class="badge pending">提案・未実施</span></div>
     <p class="section-intro">今の問いは「小さくできる入力があるか」だけでなく、<br>「それを探す価値が、保存コストと探索時間を含めてあるか」です。</p>
     <div class="next-grid">
-      <article class="next-card first"><span class="step">NEXT 01</span><h3>100 Bの分布実験を<br>再現可能にする。</h3><p>zstdの版・設定・乱数seedを固定。サンプラー、CLIとの一致確認、ヒストグラム、生ログを一緒に保存する。</p><div class="done-when"><span>完了の目安</span>別の環境・別の人が、同じ条件で再実行できる。</div></article>
+      <article class="next-card first"><span class="step">NEXT 01</span><h3>全探索から、数え上げ・<br>構造別の標本へ。</h3><p>10 B bzip2の同値類や入力構造を整理し、列挙を省けるか検討する。初期化・確保コストの最適化は、分布推定とは別の問いとして切り分ける。</p><div class="done-when"><span>完了の目安</span>数えられる範囲、推定する範囲、必要な計算量を説明できる。</div></article>
       <article class="next-card"><span class="step">THEN 02</span><h3>「普通」と「稀な規則性」を<br>分けて調べる。</h3><p>一様ランダムだけでなく、連続長・周期・文字集合の大きさを変える。標本の結果と母集団への推定を区別する。</p><div class="done-when"><span>完了の目安</span>縮む条件と、その頻度について不確かさを説明できる。</div></article>
       <article class="next-card"><span class="step">THEN 03</span><h3>MinePressionとしての<br>採用条件を決める。</h3><p>変換なしの基準と比較し、seed・ヘッダーの費用、探索時間、展開一致まで含めて評価。対象データと判断基準を先に決める。</p><div class="done-when"><span>完了の目安</span>次のPoCまたは完成版への採否を、実測から判断できる。</div></article>
     </div>
+    <p class="pilot-caution">継続候補：100 B zstdの分布実験も、版・seed・サンプラー・生ログをそろえて再現可能にする。現時点では未実施であり、新たな計算ジョブの投入を意味しません。</p>
   </section>
 
   <section id="method" class="section method-section" aria-labelledby="method-title">
-    <div class="section-heading"><div><p class="eyebrow">04 / HOW TO READ THIS NOTE</p><h2 id="method-title">測定条件と、結果の限界。</h2></div></div>
+    <div class="section-heading"><div><p class="eyebrow">05 / HOW TO READ THE BASELINE</p><h2 id="method-title">反復列実験の条件と、限界。</h2></div></div>
     <div class="method-grid"><div><h3>同じ条件で比較するために</h3><dl><dt>入力</dt><dd>最大8 MiBずつ決定的に生成し、標準入力から供給。入力の総サイズをヘッダーへ事前指定しないストリーム測定。</dd><dt>設定</dt><dd>gzip <code>-6 -n</code> / xz・lzma <code>-6</code> / bzip2 <code>-9</code> / lz4 <code>-1</code> / zstd <code>-3 -T1</code></dd><dt>環境</dt><dd>macOS / arm64。Apple gzip 479、xz・lzma 5.6.3、bzip2 1.0.8、lz4 1.10.0、zstd 1.5.6。</dd><dt>検証</dt><dd>元の測定時に288件すべての展開結果をバイト単位で照合。今回は保存データの整合性を再検証して掲載し、1 GB測定そのものは再実行していません。</dd></dl></div><aside class="limits"><h3>この結果が示さないこと</h3><ul><li>一般的なファイル集合での圧縮性能順位</li><li>速度・消費電力・探索コストの優劣</li><li>MinePressionの変換が既存形式を上回る証拠</li><li>100 Bの全入力に対する厳密な圧縮率分布</li></ul><p>反復性が極めて高い人工入力に対する、1つのツールチェーンでのサイズ測定です。</p></aside></div>
     <details class="explanation"><summary>「ペイロードのみ」で何を除いているか</summary><p>比較するのは各形式が定義する圧縮データ領域です。符号表・制御記号など、その領域内にある情報は残します。形式によらない「純粋な情報量」ではありません。</p><ul><li>gzip：ヘッダーとトレーラーの間のDEFLATEストリーム。</li><li>xz：各BlockのCompressed Dataフィールド。</li><li>bzip2：4 BのBZhヘッダーと終端マーカーの間の圧縮ブロック列。独立した外部コンテナーを持たず、ブロック内部情報は含みます。</li><li>LZMA-Alone：13 Bのヘッダーに続く圧縮データ。</li><li>LZ4：各Data Blockフィールドの合計。</li><li>zstd：物理的に格納されたBlock Contentの合計。RLEブロックの内容は1 Bとして計数。</li></ul><p>bzip2はビット境界を扱うため、ペイロードをバイト換算すると小数になる場合があります。</p></details>
     <div class="evidence-links"><a href="data/methodology.json">測定版・引数の記録 ↗</a><a href="manifest.json">公開データの来歴・SHA-256 ↗</a><a href="https://github.com/kento/MinePression-Pages/issues">表示・内容の問題を報告 ↗</a></div>

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "classification": "public",
+  "measured_on": "Fugaku A64FX compute node",
+  "architecture": "aarch64",
+  "nodes": 1,
+  "worker_threads": 48,
+  "allocated_compute_cores": 48,
+  "allocated_assistant_cores": 4,
+  "requested_frequency_mhz": 2200,
+  "requested_eco_state": 2,
+  "started_at_utc": "2026-09-21T09:26:15Z",
+  "program_finished_at_utc": "2026-09-21T09:26:55Z",
+  "scheduler_finished_at_utc": "2026-09-21T09:26:56Z",
+  "scheduler_state": "EXT",
+  "exit_code": 0,
+  "pjm_code": 0,
+  "scheduler_elapsed_seconds": 41,
+  "walltime_limit_seconds": 300,
+  "user_cpu_seconds": 156.78,
+  "system_cpu_seconds": 1710.16,
+  "compiler": "FCC 4.12.2 20251113, tcsds-1.2.43",
+  "compiler_flags": [
+    "-O3",
+    "-std=c11",
+    "-pthread"
+  ],
+  "source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
+  "pilot_source_sha256": "7dd6551e80f2ca30b5cb0be7719d055e3c56a9c8138b9afe220d066698a1fa04",
+  "binary_sha256": "68f0d7570af9697de145f5baccb6e62e70efe9291b53f8f226ae7af8499ce379",
+  "libbzip2_source_sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+  "raw_results_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
+  "private_scheduler_receipt_sha256": "977dc6130ed96a8d1de722ebb8692ce94051956149f4f80adaebcf78526785a0",
+  "verification": "Scheduler/node identity and binary digest checked against private receipts; validate.py passed on copied raw JSONL.",
+  "limitations": [
+    "Raw scheduler receipts contain private infrastructure metadata and are not published.",
+    "41/3600 is a node-hour conversion of scheduler application elapsed time, not a separately reconciled billing record.",
+    "The system CPU time is large; this library-per-input implementation is not an optimized throughput limit.",
+    "No second job or exhaustive 2^80 run was launched."
+  ]
+}
