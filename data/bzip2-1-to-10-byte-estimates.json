@@ -1,0 +1,173 @@
+{
+  "schema_version": "bzip2-byte-length-full-space-estimates-v1",
+  "scope": "serial single-worker exhaustive enumeration of every byte string",
+  "method": "linear interpolation of measured median per-input times at 1 and 10 bytes, separately for ascending-prefix and deterministic-proxy input families",
+  "limitations": [
+    "Only the one-byte input set is exhaustive in the timing measurement.",
+    "The 10-byte per-input endpoints are measured, but their full 2^80 populations are extrapolated.",
+    "Two- through nine-byte per-input times are linear interpolations, not direct measurements, confidence intervals, or lower/upper bounds.",
+    "Startup and parallel scaling are excluded."
+  ],
+  "rows": [
+    {
+      "input_bytes": 1,
+      "population": "256",
+      "population_power_of_two": 8,
+      "per_input_basis": "measured-exhaustive-set",
+      "ascending-prefix": {
+        "seconds_per_input": 9.828827513415404e-06,
+        "total_seconds": 0.0025161798434343435,
+        "total_years": 7.97329278346371e-11
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 9.780183731849748e-06,
+        "total_seconds": 0.0025037270353535355,
+        "total_years": 7.93383221586412e-11
+      }
+    },
+    {
+      "input_bytes": 2,
+      "population": "65536",
+      "population_power_of_two": 16,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.0207702319906732e-05,
+        "total_seconds": 0.6689719792374076,
+        "total_years": 2.1198442823199724e-08
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.1002288141741738e-05,
+        "total_seconds": 0.7210459556571865,
+        "total_years": 2.2848567560815352e-08
+      }
+    },
+    {
+      "input_bytes": 3,
+      "population": "16777216",
+      "population_power_of_two": 24,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.058657712639806e-05,
+        "total_seconds": 177.61329115023955,
+        "total_years": 5.628225566907482e-06
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.2224392551633728e-05,
+        "total_seconds": 205.0912743075502,
+        "total_years": 6.49895031014875e-06
+      }
+    },
+    {
+      "input_bytes": 4,
+      "population": "4294967296",
+      "population_power_of_two": 32,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.0965451932889385e-05,
+        "total_seconds": 47096.2574376199,
+        "total_years": 0.0014923903413954134
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.344649696152572e-05,
+        "total_seconds": 57752.264695516336,
+        "total_years": 0.0018300588351305657
+      }
+    },
+    {
+      "input_bytes": 5,
+      "population": "1099511627776",
+      "population_power_of_two": 40,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.1344326739380713e-05,
+        "total_seconds": 12473219.15923929,
+        "total_years": 0.39525246404160297
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.466860137141771e-05,
+        "total_seconds": 16128297.771084752,
+        "total_years": 0.511074916060941
+      }
+    },
+    {
+      "input_bytes": 6,
+      "population": "281474976710656",
+      "population_power_of_two": 48,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.172320154587204e-05,
+        "total_seconds": 3299787882.098659,
+        "total_years": 104.56396817561091
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.58907057813097e-05,
+        "total_seconds": 4472836039.710034,
+        "total_years": 141.73562120408505
+      }
+    },
+    {
+      "input_bytes": 7,
+      "population": "72057594037927936",
+      "population_power_of_two": 56,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.2102076352363368e-05,
+        "total_seconds": 872046504814.6073,
+        "total_years": 27633.486222482297
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.711281019120169e-05,
+        "total_seconds": 1233107929605.7273,
+        "total_years": 39074.832357521715
+      }
+    },
+    {
+      "input_bytes": 8,
+      "population": "18446744073709551616",
+      "population_power_of_two": 64,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.2480951158854694e-05,
+        "total_seconds": 230232911823861.2,
+        "total_years": 7295640.727554098
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.8334914601093676e-05,
+        "total_seconds": 338219477259695.5,
+        "total_years": 10717528.495820198
+      }
+    },
+    {
+      "input_bytes": 9,
+      "population": "4722366482869645213696",
+      "population_power_of_two": 72,
+      "per_input_basis": "linear-interpolation-between-1-and-10-byte-medians",
+      "ascending-prefix": {
+        "seconds_per_input": 1.2859825965346022e-05,
+        "total_seconds": 6.072881111428683e+16,
+        "total_years": 1924379899.4310985
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 1.955701901098567e-05,
+        "total_seconds": 9.235541108232318e+16,
+        "total_years": 2926566376.4773993
+      }
+    },
+    {
+      "input_bytes": 10,
+      "population": "1208925819614629174706176",
+      "population_power_of_two": 80,
+      "per_input_basis": "measured-endpoint",
+      "ascending-prefix": {
+        "seconds_per_input": 1.323870077183735e-05,
+        "total_seconds": 1.6004607181226291e+19,
+        "total_years": 507155397787.73706
+      },
+      "pseudorandom-proxy": {
+        "seconds_per_input": 2.077912342087766e-05,
+        "total_seconds": 2.512041881245806e+19,
+        "total_years": 796018037254.356
+      }
+    }
+  ]
+}
