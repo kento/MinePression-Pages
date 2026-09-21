@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0.0",
+  "classification": "public",
+  "generated_at": "2026-09-21T08:33:01.984110+00:00",
+  "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
+  "control_commit": "15951502aaeae020485f7a79ada7f2380d98e966",
+  "harness": {
+    "harness_id": "kento-common",
+    "harness_version": "0.2.7",
+    "source_commit": "e6e682357d20814e10caf921b0925b0da8fba60f"
+  },
+  "input_sha256": {
+    "all-zero/compression_results.csv": "558a824c039b46c9d8f0f82c5cbce840b8884f1126046709264ee09149284a07",
+    "all-zero/run_metadata.json": "d1c9cba53753381390f6615502a7e03dba790c02fa0e8ba25b053efe99b77eb5",
+    "alternating-00-01/compression_results.csv": "01721b2ccca5259d2a59093fb50c103e26e8fb57501f81db607cffa72fcce9f6",
+    "alternating-00-01/run_metadata.json": "fcdd182f8d6217b8789fe623484d4ffa909b1eaad473ba5e2831d3f7da4cfd10",
+    "period-6-010111/compression_results.csv": "05aacc3c17cbd69431ffc41ba02dacf265337bfcde23598dcfd67c2443a779bf",
+    "period-6-010111/run_metadata.json": "cee1c80054a46b94ad9c8825d8d4c25e8dccca880e316779fa3110c079490878"
+  },
+  "files_sha256": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "README.md": "126103cf38dab3bd30ef195f1772252e2f2f652126b9471f9895efa6ba4907aa",
+    "assets/site.css": "34bbf070574a769eba92084cf2e3c0eab3bf309b5cd0ea5214b500cc6bc1f8b7",
+    "assets/site.js": "1ae8dc82b158b74c0ea77feb9c1b079c86b76eda67a9a3cf54edc84d6ce458ab",
+    "data/compression-results.csv": "7405454a50f441d291365c285e65ccd092df8d18ff4b7fdf7d02a7b600fb7e49",
+    "data/methodology.json": "4caacd22c681793456cc6f45ebee498b996af45660b7ae654e308e2859e3fe7e",
+    "figures/three-patterns.svg": "86bf5917514cf79f5902a0ac463b319865f508f26bc3de03d94c1b300f59d493",
+    "index.html": "25c577ad573eafa0faa2beaba51759df84c6e82c97c1d2c9e497e8dafcfafb50"
+  },
+  "validation": {
+    "unique_measurements": 288,
+    "historical_roundtrips": 288,
+    "csv_accounting": "passed",
+    "input_commit_match": "passed",
+    "publication_allowlist": "passed"
+  },
+  "limitations": [
+    "Historical size measurements; no 1 GB rerun in this publication task.",
+    "Payload removes outer framing, not all codec-internal metadata.",
+    "One toolchain and synthetic periodic inputs; not speed or general-corpus rankings.",
+    "100-byte distribution note has no published reproducible sampler or raw log.",
+    "Manifest file digests exclude the manifest itself."
+  ]
+}
