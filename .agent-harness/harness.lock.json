@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "harness_id": "kento-common",
-  "harness_version": "0.3.2",
-  "source_commit": "2130012d3e320a349353060c25264c4e77888861",
+  "harness_version": "0.3.3",
+  "source_commit": "a44e4726dde5bb40db18536e33ba64451b093041",
   "profiles": [
     "code",
     "research",
@@ -16,19 +16,19 @@
     "gemini",
     "copilot"
   ],
-  "generated_at": "2026-09-21T15:03:55.541440+00:00",
+  "generated_at": "2026-09-21T16:24:03.520727+00:00",
   "files": {
     "AGENTS.md": {
-      "managed_block_sha256": "3520bd28cdc0fa09440f4c69ca3265c36b56220c2f82bbc63cda69b5672cc05a"
+      "managed_block_sha256": "6906a70f72a4b61cd5a47913babaf8de1102b3d413d705a6e95100b44b52cb69"
     },
     "CLAUDE.md": {
-      "managed_block_sha256": "8ed42e05ce243ea5fe6b4b89426ddbb1affaa3710dfcef69d84981bc5edf4d4f"
+      "managed_block_sha256": "922d4170dd6d8eb92ebf3e1b36654c82d53f42e752385ef710cad54bea3ddf97"
     },
     "GEMINI.md": {
-      "managed_block_sha256": "14320d40e9760063de5802e186c5ef1e9d17ef4d434d47124d4b2bca39739c0a"
+      "managed_block_sha256": "227654dff046878956de567be287d9ddf7aee1159d4d4e8fb25661d40de8fa85"
     },
     ".github/copilot-instructions.md": {
-      "managed_block_sha256": "6381b2d49b9515c485e28300f3e4613edcf6f5df307c9d9fd89f2d60b12e6c3e"
+      "managed_block_sha256": "7434143a2d018d5d692bab63a7b722b751f8af776109c87fae426e3cd356e595"
     }
   },
   "source_id": "kento-common"

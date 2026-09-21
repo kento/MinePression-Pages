@@ -1,0 +1,258 @@
+{
+  "schema_version": "bzip2-20bit-census-summary-v1",
+  "population": 1048576,
+  "scope": "all 20-bit values zero-left-padded to 10 bytes; not all 2^80 ten-byte inputs",
+  "elapsed_seconds": 14.713581035,
+  "seconds_per_input": 1.40319643354e-05,
+  "within_30_seconds": true,
+  "mean_ratio_percent": {
+    "whole": 446.282377243042,
+    "payload": 298.84870290756226
+  },
+  "mode": {
+    "whole": {
+      "compressed_bytes": 45,
+      "ratio_percent": 450.0,
+      "occurrences": 860160
+    },
+    "payload": {
+      "payload_bits": 242,
+      "ratio_percent": 302.5,
+      "occurrences": 752640
+    }
+  },
+  "whole_histogram": [
+    {
+      "compressed_bytes": 37,
+      "ratio_percent": 370.0,
+      "occurrences": 1
+    },
+    {
+      "compressed_bytes": 38,
+      "ratio_percent": 380.0,
+      "occurrences": 1
+    },
+    {
+      "compressed_bytes": 39,
+      "ratio_percent": 390.0,
+      "occurrences": 192
+    },
+    {
+      "compressed_bytes": 40,
+      "ratio_percent": 400.0,
+      "occurrences": 86
+    },
+    {
+      "compressed_bytes": 41,
+      "ratio_percent": 410.0,
+      "occurrences": 5736
+    },
+    {
+      "compressed_bytes": 42,
+      "ratio_percent": 420.0,
+      "occurrences": 480
+    },
+    {
+      "compressed_bytes": 43,
+      "ratio_percent": 430.0,
+      "occurrences": 181920
+    },
+    {
+      "compressed_bytes": 45,
+      "ratio_percent": 450.0,
+      "occurrences": 860160
+    }
+  ],
+  "payload_histogram": [
+    {
+      "payload_bits": 184,
+      "ratio_percent": 230.0,
+      "occurrences": 1
+    },
+    {
+      "payload_bits": 190,
+      "ratio_percent": 237.5,
+      "occurrences": 1
+    },
+    {
+      "payload_bits": 193,
+      "ratio_percent": 241.25,
+      "occurrences": 2
+    },
+    {
+      "payload_bits": 194,
+      "ratio_percent": 242.5,
+      "occurrences": 24
+    },
+    {
+      "payload_bits": 195,
+      "ratio_percent": 243.75,
+      "occurrences": 17
+    },
+    {
+      "payload_bits": 196,
+      "ratio_percent": 245.0,
+      "occurrences": 13
+    },
+    {
+      "payload_bits": 197,
+      "ratio_percent": 246.25,
+      "occurrences": 24
+    },
+    {
+      "payload_bits": 198,
+      "ratio_percent": 247.5,
+      "occurrences": 60
+    },
+    {
+      "payload_bits": 199,
+      "ratio_percent": 248.75,
+      "occurrences": 15
+    },
+    {
+      "payload_bits": 200,
+      "ratio_percent": 250.0,
+      "occurrences": 37
+    },
+    {
+      "payload_bits": 201,
+      "ratio_percent": 251.25,
+      "occurrences": 14
+    },
+    {
+      "payload_bits": 202,
+      "ratio_percent": 252.5,
+      "occurrences": 34
+    },
+    {
+      "payload_bits": 203,
+      "ratio_percent": 253.75,
+      "occurrences": 24
+    },
+    {
+      "payload_bits": 204,
+      "ratio_percent": 255.0,
+      "occurrences": 8
+    },
+    {
+      "payload_bits": 207,
+      "ratio_percent": 258.75,
+      "occurrences": 3
+    },
+    {
+      "payload_bits": 208,
+      "ratio_percent": 260.0,
+      "occurrences": 3
+    },
+    {
+      "payload_bits": 209,
+      "ratio_percent": 261.25,
+      "occurrences": 1007
+    },
+    {
+      "payload_bits": 210,
+      "ratio_percent": 262.5,
+      "occurrences": 1710
+    },
+    {
+      "payload_bits": 211,
+      "ratio_percent": 263.75,
+      "occurrences": 596
+    },
+    {
+      "payload_bits": 212,
+      "ratio_percent": 265.0,
+      "occurrences": 289
+    },
+    {
+      "payload_bits": 213,
+      "ratio_percent": 266.25,
+      "occurrences": 705
+    },
+    {
+      "payload_bits": 214,
+      "ratio_percent": 267.5,
+      "occurrences": 468
+    },
+    {
+      "payload_bits": 215,
+      "ratio_percent": 268.75,
+      "occurrences": 241
+    },
+    {
+      "payload_bits": 216,
+      "ratio_percent": 270.0,
+      "occurrences": 720
+    },
+    {
+      "payload_bits": 217,
+      "ratio_percent": 271.25,
+      "occurrences": 240
+    },
+    {
+      "payload_bits": 219,
+      "ratio_percent": 273.75,
+      "occurrences": 240
+    },
+    {
+      "payload_bits": 225,
+      "ratio_percent": 281.25,
+      "occurrences": 36960
+    },
+    {
+      "payload_bits": 226,
+      "ratio_percent": 282.5,
+      "occurrences": 114000
+    },
+    {
+      "payload_bits": 227,
+      "ratio_percent": 283.75,
+      "occurrences": 13800
+    },
+    {
+      "payload_bits": 228,
+      "ratio_percent": 285.0,
+      "occurrences": 10440
+    },
+    {
+      "payload_bits": 229,
+      "ratio_percent": 286.25,
+      "occurrences": 6240
+    },
+    {
+      "payload_bits": 230,
+      "ratio_percent": 287.5,
+      "occurrences": 480
+    },
+    {
+      "payload_bits": 241,
+      "ratio_percent": 301.25,
+      "occurrences": 53760
+    },
+    {
+      "payload_bits": 242,
+      "ratio_percent": 302.5,
+      "occurrences": 752640
+    },
+    {
+      "payload_bits": 243,
+      "ratio_percent": 303.75,
+      "occurrences": 26880
+    },
+    {
+      "payload_bits": 244,
+      "ratio_percent": 305.0,
+      "occurrences": 26880
+    }
+  ],
+  "ratio_ranges": {
+    "whole_percent": [
+      370,
+      450
+    ],
+    "payload_percent": [
+      230,
+      305
+    ]
+  }
+}
