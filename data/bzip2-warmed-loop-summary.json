@@ -1,0 +1,404 @@
+{
+  "schema_version": "warmed-loop-summary-v1",
+  "configuration": {
+    "type": "configuration",
+    "schema": "warmed-loop-v1",
+    "libbzip2": "1.0.8, 13-Jul-2019",
+    "sizes": [
+      1,
+      10,
+      100,
+      1000,
+      10000
+    ],
+    "worker_threads": 1,
+    "block_size_100k": 1,
+    "work_factor": 30,
+    "warmups": 2,
+    "repeats": 5,
+    "target_batch_seconds": 0.5,
+    "max_iterations": 262144,
+    "ratio_array_bytes_per_input": 16,
+    "exhaustive_above_one_byte": false
+  },
+  "validation": "passed; node/scheduler receipts require separate review",
+  "results": [
+    {
+      "input_bytes": 1,
+      "dataset": "ascending-prefix",
+      "iterations_per_batch": 50688,
+      "batch_seconds": [
+        0.498731829,
+        0.498996889,
+        0.49810686,
+        0.498203609,
+        0.49810599
+      ],
+      "median_seconds_per_input": 9.828827513415404e-06,
+      "observed_seconds_per_input_range": [
+        9.826901633522728e-06,
+        9.844477765940656e-06
+      ],
+      "population": "2^8",
+      "full_space_serial_seconds": {
+        "mantissa": 2.5161798434343434,
+        "exponent10": -3,
+        "formatted": "2.516180e-3"
+      },
+      "full_space_serial_years": {
+        "mantissa": 7.973292783463709,
+        "exponent10": -11,
+        "formatted": "7.973293e-11"
+      },
+      "total_ratio_range": [
+        3700,
+        3700
+      ],
+      "payload_ratio_range": [
+        2237.5,
+        2237.5
+      ],
+      "extrapolation": "repeated full 256-value census"
+    },
+    {
+      "input_bytes": 1,
+      "dataset": "pseudorandom-proxy",
+      "iterations_per_batch": 50688,
+      "batch_seconds": [
+        0.493110497,
+        0.500028765,
+        0.495737953,
+        0.495250557,
+        0.496451544
+      ],
+      "median_seconds_per_input": 9.780183731849748e-06,
+      "observed_seconds_per_input_range": [
+        9.728347873263889e-06,
+        9.864835168087122e-06
+      ],
+      "population": "2^8",
+      "full_space_serial_seconds": {
+        "mantissa": 2.5037270353535357,
+        "exponent10": -3,
+        "formatted": "2.503727e-3"
+      },
+      "full_space_serial_years": {
+        "mantissa": 7.93383221586412,
+        "exponent10": -11,
+        "formatted": "7.933832e-11"
+      },
+      "total_ratio_range": [
+        3700,
+        3700
+      ],
+      "payload_ratio_range": [
+        2237.5,
+        2237.5
+      ],
+      "extrapolation": "repeated full 256-value census"
+    },
+    {
+      "input_bytes": 10,
+      "dataset": "ascending-prefix",
+      "iterations_per_batch": 42496,
+      "batch_seconds": [
+        0.562591828,
+        0.562778048,
+        0.560205974,
+        0.560228473,
+        0.562820768
+      ],
+      "median_seconds_per_input": 1.323870077183735e-05,
+      "observed_seconds_per_input_range": [
+        1.3182557746611447e-05,
+        1.3244088102409639e-05
+      ],
+      "population": "2^80",
+      "full_space_serial_seconds": {
+        "mantissa": 1.6004607181226291,
+        "exponent10": 19,
+        "formatted": "1.600461e+19"
+      },
+      "full_space_serial_years": {
+        "mantissa": 5.071553977877371,
+        "exponent10": 11,
+        "formatted": "5.071554e+11"
+      },
+      "total_ratio_range": [
+        370,
+        450
+      ],
+      "payload_ratio_range": [
+        230,
+        301.25
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 10,
+      "dataset": "pseudorandom-proxy",
+      "iterations_per_batch": 24064,
+      "batch_seconds": [
+        0.500055557,
+        0.500125326,
+        0.498933449,
+        0.498419629,
+        0.500028826
+      ],
+      "median_seconds_per_input": 2.077912342087766e-05,
+      "observed_seconds_per_input_range": [
+        2.0712251870013298e-05,
+        2.078313356050532e-05
+      ],
+      "population": "2^80",
+      "full_space_serial_seconds": {
+        "mantissa": 2.512041881245806,
+        "exponent10": 19,
+        "formatted": "2.512042e+19"
+      },
+      "full_space_serial_years": {
+        "mantissa": 7.960180372543559,
+        "exponent10": 11,
+        "formatted": "7.960180e+11"
+      },
+      "total_ratio_range": [
+        480,
+        630
+      ],
+      "payload_ratio_range": [
+        336.25,
+        486.25
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 100,
+      "dataset": "ascending-prefix",
+      "iterations_per_batch": 36608,
+      "batch_seconds": [
+        0.556973668,
+        0.556814238,
+        0.556383919,
+        0.556228949,
+        0.556502458
+      ],
+      "median_seconds_per_input": 1.5201662423513985e-05,
+      "observed_seconds_per_input_range": [
+        1.5194191133085664e-05,
+        1.5214534200174827e-05
+      ],
+      "population": "2^800",
+      "full_space_serial_seconds": {
+        "mantissa": 1.0136490444375859,
+        "exponent10": 236,
+        "formatted": "1.013649e+236"
+      },
+      "full_space_serial_years": {
+        "mantissa": 3.2120599932744756,
+        "exponent10": 228,
+        "formatted": "3.212060e+228"
+      },
+      "total_ratio_range": [
+        39,
+        47
+      ],
+      "payload_ratio_range": [
+        25,
+        32.25
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 100,
+      "dataset": "pseudorandom-proxy",
+      "iterations_per_batch": 3584,
+      "batch_seconds": [
+        0.534619486,
+        0.534674305,
+        0.534875546,
+        0.534732437,
+        0.534670316
+      ],
+      "median_seconds_per_input": 0.00014918367885044642,
+      "observed_seconds_per_input_range": [
+        0.0001491683833705357,
+        0.0001492398286830357
+      ],
+      "population": "2^800",
+      "full_space_serial_seconds": {
+        "mantissa": 9.947589237248899,
+        "exponent10": 236,
+        "formatted": "9.947589e+236"
+      },
+      "full_space_serial_years": {
+        "mantissa": 3.1522008128783234,
+        "exponent10": 229,
+        "formatted": "3.152201e+229"
+      },
+      "total_ratio_range": [
+        174,
+        190
+      ],
+      "payload_ratio_range": [
+        159.75,
+        175.5
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 1000,
+      "dataset": "ascending-prefix",
+      "iterations_per_batch": 13824,
+      "batch_seconds": [
+        0.508068653,
+        0.507998452,
+        0.509511121,
+        0.508253392,
+        0.508069683
+      ],
+      "median_seconds_per_input": 3.6752725911458334e-05,
+      "observed_seconds_per_input_range": [
+        3.6747573206018525e-05,
+        3.685699660011574e-05
+      ],
+      "population": "2^8000",
+      "full_space_serial_seconds": {
+        "mantissa": 6.386381638656855,
+        "exponent10": 2403,
+        "formatted": "6.386382e+2403"
+      },
+      "full_space_serial_years": {
+        "mantissa": 2.0237222217966053,
+        "exponent10": 2396,
+        "formatted": "2.023722e+2396"
+      },
+      "total_ratio_range": [
+        4.4,
+        5.1
+      ],
+      "payload_ratio_range": [
+        2.9125,
+        3.6875
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 1000,
+      "dataset": "pseudorandom-proxy",
+      "iterations_per_batch": 512,
+      "batch_seconds": [
+        0.621542897,
+        0.621346766,
+        0.621341398,
+        0.621337168,
+        0.621402407
+      ],
+      "median_seconds_per_input": 0.00121356790234375,
+      "observed_seconds_per_input_range": [
+        0.00121354915625,
+        0.001213950970703125
+      ],
+      "population": "2^8000",
+      "full_space_serial_seconds": {
+        "mantissa": 2.1087708670814918,
+        "exponent10": 2405,
+        "formatted": "2.108771e+2405"
+      },
+      "full_space_serial_years": {
+        "mantissa": 6.6822916415744285,
+        "exponent10": 2397,
+        "formatted": "6.682292e+2397"
+      },
+      "total_ratio_range": [
+        124.9,
+        132.5
+      ],
+      "payload_ratio_range": [
+        123.5,
+        131.1
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 10000,
+      "dataset": "ascending-prefix",
+      "iterations_per_batch": 2048,
+      "batch_seconds": [
+        0.507549683,
+        0.507738972,
+        0.507679043,
+        0.507738333,
+        0.507650733
+      ],
+      "median_seconds_per_input": 0.00024789015771484375,
+      "observed_seconds_per_input_range": [
+        0.00024782699365234376,
+        0.000247919419921875
+      ],
+      "population": "2^80000",
+      "full_space_serial_seconds": {
+        "mantissa": 6.221747791135235,
+        "exponent10": 24078,
+        "formatted": "6.221748e+24078"
+      },
+      "full_space_serial_years": {
+        "mantissa": 1.97155290362234,
+        "exponent10": 24071,
+        "formatted": "1.971553e+24071"
+      },
+      "total_ratio_range": [
+        0.45,
+        0.52
+      ],
+      "payload_ratio_range": [
+        0.30375,
+        0.37625
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    },
+    {
+      "input_bytes": 10000,
+      "dataset": "pseudorandom-proxy",
+      "iterations_per_batch": 256,
+      "batch_seconds": [
+        1.581967358,
+        1.581997028,
+        1.581953008,
+        1.581905177,
+        1.581969669
+      ],
+      "median_seconds_per_input": 0.0061795599921875,
+      "observed_seconds_per_input_range": [
+        0.00617931709765625,
+        0.006179675890625
+      ],
+      "population": "2^80000",
+      "full_space_serial_seconds": {
+        "mantissa": 1.55099597684745,
+        "exponent10": 24080,
+        "formatted": "1.550996e+24080"
+      },
+      "full_space_serial_years": {
+        "mantissa": 4.914809671354761,
+        "exponent10": 24072,
+        "formatted": "4.914810e+24072"
+      },
+      "total_ratio_range": [
+        104.54,
+        105.13
+      ],
+      "payload_ratio_range": [
+        104.3925,
+        104.98375
+      ],
+      "extrapolation": "input-dependent pilot, not a census"
+    }
+  ],
+  "limitations": [
+    "Serial single-worker time, not node-startup or allocated-node billing time.",
+    "Each independent libbzip2 stream includes its own initialization/allocation.",
+    "Ascending prefixes are zero-heavy for large sizes; proxies are not proven IID draws.",
+    "No full census above one byte, confidence interval, or measured multi-node scaling.",
+    "Payload removes outer framing only; both ratios are stored in an in-memory array."
+  ]
+}
