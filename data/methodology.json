@@ -1,0 +1,236 @@
+{
+  "all-zero": {
+    "measured_at_utc": "2026-09-06T15:44:18.060171+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "tools": {
+      "bzip2": {
+        "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",
+        "compress_arguments": [
+          "-9",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "gzip": {
+        "version": "Apple gzip 479",
+        "compress_arguments": [
+          "-n",
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "lz4": {
+        "version": "*** lz4 v1.10.0 64-bit multithread, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      },
+      "lzma": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "xz": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "zstd": {
+        "version": "*** Zstandard CLI (64-bit) v1.5.6, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-3",
+          "-T1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      }
+    }
+  },
+  "alternating-00-01": {
+    "measured_at_utc": "2026-09-06T15:47:18.023341+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "tools": {
+      "bzip2": {
+        "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",
+        "compress_arguments": [
+          "-9",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "gzip": {
+        "version": "Apple gzip 479",
+        "compress_arguments": [
+          "-n",
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "lz4": {
+        "version": "*** lz4 v1.10.0 64-bit multithread, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      },
+      "lzma": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "xz": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "zstd": {
+        "version": "*** Zstandard CLI (64-bit) v1.5.6, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-3",
+          "-T1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      }
+    }
+  },
+  "period-6-010111": {
+    "measured_at_utc": "2026-09-06T15:49:52.698136+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "tools": {
+      "bzip2": {
+        "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",
+        "compress_arguments": [
+          "-9",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "gzip": {
+        "version": "Apple gzip 479",
+        "compress_arguments": [
+          "-n",
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "lz4": {
+        "version": "*** lz4 v1.10.0 64-bit multithread, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      },
+      "lzma": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "xz": {
+        "version": "xz (XZ Utils) 5.6.3",
+        "compress_arguments": [
+          "-6",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-d",
+          "-c"
+        ]
+      },
+      "zstd": {
+        "version": "*** Zstandard CLI (64-bit) v1.5.6, by Yann Collet ***",
+        "compress_arguments": [
+          "-q",
+          "-3",
+          "-T1",
+          "-c"
+        ],
+        "decompress_arguments": [
+          "-q",
+          "-d",
+          "-c"
+        ]
+      }
+    }
+  }
+}
