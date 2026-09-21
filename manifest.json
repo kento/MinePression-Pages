@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.3.0",
+  "generator_version": "1.4.0",
   "classification": "public",
-  "generated_at": "2026-09-21T16:24:21+00:00",
+  "generated_at": "2026-09-21T17:17:11.290948+00:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "11d9bd7309b4238e3c77901d051af91610d946e5",
+  "control_commit": "90cb594ff3b0840e25fc2bd9dd612147d3da1779",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -38,9 +38,10 @@
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "7b4e9d2bd3416a44ca34c4e3df54aada3081157824669c1f77f4b6e09fbcaf7b",
+    "README.md": "e928ee046670be83397fb15457cb78122fa3df5e06ea6020f7ab34f3a971fbb4",
     "assets/site.css": "ca2230c7de06311620a6611dbd1d7a91d9f0dd03677c114ecf1a783849eb7d51",
     "assets/site.js": "1ae8dc82b158b74c0ea77feb9c1b079c86b76eda67a9a3cf54edc84d6ce458ab",
+    "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
     "data/bzip2-10byte-run.json": "32bfe56152e205d70295a5d4be2f723f31884f6695da563b50dc555ce77c1ac5",
     "data/bzip2-10byte-summary.json": "c132989eae8855286e04c6d0d9def9779f2586674f68104afdda9848f10dd10b",
     "data/bzip2-20bit-census-run.json": "4b5ddb3e22ded4ab899fa01db1468de832ab003f551a0465db6bec1b1e1d0e11",
@@ -55,7 +56,7 @@
     "figures/bzip2-10byte-sample.svg": "686f4756b4b79a58c642a2d04b3025f32601944760b3a5b69c416aa810b32292",
     "figures/bzip2-20bit-census.svg": "b4e6c5a48730bc9a20acc51155d61b91aeabe4526dfeae6de97d18bba6a8336e",
     "figures/three-patterns.svg": "86bf5917514cf79f5902a0ac463b319865f508f26bc3de03d94c1b300f59d493",
-    "index.html": "c12269a2709043eb16798eef4a6221cc4ef0cb38bc0159042ad5c7940256f4e3"
+    "index.html": "13eec6ee2ab4d16a254f68ae71d1f25bd3665affadbb6df6bd5c07372fbf60dc"
   },
   "validation": {
     "unique_measurements": 288,
@@ -69,6 +70,8 @@
     "pilot_scheduler_receipt": "success reviewed privately; minimized digest published",
     "warmed_loop_validation": "passed",
     "warmed_loop_conditions": 10,
+    "byte_length_estimates": 10,
+    "byte_length_interpolation": "2--9 bytes are conditional linear interpolations",
     "warmed_loop_scheduler_receipt": "success reviewed privately; minimized digest published",
     "census_validation": "passed",
     "census_inputs": 1048576,
@@ -81,6 +84,7 @@
     "Historical baseline is one toolchain on periodic inputs, not a speed or general-corpus ranking.",
     "10-byte pilot histograms are a deterministic proxy sample and separate exact period-divides-2 family, not a census.",
     "Warmed-loop estimates exclude startup and use one worker; only the one-byte input set is exhaustive.",
+    "Two- through nine-byte timings are linear interpolations between measured one- and ten-byte medians, not direct measurements or bounds.",
     "The exact census covers the declared zero-left-padded low-20-bit subset, not all 2^80 ten-byte inputs.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
