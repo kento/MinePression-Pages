@@ -1,0 +1,401 @@
+{
+  "schema_version": "bzip2-byte-census-summary-v1",
+  "scope": "all bit patterns at each declared actual input length; each input is an independent stream",
+  "libbzip2": "1.0.8, 13-Jul-2019",
+  "algorithm": {
+    "aggregation": "validated-disjoint-shards-of-thread-local-histograms",
+    "ratio_array_bytes_per_input": 0,
+    "allocator": "reused-thread-local-arena"
+  },
+  "results": [
+    {
+      "input_bytes": 1,
+      "population": 256,
+      "population_exhaustive": true,
+      "shard_count": 1,
+      "max_shard_elapsed_seconds": 0.000443214,
+      "sum_shard_elapsed_seconds": 0.000443214,
+      "worker_threads_per_shard": [
+        48
+      ],
+      "mean_ratio_percent": {
+        "whole": 3700.0,
+        "payload": 2237.5
+      },
+      "mode": {
+        "whole": {
+          "compressed_bytes": 37,
+          "ratio_percent": 3700.0,
+          "occurrences": 256
+        },
+        "payload": {
+          "payload_bits": 179,
+          "ratio_percent": 2237.5,
+          "occurrences": 256
+        }
+      },
+      "ratio_ranges": {
+        "whole_percent": [
+          3700.0,
+          3700.0
+        ],
+        "payload_percent": [
+          2237.5,
+          2237.5
+        ]
+      },
+      "whole_histogram": [
+        {
+          "compressed_bytes": 37,
+          "ratio_percent": 3700.0,
+          "occurrences": 256
+        }
+      ],
+      "payload_histogram": [
+        {
+          "payload_bits": 179,
+          "ratio_percent": 2237.5,
+          "occurrences": 256
+        }
+      ]
+    },
+    {
+      "input_bytes": 2,
+      "population": 65536,
+      "population_exhaustive": true,
+      "shard_count": 1,
+      "max_shard_elapsed_seconds": 0.025060933,
+      "sum_shard_elapsed_seconds": 0.025060933,
+      "worker_threads_per_shard": [
+        48
+      ],
+      "mean_ratio_percent": {
+        "whole": 1943.75,
+        "payload": 1218.7255859375
+      },
+      "mode": {
+        "whole": {
+          "compressed_bytes": 39,
+          "ratio_percent": 1950.0,
+          "occurrences": 61440
+        },
+        "payload": {
+          "payload_bits": 196,
+          "ratio_percent": 1225.0,
+          "occurrences": 61440
+        }
+      },
+      "ratio_ranges": {
+        "whole_percent": [
+          1850.0,
+          1950.0
+        ],
+        "payload_percent": [
+          1118.75,
+          1225.0
+        ]
+      },
+      "whole_histogram": [
+        {
+          "compressed_bytes": 37,
+          "ratio_percent": 1850.0,
+          "occurrences": 4096
+        },
+        {
+          "compressed_bytes": 39,
+          "ratio_percent": 1950.0,
+          "occurrences": 61440
+        }
+      ],
+      "payload_histogram": [
+        {
+          "payload_bits": 179,
+          "ratio_percent": 1118.75,
+          "occurrences": 256
+        },
+        {
+          "payload_bits": 180,
+          "ratio_percent": 1125.0,
+          "occurrences": 3840
+        },
+        {
+          "payload_bits": 196,
+          "ratio_percent": 1225.0,
+          "occurrences": 61440
+        }
+      ]
+    },
+    {
+      "input_bytes": 3,
+      "population": 16777216,
+      "population_exhaustive": true,
+      "shard_count": 1,
+      "max_shard_elapsed_seconds": 3.579106253,
+      "sum_shard_elapsed_seconds": 3.579106253,
+      "worker_threads_per_shard": [
+        48
+      ],
+      "mean_ratio_percent": {
+        "whole": 1387.3708089192708,
+        "payload": 904.1348139444987
+      },
+      "mode": {
+        "whole": {
+          "compressed_bytes": 42,
+          "ratio_percent": 1400.0,
+          "occurrences": 13762560
+        },
+        "payload": {
+          "payload_bits": 220,
+          "ratio_percent": 916.6666666666666,
+          "occurrences": 13762560
+        }
+      },
+      "ratio_ranges": {
+        "whole_percent": [
+          1233.3333333333335,
+          1400.0
+        ],
+        "payload_percent": [
+          754.1666666666667,
+          916.6666666666666
+        ]
+      },
+      "whole_histogram": [
+        {
+          "compressed_bytes": 37,
+          "ratio_percent": 1233.3333333333335,
+          "occurrences": 11776
+        },
+        {
+          "compressed_bytes": 38,
+          "ratio_percent": 1266.6666666666665,
+          "occurrences": 53760
+        },
+        {
+          "compressed_bytes": 39,
+          "ratio_percent": 1300.0,
+          "occurrences": 184320
+        },
+        {
+          "compressed_bytes": 40,
+          "ratio_percent": 1333.3333333333335,
+          "occurrences": 2764800
+        },
+        {
+          "compressed_bytes": 42,
+          "ratio_percent": 1400.0,
+          "occurrences": 13762560
+        }
+      ],
+      "payload_histogram": [
+        {
+          "payload_bits": 181,
+          "ratio_percent": 754.1666666666667,
+          "occurrences": 256
+        },
+        {
+          "payload_bits": 182,
+          "ratio_percent": 758.3333333333333,
+          "occurrences": 11520
+        },
+        {
+          "payload_bits": 188,
+          "ratio_percent": 783.3333333333333,
+          "occurrences": 53760
+        },
+        {
+          "payload_bits": 198,
+          "ratio_percent": 825.0,
+          "occurrences": 184320
+        },
+        {
+          "payload_bits": 204,
+          "ratio_percent": 850.0,
+          "occurrences": 2764800
+        },
+        {
+          "payload_bits": 220,
+          "ratio_percent": 916.6666666666666,
+          "occurrences": 13762560
+        }
+      ]
+    },
+    {
+      "input_bytes": 4,
+      "population": 4294967296,
+      "population_exhaustive": true,
+      "shard_count": 4,
+      "max_shard_elapsed_seconds": 234.256122049,
+      "sum_shard_elapsed_seconds": 929.942279749,
+      "worker_threads_per_shard": [
+        48
+      ],
+      "mean_ratio_percent": {
+        "whole": 1131.1110166832805,
+        "payload": 774.828655456804
+      },
+      "mode": {
+        "whole": {
+          "compressed_bytes": 46,
+          "ratio_percent": 1150.0,
+          "occurrences": 2862612480
+        },
+        "payload": {
+          "payload_bits": 254,
+          "ratio_percent": 793.75,
+          "occurrences": 2862612480
+        }
+      },
+      "ratio_ranges": {
+        "whole_percent": [
+          925.0,
+          1150.0
+        ],
+        "payload_percent": [
+          565.625,
+          793.75
+        ]
+      },
+      "whole_histogram": [
+        {
+          "compressed_bytes": 37,
+          "ratio_percent": 925.0,
+          "occurrences": 19216
+        },
+        {
+          "compressed_bytes": 38,
+          "ratio_percent": 950.0,
+          "occurrences": 186880
+        },
+        {
+          "compressed_bytes": 39,
+          "ratio_percent": 975.0,
+          "occurrences": 450800
+        },
+        {
+          "compressed_bytes": 40,
+          "ratio_percent": 1000.0,
+          "occurrences": 10037760
+        },
+        {
+          "compressed_bytes": 41,
+          "ratio_percent": 1025.0,
+          "occurrences": 7372800
+        },
+        {
+          "compressed_bytes": 42,
+          "ratio_percent": 1050.0,
+          "occurrences": 138956800
+        },
+        {
+          "compressed_bytes": 43,
+          "ratio_percent": 1075.0,
+          "occurrences": 36700160
+        },
+        {
+          "compressed_bytes": 44,
+          "ratio_percent": 1100.0,
+          "occurrences": 1238630400
+        },
+        {
+          "compressed_bytes": 46,
+          "ratio_percent": 1150.0,
+          "occurrences": 2862612480
+        }
+      ],
+      "payload_histogram": [
+        {
+          "payload_bits": 181,
+          "ratio_percent": 565.625,
+          "occurrences": 1
+        },
+        {
+          "payload_bits": 182,
+          "ratio_percent": 568.75,
+          "occurrences": 15360
+        },
+        {
+          "payload_bits": 184,
+          "ratio_percent": 575.0,
+          "occurrences": 3855
+        },
+        {
+          "payload_bits": 187,
+          "ratio_percent": 584.375,
+          "occurrences": 7680
+        },
+        {
+          "payload_bits": 190,
+          "ratio_percent": 593.75,
+          "occurrences": 35840
+        },
+        {
+          "payload_bits": 191,
+          "ratio_percent": 596.875,
+          "occurrences": 143360
+        },
+        {
+          "payload_bits": 196,
+          "ratio_percent": 612.5,
+          "occurrences": 143360
+        },
+        {
+          "payload_bits": 198,
+          "ratio_percent": 618.75,
+          "occurrences": 245760
+        },
+        {
+          "payload_bits": 200,
+          "ratio_percent": 625.0,
+          "occurrences": 61680
+        },
+        {
+          "payload_bits": 203,
+          "ratio_percent": 634.375,
+          "occurrences": 122880
+        },
+        {
+          "payload_bits": 206,
+          "ratio_percent": 643.75,
+          "occurrences": 2542080
+        },
+        {
+          "payload_bits": 207,
+          "ratio_percent": 646.875,
+          "occurrences": 7372800
+        },
+        {
+          "payload_bits": 212,
+          "ratio_percent": 662.5,
+          "occurrences": 7372800
+        },
+        {
+          "payload_bits": 222,
+          "ratio_percent": 693.75,
+          "occurrences": 102256640
+        },
+        {
+          "payload_bits": 223,
+          "ratio_percent": 696.875,
+          "occurrences": 36700160
+        },
+        {
+          "payload_bits": 228,
+          "ratio_percent": 712.5,
+          "occurrences": 36700160
+        },
+        {
+          "payload_bits": 238,
+          "ratio_percent": 743.75,
+          "occurrences": 1238630400
+        },
+        {
+          "payload_bits": 254,
+          "ratio_percent": 793.75,
+          "occurrences": 2862612480
+        }
+      ]
+    }
+  ]
+}

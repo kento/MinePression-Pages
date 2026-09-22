@@ -1,0 +1,70 @@
+{
+  "schema_version": "bzip2-cpu-gpu-census-comparison-v1",
+  "scope": "exact occurrence histograms for every bit pattern at each actual input length",
+  "comparison_boundary": {
+    "cpu": "complete independent libbzip2 1.0.8 streams; four concurrent FX700 nodes for 4 B",
+    "gpu": "one B300 GPU; specialized exact length model; no compressed stream materialization",
+    "timing": "CPU compression-loop time versus CUDA census-kernel time; scheduler elapsed is separate"
+  },
+  "results": [
+    {
+      "input_bytes": 1,
+      "population": 256,
+      "cpu_fx700_parallel_loop_seconds": 0.000443214,
+      "gpu_b300_kernel_seconds": 8.9312e-05,
+      "cpu_parallel_loop_over_gpu_kernel": 4.962535829451809,
+      "gpu_inputs_per_second": 2866356.079,
+      "histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 2,
+      "population": 65536,
+      "cpu_fx700_parallel_loop_seconds": 0.025060933,
+      "gpu_b300_kernel_seconds": 0.000125504,
+      "cpu_parallel_loop_over_gpu_kernel": 199.68234478582357,
+      "gpu_inputs_per_second": 522182551.701,
+      "histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 3,
+      "population": 16777216,
+      "cpu_fx700_parallel_loop_seconds": 3.579106253,
+      "gpu_b300_kernel_seconds": 0.011417536,
+      "cpu_parallel_loop_over_gpu_kernel": 313.4744881032124,
+      "gpu_inputs_per_second": 1469425305.122,
+      "histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 4,
+      "population": 4294967296,
+      "cpu_fx700_parallel_loop_seconds": 234.256122049,
+      "gpu_b300_kernel_seconds": 3.292491699,
+      "cpu_parallel_loop_over_gpu_kernel": 71.14858394939874,
+      "gpu_inputs_per_second": 1304473234.365,
+      "histograms_match_exactly": true
+    }
+  ],
+  "four_byte": {
+    "cpu_parallel_loop_seconds": 234.256122049,
+    "cpu_sum_node_seconds": 929.942279749,
+    "gpu_kernel_seconds": 3.292491699,
+    "cpu_parallel_loop_over_gpu_kernel": 71.14858394939874,
+    "cpu_sum_node_seconds_over_gpu_kernel": 282.4433179380356,
+    "cpu_parallel_scheduler_window_seconds": 246,
+    "gpu_scheduler_elapsed_seconds": 40,
+    "four_byte_prefix_population": 67108864,
+    "four_byte_prefix_kernel_seconds": 0.051332832,
+    "prefix_linear_projection_seconds": 3.285301248
+  },
+  "validation": {
+    "all_four_whole_histograms_match_cpu": true,
+    "all_four_payload_histograms_match_cpu": true,
+    "all_one_and_two_byte_inputs_checked_against_independent_python_libbzip2": true,
+    "three_and_four_byte_deterministic_samples_checked_against_independent_python_libbzip2": 4096
+  },
+  "limitations": [
+    "The GPU implementation computes exact output lengths and histograms but does not emit .bz2 streams.",
+    "The 71x 4-byte figure compares different implementations and timing boundaries, so it is not a general libbzip2 encoder speedup.",
+    "Short 1-byte and 2-byte CUDA timings are dominated by launch-scale effects and are retained mainly for reproducibility."
+  ]
+}
