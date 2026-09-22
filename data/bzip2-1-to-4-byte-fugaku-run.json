@@ -1,0 +1,97 @@
+{
+  "schema_version": "bzip2-byte-census-run-metadata-v1",
+  "classification": "public",
+  "measured_on": "Fugaku",
+  "architecture": "A64FX",
+  "scheduler": "PJM",
+  "scheduler_result": {
+    "allocations": 5,
+    "nodes_per_allocation": 1,
+    "threads_per_allocation": 48,
+    "all_states": "COMPLETED",
+    "all_exit_codes": 0,
+    "all_pjm_codes": 0,
+    "allocation_elapsed_seconds": [
+      6,
+      259,
+      376,
+      376,
+      261
+    ],
+    "parallel_wall_window_seconds": 380
+  },
+  "compiler": {
+    "name": "Fujitsu C Compiler",
+    "version": "4.12.2",
+    "flags": "-O3 -std=c11 -pthread"
+  },
+  "libbzip2": {
+    "version": "1.0.8, 13-Jul-2019",
+    "source_sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+    "block_size_100k": 1,
+    "work_factor": 30
+  },
+  "coverage": {
+    "input_bytes": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "population": [
+      256,
+      65536,
+      16777216,
+      4294967296
+    ],
+    "exhaustive": true,
+    "four_byte_shards": 4,
+    "validated_no_gap_overlap_or_duplicate": true,
+    "post_timer_fixture_parity": true,
+    "post_timer_roundtrip": true,
+    "histograms_match_fx700_exactly": true
+  },
+  "loop_elapsed_seconds": {
+    "1B": 0.003930137,
+    "2B": 0.027361935,
+    "3B": 3.736365458,
+    "4B_shards": [
+      257.167100778,
+      374.132230518,
+      374.063822307,
+      259.01991103
+    ],
+    "4B_parallel_max": 374.132230518,
+    "4B_sum_node_seconds": 1264.383064633
+  },
+  "provenance": {
+    "source_base_commit": "90cb594ff3b0840e25fc2bd9dd612147d3da1779",
+    "source_commit": "f3b3fbb1f490e32bd81ef71080750b76509d9456",
+    "harness_id": "kento-common",
+    "harness_version": "0.3.3",
+    "harness_commit": "a44e4726dde5bb40db18536e33ba64451b093041"
+  },
+  "sha256": {
+    "byte_census_source": "28e087630780c7eda737c440b10e9f85f3c96ee8ff7c987333dd54d5dadb1a66",
+    "generic_job_script": "119c51a9cf39d662550742949d1cd8172c82b0b7123920a8667870358647a8cc",
+    "small_job_script": "479039fa02b1a372b77cd77c783f9900ca28d56531cd5c90b53efea2dce9f341",
+    "binary": "093853024da238da8e3c19700be398d1d68e24c80ecae1ba5284047c36d0e3e4",
+    "raw_1B": "872916a0091bf080df34f630924b6a0099cbb1bc60654fb670bbfcbba178ee7c",
+    "raw_2B": "e9a9037112533e944708d7aeb52f11a8661cd32a7cad67f2b616b509e4fcf102",
+    "raw_3B": "3b38db24bc88de2104bdec0abe09277c47a4760c842eb7eedf47046858cec368",
+    "raw_4B_shards": [
+      "ec772a837dd24e0b400a308c705add54b7dd04d00fa1a7e3e8c8a3729b7c0858",
+      "e26a57fe85c8d1befde7d65fc49ababc97f7ea90fa096c14d8698b0e0c29f331",
+      "681c5f83ca403ea87559f65482bb851be4aff0f4ef5dd15664daa7d0283ff856",
+      "783161c344c3d315059411b8869c74510ab4708c5b71104dbcea6fbcddfb41a8"
+    ],
+    "summary": "2511b3219bf094077f4534bbb3ac05ef69f3f8c93e567462fb2d91821f572678"
+  },
+  "limitations": [
+    "Each input is an independent complete bzip2 stream.",
+    "Payload removes only the outer BZh1 header and EOS/combined-CRC/padding; codec-internal metadata remains.",
+    "Compression-loop timing excludes scheduler setup, validation, reduction and publication work.",
+    "The four 4-byte shards showed substantial runtime variation; this record reports the observation without assigning a cause.",
+    "Remote paths, account identifiers, node names and job identifiers are retained only in private receipts."
+  ]
+}
