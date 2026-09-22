@@ -1,0 +1,99 @@
+{
+  "schema_version": "bzip2-byte-census-run-metadata-v1",
+  "classification": "public",
+  "measured_on": "R-CCS Cloud FX700",
+  "architecture": "aarch64",
+  "scheduler": "Slurm",
+  "scheduler_result": {
+    "allocations": 5,
+    "nodes_per_allocation": 1,
+    "threads_per_allocation": 48,
+    "all_states": "COMPLETED",
+    "all_exit_codes": "0:0",
+    "allocation_elapsed_seconds": [
+      16,
+      245,
+      243,
+      244,
+      242
+    ],
+    "parallel_wall_window_seconds": 246
+  },
+  "compiler": {
+    "name": "GCC",
+    "version": "8.5.0 20210514",
+    "flags": "-O3 -std=c11 -pthread"
+  },
+  "libbzip2": {
+    "version": "1.0.8, 13-Jul-2019",
+    "source_sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+    "block_size_100k": 1,
+    "work_factor": 30
+  },
+  "coverage": {
+    "input_bytes": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "population": [
+      256,
+      65536,
+      16777216,
+      4294967296
+    ],
+    "exhaustive": true,
+    "four_byte_shards": 4,
+    "validated_no_gap_overlap_or_duplicate": true,
+    "post_timer_fixture_parity": true,
+    "post_timer_roundtrip": true
+  },
+  "loop_elapsed_seconds": {
+    "1B": 0.000443214,
+    "2B": 0.025060933,
+    "3B": 3.579106253,
+    "4B_shards": [
+      234.256122049,
+      231.918684532,
+      233.051139763,
+      230.716333405
+    ],
+    "4B_parallel_max": 234.256122049,
+    "4B_sum_node_seconds": 929.942279749
+  },
+  "provenance": {
+    "source_base_commit": "90cb594ff3b0840e25fc2bd9dd612147d3da1779",
+    "source_commit": "f3b3fbb1f490e32bd81ef71080750b76509d9456",
+    "harness_id": "kento-common",
+    "harness_version": "0.3.3",
+    "harness_commit": "a44e4726dde5bb40db18536e33ba64451b093041"
+  },
+  "sha256": {
+    "byte_census_source": "28e087630780c7eda737c440b10e9f85f3c96ee8ff7c987333dd54d5dadb1a66",
+    "generic_job_script": "119c51a9cf39d662550742949d1cd8172c82b0b7123920a8667870358647a8cc",
+    "small_job_script": "479039fa02b1a372b77cd77c783f9900ca28d56531cd5c90b53efea2dce9f341",
+    "cloud_small_wrapper": "1a63bb43034f5698f0a3916aa64b78c2a22516998625725691bccf32d89e249a",
+    "cloud_four_byte_wrapper": "85d34600cba283745e398a7368b4d6e574f9dd4f06b1198eec932382e352e486",
+    "binary": "1c30b7f46028037be7d3006f42c20272eb8be5e3acba143c2f75b9ae2273be73",
+    "raw_1B": "e8a60651a2658a69c0baf8d52255216e6cd089bb28c40d095e46e0c7debe0462",
+    "raw_2B": "bd495f2ce7401670841640327043473b3ffe2f51eea85f94cbcbfd84e6036998",
+    "raw_3B": "6304b35d250621d2adf360b09df0e278f4e8b34b2466aa6c9473eedd8fa31cd2",
+    "raw_4B_shards": [
+      "fddaf69318b339c4c8c706d5ef0361a8faa0151e89d1c81d9161d25eb47460e4",
+      "bde81f93f36598b9495ad6b07bca3baccd7119e1596cf867d7b7094945e93f37",
+      "b5c0d98c138807144c6719a90f3dc353aa64351dca67ac80fed1abda79e87a51",
+      "80e3233128ef123508091f904422d312f7e0431d57e546a36be49722604cfe05"
+    ],
+    "summary": "8a9a3ed4a85e2f11e4868df9402895073bfeac4930eea6489f3674a906fa0a44",
+    "figure_svg": "80d7abb7c13682d46414818b14217adea93b1002eab0bb639ca53372819052a5",
+    "figure_png": "160dc2887a20d1552979f78bca30f01dffebfc84f02dabf2f7194e0c00a67d",
+    "private_receipt_bundle": "0aa98afe7d33fe2a210b280f25871aba3e5782e4c4e968ef5b28f5fafebbd320"
+  },
+  "limitations": [
+    "Each input is an independent complete bzip2 stream.",
+    "Payload removes only the outer BZh1 header and EOS/combined-CRC/padding; codec-internal metadata remains.",
+    "Compression-loop timing excludes scheduler setup, compilation, validation, reduction and publication work.",
+    "Remote paths, account identifiers, node names and job identifiers are retained only in private receipts."
+  ]
+}
