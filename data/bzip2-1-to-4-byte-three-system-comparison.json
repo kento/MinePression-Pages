@@ -1,0 +1,88 @@
+{
+  "schema_version": "bzip2-fx700-fugaku-b300-comparison-v1",
+  "scope": "exact occurrence histograms for every bit pattern at each actual input length",
+  "comparison_boundary": {
+    "fx700": "four concurrent FX700 nodes using complete independent libbzip2 1.0.8 streams for 4 B",
+    "fugaku": "four concurrent Fugaku nodes using the same complete independent libbzip2 1.0.8 stream code for 4 B",
+    "b300": "one B300 GPU using a specialized exact length model without compressed stream materialization",
+    "timing": "CPU compression-loop maximum across concurrent shards versus CUDA census-kernel time; scheduler elapsed is separate"
+  },
+  "results": [
+    {
+      "input_bytes": 1,
+      "population": 256,
+      "fx700_parallel_loop_seconds": 0.000443214,
+      "fugaku_parallel_loop_seconds": 0.003930137,
+      "b300_kernel_seconds": 8.9312e-05,
+      "fugaku_over_fx700_loop": 8.867357529319923,
+      "fx700_loop_over_b300_kernel": 4.962535829451809,
+      "fugaku_loop_over_b300_kernel": 44.00457945180939,
+      "all_histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 2,
+      "population": 65536,
+      "fx700_parallel_loop_seconds": 0.025060933,
+      "fugaku_parallel_loop_seconds": 0.027361935,
+      "b300_kernel_seconds": 0.000125504,
+      "fugaku_over_fx700_loop": 1.0918162943095535,
+      "fx700_loop_over_b300_kernel": 199.68234478582357,
+      "fugaku_loop_over_b300_kernel": 218.01643772310047,
+      "all_histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 3,
+      "population": 16777216,
+      "fx700_parallel_loop_seconds": 3.579106253,
+      "fugaku_parallel_loop_seconds": 3.736365458,
+      "b300_kernel_seconds": 0.011417536,
+      "fugaku_over_fx700_loop": 1.043938121386641,
+      "fx700_loop_over_b300_kernel": 313.4744881032124,
+      "fugaku_loop_over_b300_kernel": 327.24796821310656,
+      "all_histograms_match_exactly": true
+    },
+    {
+      "input_bytes": 4,
+      "population": 4294967296,
+      "fx700_parallel_loop_seconds": 234.256122049,
+      "fugaku_parallel_loop_seconds": 374.132230518,
+      "b300_kernel_seconds": 3.292491699,
+      "fugaku_over_fx700_loop": 1.5971075899555005,
+      "fx700_loop_over_b300_kernel": 71.14858394939874,
+      "fugaku_loop_over_b300_kernel": 113.63194344017083,
+      "all_histograms_match_exactly": true
+    }
+  ],
+  "four_byte": {
+    "fx700_parallel_loop_seconds": 234.256122049,
+    "fx700_sum_node_seconds": 929.942279749,
+    "fx700_parallel_scheduler_window_seconds": 246,
+    "fugaku_parallel_loop_seconds": 374.132230518,
+    "fugaku_sum_node_seconds": 1264.383064633,
+    "fugaku_parallel_scheduler_window_seconds": 380,
+    "b300_kernel_seconds": 3.292491699,
+    "b300_scheduler_elapsed_seconds": 40,
+    "fugaku_over_fx700_loop": 1.5971075899555005,
+    "fx700_loop_over_b300_kernel": 71.14858394939874,
+    "fugaku_loop_over_b300_kernel": 113.63194344017083,
+    "fugaku_sum_node_seconds_over_b300_kernel": 384.02012221231115
+  },
+  "validation": {
+    "fx700_and_fugaku_whole_histograms_match_all_widths": true,
+    "fx700_and_fugaku_payload_histograms_match_all_widths": true,
+    "b300_histograms_match_both_cpu_runs_all_widths": true,
+    "validated_cpu_populations": [
+      256,
+      65536,
+      16777216,
+      4294967296
+    ]
+  },
+  "limitations": [
+    "The two CPU runs execute the same stream-producing algorithm, but compiler, scheduler and runtime environments differ.",
+    "The four Fugaku 4-byte shard times varied substantially; no cause is assigned by this comparison.",
+    "The B300 implementation computes exact lengths and occurrence histograms but does not emit .bz2 streams.",
+    "CPU loop versus GPU kernel ratios are problem-specific and are not a general bzip2 encoder speedup.",
+    "Scheduler elapsed includes different platform overheads and is reported separately from the measured loops and kernel."
+  ]
+}

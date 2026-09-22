@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.5.0",
+  "generator_version": "1.6.0",
   "classification": "public",
-  "generated_at": "2026-09-22T09:06:19.188683+00:00",
+  "generated_at": "2026-09-22T13:08:24.208843+00:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "9480820411ef2f8619d27f0ec2c83e2cd9f8676c",
+  "control_commit": "23bf498cabe353e20e7b77ac4913220674e8baa7",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -14,6 +14,7 @@
     "census_raw_sha256": "dca02f8f9bf29206de6d9dd1bcd4eae18358b5f7e1a37cf0a5a79cd53e274b0d",
     "byte_census_source_base_commit": "90cb594ff3b0840e25fc2bd9dd612147d3da1779",
     "byte_census_summary_sha256": "8a9a3ed4a85e2f11e4868df9402895073bfeac4930eea6489f3674a906fa0a44",
+    "fugaku_byte_census_summary_sha256": "2511b3219bf094077f4534bbb3ac05ef69f3f8c93e567462fb2d91821f572678",
     "gpu_census_source_sha256": "7788f4afe9a2151bf51430df8e6cc6037189d6089917f8e772d8dc5a21652eae",
     "gpu_4B_raw_sha256": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e"
   },
@@ -48,8 +49,18 @@
     "bzip2-1-to-4-byte/20260922_008_fx700-byte-census-summary.json": "8a9a3ed4a85e2f11e4868df9402895073bfeac4930eea6489f3674a906fa0a44",
     "bzip2-1-to-4-byte/20260922_009_bzip2-1-to-4-byte-histograms.svg": "80d7abb7c13682d46414818b14217adea93b1002eab0bb639ca53372819052a5",
     "bzip2-1-to-4-byte/20260922_011_fx700-run-metadata.json": "706f8252909bbc5e93b408c65f9b7ae72559377285b9dde54e38b08b91bce613",
+    "bzip2-1-to-4-byte/20260922_012_fugaku-byte-census-1B.jsonl": "872916a0091bf080df34f630924b6a0099cbb1bc60654fb670bbfcbba178ee7c",
+    "bzip2-1-to-4-byte/20260922_013_fugaku-byte-census-2B.jsonl": "e9a9037112533e944708d7aeb52f11a8661cd32a7cad67f2b616b509e4fcf102",
+    "bzip2-1-to-4-byte/20260922_014_fugaku-byte-census-3B.jsonl": "3b38db24bc88de2104bdec0abe09277c47a4760c842eb7eedf47046858cec368",
+    "bzip2-1-to-4-byte/20260922_015_fugaku-byte-census-4B-shard-0.jsonl": "ec772a837dd24e0b400a308c705add54b7dd04d00fa1a7e3e8c8a3729b7c0858",
+    "bzip2-1-to-4-byte/20260922_016_fugaku-byte-census-4B-shard-1.jsonl": "e26a57fe85c8d1befde7d65fc49ababc97f7ea90fa096c14d8698b0e0c29f331",
+    "bzip2-1-to-4-byte/20260922_017_fugaku-byte-census-4B-shard-2.jsonl": "681c5f83ca403ea87559f65482bb851be4aff0f4ef5dd15664daa7d0283ff856",
+    "bzip2-1-to-4-byte/20260922_018_fugaku-byte-census-4B-shard-3.jsonl": "783161c344c3d315059411b8869c74510ab4708c5b71104dbcea6fbcddfb41a8",
+    "bzip2-1-to-4-byte/20260922_019_fugaku-byte-census-summary.json": "2511b3219bf094077f4534bbb3ac05ef69f3f8c93e567462fb2d91821f572678",
+    "bzip2-1-to-4-byte/20260922_020_fugaku-run-metadata.json": "76890eec55df9e9c16e937aa66c5da6322c3be18217a964b5e41e888fd7573be",
     "bzip2-1-to-4-byte/20260922_006_b300-run-metadata.json": "35a84c758690b481ade5310219b8264f113b69032a9bbb905671775d7523828b",
     "bzip2-1-to-4-byte/20260922_007_cpu-gpu-comparison.json": "68dc4a6fbf55bc917b92f396ee1f7258b859a06b43785713f7f8cc91bfb14ff8",
+    "bzip2-1-to-4-byte/20260922_008_fx700-fugaku-b300-comparison.json": "1edc727cf1fb0f179605036685fda8bcd77bcc1cc1dbb21565312b3039ee27b8",
     "bzip2-1-to-4-byte/20260922_001_b300-gpu-census-1B.jsonl": "74202b51aee7e38c39baa6db670b1c2f6b1f9f3242f90b2d67696e7e3aadb096",
     "bzip2-1-to-4-byte/20260922_002_b300-gpu-census-2B.jsonl": "504033fd71d23a718e9a6e5264e16812973a8f7c30e5e48e4ad8f07003274173",
     "bzip2-1-to-4-byte/20260922_003_b300-gpu-census-3B.jsonl": "79316cc0d7fd98bd07ad390feb31dd35a481cf98cc2cf834fc57fbb825540eab",
@@ -58,14 +69,17 @@
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "ad5b5c1dc21abe8c09745fd02dbff959d34736f2483fdd62c3b1e90912d9332a",
+    "README.md": "1a849829212044a3d9ed7a4b821e2adb92721e90216de45bba8546fc98838b53",
     "assets/site.css": "ca2230c7de06311620a6611dbd1d7a91d9f0dd03677c114ecf1a783849eb7d51",
     "assets/site.js": "1ae8dc82b158b74c0ea77feb9c1b079c86b76eda67a9a3cf54edc84d6ce458ab",
     "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
     "data/bzip2-1-to-4-byte-cpu-run.json": "8ea5abd6d2f6b8c8e4b106a0205f6182d688282083dfd41852b5d3a22f7a1fa2",
+    "data/bzip2-1-to-4-byte-fugaku-run.json": "a7553458118f088d317f8f157ea2ba32f5bc59e8edbb2fb8759c9f9c1f4fad94",
+    "data/bzip2-1-to-4-byte-fugaku-summary.json": "2511b3219bf094077f4534bbb3ac05ef69f3f8c93e567462fb2d91821f572678",
     "data/bzip2-1-to-4-byte-gpu-comparison.json": "68dc4a6fbf55bc917b92f396ee1f7258b859a06b43785713f7f8cc91bfb14ff8",
     "data/bzip2-1-to-4-byte-gpu-run.json": "29f4dfab7b1080fd165a88d91196ec035bbb440c5657aad3f1cb319a65802898",
     "data/bzip2-1-to-4-byte-summary.json": "8a9a3ed4a85e2f11e4868df9402895073bfeac4930eea6489f3674a906fa0a44",
+    "data/bzip2-1-to-4-byte-three-system-comparison.json": "1edc727cf1fb0f179605036685fda8bcd77bcc1cc1dbb21565312b3039ee27b8",
     "data/bzip2-10byte-run.json": "32bfe56152e205d70295a5d4be2f723f31884f6695da563b50dc555ce77c1ac5",
     "data/bzip2-10byte-summary.json": "c132989eae8855286e04c6d0d9def9779f2586674f68104afdda9848f10dd10b",
     "data/bzip2-20bit-census-run.json": "4b5ddb3e22ded4ab899fa01db1468de832ab003f551a0465db6bec1b1e1d0e11",
@@ -85,7 +99,7 @@
     "figures/bzip2-10byte-sample.svg": "686f4756b4b79a58c642a2d04b3025f32601944760b3a5b69c416aa810b32292",
     "figures/bzip2-20bit-census.svg": "b4e6c5a48730bc9a20acc51155d61b91aeabe4526dfeae6de97d18bba6a8336e",
     "figures/three-patterns.svg": "86bf5917514cf79f5902a0ac463b319865f508f26bc3de03d94c1b300f59d493",
-    "index.html": "2ee23bf0a98a2b0a88d9f971228d02bfa8d216c8e7b7924f01de3ab36fcd1b0a"
+    "index.html": "21aecf47e893b11fb47bf9b3e856753b9cfdc38e9eacaedbdba2110f514be6de"
   },
   "validation": {
     "unique_measurements": 288,
@@ -113,6 +127,9 @@
       16777216,
       4294967296
     ],
+    "fugaku_histograms_match_fx700": true,
+    "fugaku_4B_parallel_loop_seconds": 374.132230518,
+    "fugaku_scheduler_receipt": "success reviewed privately; public metadata minimized",
     "gpu_histograms_match_cpu": true,
     "gpu_4B_kernel_seconds": 3.292491699,
     "gpu_scheduler_receipt": "success reviewed privately; public metadata minimized"

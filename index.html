@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MinePression研究の現在地。bzip2の1〜4 B全入力に対する正確な分布とCPU・GPU比較、10 B低位20 bit全列挙、反復バイト列288件をまとめた研究ノート。">
+  <meta name="description" content="MinePression研究の現在地。bzip2の1〜4 B全入力に対する正確な分布とFX700・富岳・B300比較、10 B低位20 bit全列挙、反復バイト列288件をまとめた研究ノート。">
   <meta name="theme-color" content="#142d35">
   <title>MinePression — 研究の現在地</title>
   <link rel="stylesheet" href="assets/site.css">
@@ -22,7 +22,7 @@
       <h1 id="hero-title">圧縮の可能性を、<br>小さな実験から。</h1>
       <p class="hero-description">完全版MinePressionに向けた研究の現在地。<br class="desktop-only">分かったこと、まだ分からないこと、次に試すことをここから。</p>
       <div class="hero-actions"><a class="button primary" href="#byte-census">最新の結果を見る <span aria-hidden="true">↗</span></a><a class="text-link" href="#results">反復列の基準値へ <span aria-hidden="true">→</span></a></div>
-      <p class="updated">ページ更新 2026-09-22 <span>／</span> 1〜4 B全入力・CPU/GPU比較 2026.09.22</p>
+      <p class="updated">ページ更新 2026-09-22 <span>／</span> 1〜4 B全入力・3環境比較 2026.09.22</p>
     </div>
     <aside class="checkpoint" aria-labelledby="checkpoint-title">
       <div class="checkpoint-top"><p class="eyebrow">30-SECOND CATCH-UP</p><span class="pill">いまは基礎実験</span></div>
@@ -30,7 +30,7 @@
       <ol class="catchup-list">
         <li><span>01</span><div><h3>目的は、完全版の設計を決めること。</h3><p>既存実装を参照しながらPoCを積み重ねる。製品としての完全版は、まだこれから。</p></div></li>
         <li><span>02</span><div><h3>規則的な入力の圧縮特性を測った。</h3><p>6形式を1 B〜1 GBで比較。今回の測定は既存コーデックの基準値で、MinePressionの性能ではない。</p></div></li>
-        <li><span>03</span><div><h3>1〜4 Bの全入力分布を厳密に求めた。</h3><p>4 Bの2<sup>32</sup>件はFX700で約234秒、専用B300 GPUカーネルで約3.29秒。全ヒストグラムが一致しました。</p></div></li>
+        <li><span>03</span><div><h3>1〜4 Bの全入力分布を3環境で照合した。</h3><p>4 Bの2<sup>32</sup>件はFX700で約234秒、富岳で約374秒、専用B300 GPUカーネルで約3.29秒。全ヒストグラムが一致しました。</p></div></li>
       </ol>
     </aside>
   </section>
@@ -43,16 +43,16 @@
   </div>
 
   <section id="byte-census" class="section pilot-section" aria-labelledby="byte-census-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · EXACT 1–4 BYTE CENSUS</p><h2 id="byte-census-title">4 Bの全43億通りを、厳密に数え切る。</h2></div><span class="badge verified">CPU・GPU一致</span></div>
+    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · EXACT 1–4 BYTE CENSUS</p><h2 id="byte-census-title">4 Bの全43億通りを、3環境で照合する。</h2></div><span class="badge verified">FX700・富岳・B300一致</span></div>
     <p class="section-intro">1 B、2 B、3 B、4 Bそれぞれについて、取り得る全ビット列を独立したbzip2 streamとして評価しました。<br>横軸は圧縮率、縦軸は発生件数。stream全体と外側frameを除いたPayloadを分けています。</p>
-    <div class="pilot-verdict"><div><p class="eyebrow">4 B · 2<sup>32</sup> = 4,294,967,296件</p><p class="pilot-estimate">3.292<span>秒 / B300 GPUカーネル（13.045億件/秒）</span></p><p>FX700 4ノード並列loopの 234.256秒に対して <strong>71.15倍</strong>。全binが一致しました。</p></div><dl><dt>CPU基準</dt><dd>libbzip2 1.0.8の完全streamを生成</dd><dt>GPU PoC</dt><dd>圧縮後長の決定だけを厳密再現</dd><dt>job全体</dt><dd>40秒（container・CUDA初期化等を含む）</dd></dl></div>
-    <p class="pilot-caution">GPU版は<code>.bz2</code>を生成する一般的な圧縮器ではありません。この問題に必要な全体長・Payload長を厳密に求め、発生件数へ加算する専用実装です。したがって71.15倍は「このヒストグラム計算」の比較であり、一般のbzip2圧縮が同じ倍率で高速化したという意味ではありません。</p>
+    <div class="pilot-verdict"><div><p class="eyebrow">4 B · 2<sup>32</sup> = 4,294,967,296件</p><p class="pilot-estimate">3.292<span>秒 / B300 GPUカーネル（13.045億件/秒）</span></p><p>FX700の 234.256秒に対して <strong>71.15倍</strong>、富岳の 374.132秒に対して <strong>113.63倍</strong>。全binが一致しました。</p></div><dl><dt>CPU基準</dt><dd>FX700・富岳ともlibbzip2 1.0.8の完全streamを生成</dd><dt>GPU PoC</dt><dd>圧縮後長の決定だけを厳密再現</dd><dt>scheduler時間</dt><dd>FX700 246秒、富岳 380秒、B300 40秒（境界は異なる）</dd></dl></div>
+    <p class="pilot-caution">GPU版は<code>.bz2</code>を生成する一般的な圧縮器ではありません。この問題に必要な全体長・Payload長を厳密に求め、発生件数へ加算する専用実装です。したがってFX700比71.15倍・富岳比113.63倍は「このヒストグラム計算」の比較であり、一般のbzip2圧縮が同じ倍率で高速化したという意味ではありません。</p>
 
     <figure class="pilot-figure"><figcaption><h3>1〜4 B、全体とPayloadの正確な分布</h3><p>各行が入力長、左がstream全体、右がPayloadです。縦軸は対数目盛。各入力長で256<sup>n</sup>件を漏れなく含みます。</p></figcaption><a href="figures/bzip2-1-to-4-byte-histograms.svg"><img src="figures/bzip2-1-to-4-byte-histograms.svg" width="1400" height="1740" loading="lazy" alt="1 Bから4 Bまでの全ビット列に対するbzip2全体・Payload圧縮率の8つのヒストグラム"></a></figure>
 
-    <div class="table-scroll comparison"><table><caption>CPUはFX700の実libbzip2 loop、GPUはB300の専用length-model kernel。小さいほど短時間。</caption><thead><tr><th scope="col">入力長</th><th scope="col">全件数</th><th scope="col">平均・全体</th><th scope="col">平均・Payload</th><th scope="col">CPU</th><th scope="col">GPU</th><th scope="col">時間比</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>256</td><td>3700.000%</td><td>2237.500%</td><td>0.000443秒</td><td>0.000089秒</td><td>4.96倍</td></tr><tr><th scope="row">2 B</th><td>65,536</td><td>1943.750%</td><td>1218.726%</td><td>0.025061秒</td><td>0.000126秒</td><td>199.68倍</td></tr><tr><th scope="row">3 B</th><td>16,777,216</td><td>1387.371%</td><td>904.135%</td><td>3.579106秒</td><td>0.011418秒</td><td>313.47倍</td></tr><tr><th scope="row">4 B</th><td>4,294,967,296</td><td>1131.111%</td><td>774.829%</td><td>234.256122秒</td><td>3.292492秒</td><td>71.15倍</td></tr></tbody></table></div>
-    <details class="explanation" open><summary>何をもって「一致」としたか</summary><p>GPUの1 B・2 Bは全入力を独立したPython/libbzip2実装とも照合し、3 B・4 Bは決定的に選んだ各4,096入力を照合しました。そのうえで、CPUが全件から得たstream全体・Payloadの全binとGPU結果を比較し、1〜4 Bのすべてで発生件数が完全一致しました。</p><p>4 BのCPU 4 shardは合計929.942 node-seconds。GPU kernelとの比は282.44倍ですが、CPUは完全streamを生成し、GPUは長さのみを求めるため、計算内容の違いを残した比較です。</p></details>
-    <div class="download-row"><a href="data/bzip2-1-to-4-byte-summary.json" download>全ヒストグラム集計 JSON ↓</a><a href="data/bzip2-1-to-4-byte-gpu-comparison.json" download>CPU・GPU比較 JSON ↓</a><a href="data/bzip2-1-to-4-byte-cpu-run.json">CPU実行条件 ↗</a><a href="data/bzip2-1-to-4-byte-gpu-run.json">GPU実行条件 ↗</a><a href="#bzip2-pilot">10 B低位20-bit実験へ ↓</a></div>
+    <div class="table-scroll comparison"><table><caption>FX700・富岳は実libbzip2 loop、B300は専用length-model kernel。小さいほど短時間。</caption><thead><tr><th scope="col">入力長</th><th scope="col">全件数</th><th scope="col">平均・全体</th><th scope="col">平均・Payload</th><th scope="col">FX700</th><th scope="col">富岳</th><th scope="col">B300</th><th scope="col">富岳/B300</th></tr></thead><tbody><tr><th scope="row">1 B</th><td>256</td><td>3700.000%</td><td>2237.500%</td><td>0.000443秒</td><td>0.003930秒</td><td>0.000089秒</td><td>44.00倍</td></tr><tr><th scope="row">2 B</th><td>65,536</td><td>1943.750%</td><td>1218.726%</td><td>0.025061秒</td><td>0.027362秒</td><td>0.000126秒</td><td>218.02倍</td></tr><tr><th scope="row">3 B</th><td>16,777,216</td><td>1387.371%</td><td>904.135%</td><td>3.579106秒</td><td>3.736365秒</td><td>0.011418秒</td><td>327.25倍</td></tr><tr><th scope="row">4 B</th><td>4,294,967,296</td><td>1131.111%</td><td>774.829%</td><td>234.256122秒</td><td>374.132231秒</td><td>3.292492秒</td><td>113.63倍</td></tr></tbody></table></div>
+    <details class="explanation" open><summary>何をもって「一致」としたか</summary><p>FX700と富岳は同じlibbzip2 stream生成コードを別々に全件実行し、1〜4 Bのstream全体・Payloadについて、全binの値と発生件数が一致しました。GPUの1 B・2 Bは全入力を独立したPython/libbzip2実装とも照合し、3 B・4 Bは決定的に選んだ各4,096入力を照合したうえで、両CPU全件結果の全binと一致しました。</p><p>4 Bの4 shard合計はFX700が929.942 node-seconds、富岳が1264.383 node-seconds。GPU kernelとの比はそれぞれ282.44倍と384.02倍ですが、CPUは完全streamを生成し、GPUは長さのみを求めるため、計算内容の違いを残した比較です。</p></details>
+    <div class="download-row"><a href="data/bzip2-1-to-4-byte-summary.json" download>基準ヒストグラム JSON ↓</a><a href="data/bzip2-1-to-4-byte-three-system-comparison.json" download>3環境比較 JSON ↓</a><a href="data/bzip2-1-to-4-byte-gpu-comparison.json" download>FX700・B300比較 JSON ↓</a><a href="data/bzip2-1-to-4-byte-cpu-run.json">FX700実行条件 ↗</a><a href="data/bzip2-1-to-4-byte-fugaku-run.json">富岳実行条件 ↗</a><a href="data/bzip2-1-to-4-byte-gpu-run.json">B300実行条件 ↗</a><a href="#bzip2-pilot">10 B低位20-bit実験へ ↓</a></div>
   </section>
 
   <section id="bzip2-pilot" class="section pilot-section" aria-labelledby="pilot-title">
@@ -114,7 +114,7 @@
       <article><div class="timeline-date">2026.09<span>BASELINE</span></div><div class="timeline-body"><span class="badge verified">実測済み・288件</span><h3>反復バイト列を、既存6形式で比較</h3><p>全0列を10 MBまで測定し、周期2・周期6を加えて3パターンとも1 GBへ拡張。全体とペイロードの圧縮率、展開一致、ハッシュを保存しています。</p><a class="text-link" href="#results">上の結果へ戻る ↑</a></div></article>
       <article><div class="timeline-date">OPEN QUESTION<span>DISTRIBUTION</span></div><div class="timeline-body exploratory"><span class="badge pending">検討中・再現記録が未整備</span><h3>100 Bの全入力にzstdをかけると？</h3><p>対象は「256種類の同じバイトの列」ではなく、長さ100 Bの全 <strong>2<sup>800</sup> 通り</strong>。全探索をせずに、圧縮後サイズの分布を推定できるか、という問いです。</p><p>当時の作業メモには「一様擬似乱数1,000万標本がすべて113 B」とあります。ただしサンプラーと生ログが正本に残っておらず、ここでは<strong>未再現の観察</strong>として扱います。厳密な分布が求まったわけではありません。</p><p class="muted">113 Bは、その設定での100 Bの無圧縮ブロックと13 Bの形式情報に対応します。稀な規則的入力の裾は一様標本だけでは捉えにくく、別途調べる必要があります。</p><a class="text-link" href="#next">次の実験で記録を整える →</a></div></article>
       <article><div class="timeline-date">2026.09.21–22<span>FEASIBILITY</span></div><div class="timeline-body"><span class="badge verified">富岳実測・20-bit全列挙</span><h3>bzip2の1入力時間を測り、見積もりを直接検証</h3><p>単一workerの連続loopを5サイズで測定し、続いて10 Bへゼロ埋めした低位20 bitの1,048,576件を全列挙。見積もり13.9〜21.8秒に対し、実測14.714秒で完了しました。</p><a class="text-link" href="#bzip2-pilot">実測結果と分布へ ↑</a></div></article>
-      <article><div class="timeline-date">2026.09.22<span>EXACT SMALL INPUTS</span></div><div class="timeline-body"><span class="badge verified">1〜4 B全件・CPU/GPU一致</span><h3>実streamの基準と専用GPU数え上げを比較</h3><p>FX700で1〜4 Bの全入力をlibbzip2圧縮し、B300の専用length modelで同じ分布を再計算。4 B全43億件をGPU kernel 3.292秒で処理し、全binが一致しました。</p><a class="text-link" href="#byte-census">最新結果へ ↑</a></div></article>
+      <article><div class="timeline-date">2026.09.22<span>EXACT SMALL INPUTS</span></div><div class="timeline-body"><span class="badge verified">1〜4 B全件・3環境一致</span><h3>2つの実stream基準と専用GPU数え上げを比較</h3><p>FX700と富岳で1〜4 Bの全入力をlibbzip2圧縮し、B300の専用length modelでも同じ分布を再計算。4 B全43億件をGPU kernel 3.292秒で処理し、全binが一致しました。</p><a class="text-link" href="#byte-census">最新結果へ ↑</a></div></article>
     </div>
   </section>
 
