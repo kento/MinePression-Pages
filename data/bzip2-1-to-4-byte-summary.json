@@ -1,5 +1,6 @@
 {
-  "schema_version": "bzip2-byte-census-summary-v1",
+  "schema_version": "bzip2-byte-census-summary-v2",
+  "compression_ratio_definition": "original_size / compressed_size",
   "scope": "all bit patterns at each declared actual input length; each input is an independent stream",
   "libbzip2": "1.0.8, 13-Jul-2019",
   "algorithm": {
@@ -18,43 +19,43 @@
       "worker_threads_per_shard": [
         48
       ],
-      "mean_ratio_percent": {
-        "whole": 3700.0,
-        "payload": 2237.5
+      "mean_compression_ratio": {
+        "whole": 0.02702702702702703,
+        "payload": 0.0446927374301676
       },
       "mode": {
         "whole": {
           "compressed_bytes": 37,
-          "ratio_percent": 3700.0,
+          "compression_ratio": 0.02702702702702703,
           "occurrences": 256
         },
         "payload": {
           "payload_bits": 179,
-          "ratio_percent": 2237.5,
+          "compression_ratio": 0.0446927374301676,
           "occurrences": 256
         }
       },
-      "ratio_ranges": {
-        "whole_percent": [
-          3700.0,
-          3700.0
+      "compression_ratio_ranges": {
+        "whole": [
+          0.02702702702702703,
+          0.02702702702702703
         ],
-        "payload_percent": [
-          2237.5,
-          2237.5
+        "payload": [
+          0.0446927374301676,
+          0.0446927374301676
         ]
       },
       "whole_histogram": [
         {
           "compressed_bytes": 37,
-          "ratio_percent": 3700.0,
+          "compression_ratio": 0.02702702702702703,
           "occurrences": 256
         }
       ],
       "payload_histogram": [
         {
           "payload_bits": 179,
-          "ratio_percent": 2237.5,
+          "compression_ratio": 0.0446927374301676,
           "occurrences": 256
         }
       ]
@@ -69,58 +70,58 @@
       "worker_threads_per_shard": [
         48
       ],
-      "mean_ratio_percent": {
-        "whole": 1943.75,
-        "payload": 1218.7255859375
+      "mean_compression_ratio": {
+        "whole": 0.05145530145530145,
+        "payload": 0.08208810758940446
       },
       "mode": {
         "whole": {
           "compressed_bytes": 39,
-          "ratio_percent": 1950.0,
+          "compression_ratio": 0.05128205128205128,
           "occurrences": 61440
         },
         "payload": {
           "payload_bits": 196,
-          "ratio_percent": 1225.0,
+          "compression_ratio": 0.08163265306122448,
           "occurrences": 61440
         }
       },
-      "ratio_ranges": {
-        "whole_percent": [
-          1850.0,
-          1950.0
+      "compression_ratio_ranges": {
+        "whole": [
+          0.05128205128205128,
+          0.05405405405405406
         ],
-        "payload_percent": [
-          1118.75,
-          1225.0
+        "payload": [
+          0.08163265306122448,
+          0.0893854748603352
         ]
       },
       "whole_histogram": [
         {
           "compressed_bytes": 37,
-          "ratio_percent": 1850.0,
+          "compression_ratio": 0.05405405405405406,
           "occurrences": 4096
         },
         {
           "compressed_bytes": 39,
-          "ratio_percent": 1950.0,
+          "compression_ratio": 0.05128205128205128,
           "occurrences": 61440
         }
       ],
       "payload_histogram": [
         {
           "payload_bits": 179,
-          "ratio_percent": 1118.75,
+          "compression_ratio": 0.0893854748603352,
           "occurrences": 256
         },
         {
           "payload_bits": 180,
-          "ratio_percent": 1125.0,
+          "compression_ratio": 0.08888888888888889,
           "occurrences": 3840
         },
         {
           "payload_bits": 196,
-          "ratio_percent": 1225.0,
+          "compression_ratio": 0.08163265306122448,
           "occurrences": 61440
         }
       ]
@@ -135,88 +136,88 @@
       "worker_threads_per_shard": [
         48
       ],
-      "mean_ratio_percent": {
-        "whole": 1387.3708089192708,
-        "payload": 904.1348139444987
+      "mean_compression_ratio": {
+        "whole": 0.07210835712406564,
+        "payload": 0.11070958570177557
       },
       "mode": {
         "whole": {
           "compressed_bytes": 42,
-          "ratio_percent": 1400.0,
+          "compression_ratio": 0.07142857142857142,
           "occurrences": 13762560
         },
         "payload": {
           "payload_bits": 220,
-          "ratio_percent": 916.6666666666666,
+          "compression_ratio": 0.10909090909090909,
           "occurrences": 13762560
         }
       },
-      "ratio_ranges": {
-        "whole_percent": [
-          1233.3333333333335,
-          1400.0
+      "compression_ratio_ranges": {
+        "whole": [
+          0.07142857142857142,
+          0.08108108108108109
         ],
-        "payload_percent": [
-          754.1666666666667,
-          916.6666666666666
+        "payload": [
+          0.10909090909090909,
+          0.13259668508287292
         ]
       },
       "whole_histogram": [
         {
           "compressed_bytes": 37,
-          "ratio_percent": 1233.3333333333335,
+          "compression_ratio": 0.08108108108108109,
           "occurrences": 11776
         },
         {
           "compressed_bytes": 38,
-          "ratio_percent": 1266.6666666666665,
+          "compression_ratio": 0.07894736842105263,
           "occurrences": 53760
         },
         {
           "compressed_bytes": 39,
-          "ratio_percent": 1300.0,
+          "compression_ratio": 0.07692307692307693,
           "occurrences": 184320
         },
         {
           "compressed_bytes": 40,
-          "ratio_percent": 1333.3333333333335,
+          "compression_ratio": 0.075,
           "occurrences": 2764800
         },
         {
           "compressed_bytes": 42,
-          "ratio_percent": 1400.0,
+          "compression_ratio": 0.07142857142857142,
           "occurrences": 13762560
         }
       ],
       "payload_histogram": [
         {
           "payload_bits": 181,
-          "ratio_percent": 754.1666666666667,
+          "compression_ratio": 0.13259668508287292,
           "occurrences": 256
         },
         {
           "payload_bits": 182,
-          "ratio_percent": 758.3333333333333,
+          "compression_ratio": 0.13186813186813187,
           "occurrences": 11520
         },
         {
           "payload_bits": 188,
-          "ratio_percent": 783.3333333333333,
+          "compression_ratio": 0.1276595744680851,
           "occurrences": 53760
         },
         {
           "payload_bits": 198,
-          "ratio_percent": 825.0,
+          "compression_ratio": 0.12121212121212122,
           "occurrences": 184320
         },
         {
           "payload_bits": 204,
-          "ratio_percent": 850.0,
+          "compression_ratio": 0.11764705882352941,
           "occurrences": 2764800
         },
         {
           "payload_bits": 220,
-          "ratio_percent": 916.6666666666666,
+          "compression_ratio": 0.10909090909090909,
           "occurrences": 13762560
         }
       ]
@@ -231,168 +232,168 @@
       "worker_threads_per_shard": [
         48
       ],
-      "mean_ratio_percent": {
-        "whole": 1131.1110166832805,
-        "payload": 774.828655456804
+      "mean_compression_ratio": {
+        "whole": 0.08846740139448736,
+        "payload": 0.12924760608315974
       },
       "mode": {
         "whole": {
           "compressed_bytes": 46,
-          "ratio_percent": 1150.0,
+          "compression_ratio": 0.08695652173913043,
           "occurrences": 2862612480
         },
         "payload": {
           "payload_bits": 254,
-          "ratio_percent": 793.75,
+          "compression_ratio": 0.12598425196850394,
           "occurrences": 2862612480
         }
       },
-      "ratio_ranges": {
-        "whole_percent": [
-          925.0,
-          1150.0
+      "compression_ratio_ranges": {
+        "whole": [
+          0.08695652173913043,
+          0.10810810810810811
         ],
-        "payload_percent": [
-          565.625,
-          793.75
+        "payload": [
+          0.12598425196850394,
+          0.17679558011049723
         ]
       },
       "whole_histogram": [
         {
           "compressed_bytes": 37,
-          "ratio_percent": 925.0,
+          "compression_ratio": 0.10810810810810811,
           "occurrences": 19216
         },
         {
           "compressed_bytes": 38,
-          "ratio_percent": 950.0,
+          "compression_ratio": 0.10526315789473684,
           "occurrences": 186880
         },
         {
           "compressed_bytes": 39,
-          "ratio_percent": 975.0,
+          "compression_ratio": 0.10256410256410256,
           "occurrences": 450800
         },
         {
           "compressed_bytes": 40,
-          "ratio_percent": 1000.0,
+          "compression_ratio": 0.1,
           "occurrences": 10037760
         },
         {
           "compressed_bytes": 41,
-          "ratio_percent": 1025.0,
+          "compression_ratio": 0.0975609756097561,
           "occurrences": 7372800
         },
         {
           "compressed_bytes": 42,
-          "ratio_percent": 1050.0,
+          "compression_ratio": 0.09523809523809523,
           "occurrences": 138956800
         },
         {
           "compressed_bytes": 43,
-          "ratio_percent": 1075.0,
+          "compression_ratio": 0.09302325581395349,
           "occurrences": 36700160
         },
         {
           "compressed_bytes": 44,
-          "ratio_percent": 1100.0,
+          "compression_ratio": 0.09090909090909091,
           "occurrences": 1238630400
         },
         {
           "compressed_bytes": 46,
-          "ratio_percent": 1150.0,
+          "compression_ratio": 0.08695652173913043,
           "occurrences": 2862612480
         }
       ],
       "payload_histogram": [
         {
           "payload_bits": 181,
-          "ratio_percent": 565.625,
+          "compression_ratio": 0.17679558011049723,
           "occurrences": 1
         },
         {
           "payload_bits": 182,
-          "ratio_percent": 568.75,
+          "compression_ratio": 0.17582417582417584,
           "occurrences": 15360
         },
         {
           "payload_bits": 184,
-          "ratio_percent": 575.0,
+          "compression_ratio": 0.17391304347826086,
           "occurrences": 3855
         },
         {
           "payload_bits": 187,
-          "ratio_percent": 584.375,
+          "compression_ratio": 0.1711229946524064,
           "occurrences": 7680
         },
         {
           "payload_bits": 190,
-          "ratio_percent": 593.75,
+          "compression_ratio": 0.16842105263157894,
           "occurrences": 35840
         },
         {
           "payload_bits": 191,
-          "ratio_percent": 596.875,
+          "compression_ratio": 0.16753926701570682,
           "occurrences": 143360
         },
         {
           "payload_bits": 196,
-          "ratio_percent": 612.5,
+          "compression_ratio": 0.16326530612244897,
           "occurrences": 143360
         },
         {
           "payload_bits": 198,
-          "ratio_percent": 618.75,
+          "compression_ratio": 0.16161616161616163,
           "occurrences": 245760
         },
         {
           "payload_bits": 200,
-          "ratio_percent": 625.0,
+          "compression_ratio": 0.16,
           "occurrences": 61680
         },
         {
           "payload_bits": 203,
-          "ratio_percent": 634.375,
+          "compression_ratio": 0.15763546798029557,
           "occurrences": 122880
         },
         {
           "payload_bits": 206,
-          "ratio_percent": 643.75,
+          "compression_ratio": 0.1553398058252427,
           "occurrences": 2542080
         },
         {
           "payload_bits": 207,
-          "ratio_percent": 646.875,
+          "compression_ratio": 0.15458937198067632,
           "occurrences": 7372800
         },
         {
           "payload_bits": 212,
-          "ratio_percent": 662.5,
+          "compression_ratio": 0.1509433962264151,
           "occurrences": 7372800
         },
         {
           "payload_bits": 222,
-          "ratio_percent": 693.75,
+          "compression_ratio": 0.14414414414414414,
           "occurrences": 102256640
         },
         {
           "payload_bits": 223,
-          "ratio_percent": 696.875,
+          "compression_ratio": 0.14349775784753363,
           "occurrences": 36700160
         },
         {
           "payload_bits": 228,
-          "ratio_percent": 712.5,
+          "compression_ratio": 0.14035087719298245,
           "occurrences": 36700160
         },
         {
           "payload_bits": 238,
-          "ratio_percent": 743.75,
+          "compression_ratio": 0.13445378151260504,
           "occurrences": 1238630400
         },
         {
           "payload_bits": 254,
-          "ratio_percent": 793.75,
+          "compression_ratio": 0.12598425196850394,
           "occurrences": 2862612480
         }
       ]

@@ -1,8 +1,8 @@
 {
-  "schema_version": "warmed-loop-summary-v1",
+  "schema_version": "warmed-loop-public-summary-v2",
   "configuration": {
     "type": "configuration",
-    "schema": "warmed-loop-v1",
+    "schema": "warmed-loop-public-v2",
     "libbzip2": "1.0.8, 13-Jul-2019",
     "sizes": [
       1,
@@ -19,7 +19,9 @@
     "target_batch_seconds": 0.5,
     "max_iterations": 262144,
     "ratio_array_bytes_per_input": 16,
-    "exhaustive_above_one_byte": false
+    "exhaustive_above_one_byte": false,
+    "source_schema": "warmed-loop-v1",
+    "compression_ratio_definition": "original_size / compressed_size"
   },
   "validation": "passed; node/scheduler receipts require separate review",
   "results": [
@@ -50,15 +52,15 @@
         "exponent10": -11,
         "formatted": "7.973293e-11"
       },
-      "total_ratio_range": [
-        3700,
-        3700
+      "extrapolation": "repeated full 256-value census",
+      "total_compression_ratio_range": [
+        0.02702702702702703,
+        0.02702702702702703
       ],
-      "payload_ratio_range": [
-        2237.5,
-        2237.5
-      ],
-      "extrapolation": "repeated full 256-value census"
+      "payload_compression_ratio_range": [
+        0.0446927374301676,
+        0.0446927374301676
+      ]
     },
     {
       "input_bytes": 1,
@@ -87,15 +89,15 @@
         "exponent10": -11,
         "formatted": "7.933832e-11"
       },
-      "total_ratio_range": [
-        3700,
-        3700
+      "extrapolation": "repeated full 256-value census",
+      "total_compression_ratio_range": [
+        0.02702702702702703,
+        0.02702702702702703
       ],
-      "payload_ratio_range": [
-        2237.5,
-        2237.5
-      ],
-      "extrapolation": "repeated full 256-value census"
+      "payload_compression_ratio_range": [
+        0.0446927374301676,
+        0.0446927374301676
+      ]
     },
     {
       "input_bytes": 10,
@@ -124,15 +126,15 @@
         "exponent10": 11,
         "formatted": "5.071554e+11"
       },
-      "total_ratio_range": [
-        370,
-        450
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        0.2222222222222222,
+        0.2702702702702703
       ],
-      "payload_ratio_range": [
-        230,
-        301.25
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        0.33195020746887965,
+        0.43478260869565216
+      ]
     },
     {
       "input_bytes": 10,
@@ -161,15 +163,15 @@
         "exponent10": 11,
         "formatted": "7.960180e+11"
       },
-      "total_ratio_range": [
-        480,
-        630
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        0.15873015873015872,
+        0.20833333333333334
       ],
-      "payload_ratio_range": [
-        336.25,
-        486.25
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        0.20565552699228792,
+        0.29739776951672864
+      ]
     },
     {
       "input_bytes": 100,
@@ -198,15 +200,15 @@
         "exponent10": 228,
         "formatted": "3.212060e+228"
       },
-      "total_ratio_range": [
-        39,
-        47
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        2.127659574468085,
+        2.5641025641025643
       ],
-      "payload_ratio_range": [
-        25,
-        32.25
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        3.10077519379845,
+        4.0
+      ]
     },
     {
       "input_bytes": 100,
@@ -235,15 +237,15 @@
         "exponent10": 229,
         "formatted": "3.152201e+229"
       },
-      "total_ratio_range": [
-        174,
-        190
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        0.5263157894736842,
+        0.5747126436781609
       ],
-      "payload_ratio_range": [
-        159.75,
-        175.5
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        0.5698005698005698,
+        0.6259780907668232
+      ]
     },
     {
       "input_bytes": 1000,
@@ -272,15 +274,15 @@
         "exponent10": 2396,
         "formatted": "2.023722e+2396"
       },
-      "total_ratio_range": [
-        4.4,
-        5.1
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        19.607843137254903,
+        22.727272727272727
       ],
-      "payload_ratio_range": [
-        2.9125,
-        3.6875
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        27.11864406779661,
+        34.33476394849785
+      ]
     },
     {
       "input_bytes": 1000,
@@ -309,15 +311,15 @@
         "exponent10": 2397,
         "formatted": "6.682292e+2397"
       },
-      "total_ratio_range": [
-        124.9,
-        132.5
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        0.7547169811320755,
+        0.800640512409928
       ],
-      "payload_ratio_range": [
-        123.5,
-        131.1
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        0.7627765064836003,
+        0.8097165991902834
+      ]
     },
     {
       "input_bytes": 10000,
@@ -346,15 +348,15 @@
         "exponent10": 24071,
         "formatted": "1.971553e+24071"
       },
-      "total_ratio_range": [
-        0.45,
-        0.52
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        192.3076923076923,
+        222.22222222222223
       ],
-      "payload_ratio_range": [
-        0.30375,
-        0.37625
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        265.78073089700996,
+        329.21810699588474
+      ]
     },
     {
       "input_bytes": 10000,
@@ -383,15 +385,15 @@
         "exponent10": 24072,
         "formatted": "4.914810e+24072"
       },
-      "total_ratio_range": [
-        104.54,
-        105.13
+      "extrapolation": "input-dependent pilot, not a census",
+      "total_compression_ratio_range": [
+        0.9512032721392562,
+        0.9565716472163764
       ],
-      "payload_ratio_range": [
-        104.3925,
-        104.98375
-      ],
-      "extrapolation": "input-dependent pilot, not a census"
+      "payload_compression_ratio_range": [
+        0.9525283674854441,
+        0.9579232224537203
+      ]
     }
   ],
   "limitations": [
@@ -400,5 +402,7 @@
     "Ascending prefixes are zero-heavy for large sizes; proxies are not proven IID draws.",
     "No full census above one byte, confidence interval, or measured multi-node scaling.",
     "Payload removes outer framing only; both ratios are stored in an in-memory array."
-  ]
+  ],
+  "source_schema_version": "warmed-loop-summary-v1",
+  "compression_ratio_definition": "original_size / compressed_size"
 }

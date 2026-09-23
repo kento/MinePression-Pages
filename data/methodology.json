@@ -2,6 +2,8 @@
   "all-zero": {
     "measured_at_utc": "2026-09-06T15:44:18.060171+00:00",
     "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "compression_ratio_definition": "original_size / compressed_size",
+    "historical_source_metric": "compressed_size / original_size * 100; lower is better",
     "tools": {
       "bzip2": {
         "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",
@@ -80,6 +82,8 @@
   "alternating-00-01": {
     "measured_at_utc": "2026-09-06T15:47:18.023341+00:00",
     "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "compression_ratio_definition": "original_size / compressed_size",
+    "historical_source_metric": "compressed_size / original_size * 100; lower is better",
     "tools": {
       "bzip2": {
         "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",
@@ -158,6 +162,8 @@
   "period-6-010111": {
     "measured_at_utc": "2026-09-06T15:49:52.698136+00:00",
     "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "compression_ratio_definition": "original_size / compressed_size",
+    "historical_source_metric": "compressed_size / original_size * 100; lower is better",
     "tools": {
       "bzip2": {
         "version": "bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.",

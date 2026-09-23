@@ -34,7 +34,7 @@
   "libbzip2_source_sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
   "raw_results_sha256": "dca02f8f9bf29206de6d9dd1bcd4eae18358b5f7e1a37cf0a5a79cd53e274b0d",
   "validated_summary_sha256": "fb2152325955c79b14426fe859f3e1ee785bfe23b5105e9372b4cde279f4f790",
-  "histogram_svg_sha256": "b4e6c5a48730bc9a20acc51155d61b91aeabe4526dfeae6de97d18bba6a8336e",
+  "histogram_svg_sha256": "164d26f9d15c99c600a53bfb09d3cc6d92132a3f4f708b090aa4bec01fd5a38e",
   "private_scheduler_receipt_sha256": "3f214dc0c565841ee4491e03df857066e936c987d8b3af8ac69598a7bb593107",
   "verification": "Exact public raw-results copy matched the recovered compute result byte-for-byte. Population, endpoints, array count, whole/payload histogram counts, weighted sums, ranges, elapsed limit, final roundtrip, source/script hashes, binary hash, scheduler terminal state and exit codes passed.",
   "limitations": [

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img">
 <title>10-byte bzip2: Exact family: byte period divides 2</title>
-<desc>Two histograms of compressed size divided by original size; lower is smaller. Whole stream and outer-framing-excluded payload. Counts do not represent all 2^80 inputs.</desc>
+<desc>Two histograms of original size divided by compressed size; higher is better. Whole stream and outer-framing-excluded payload. Counts do not represent all 2^80 inputs.</desc>
 <rect width="1200" height="800" fill="#f6f8fc"/>
 <style>text{font-family:Arial,sans-serif;fill:#17233c}.tick{font-size:14px;fill:#536078}.label{font-size:17px}.heading{font-size:23px;font-weight:bold}</style>
 <text x="64" y="48" font-size="30" font-weight="bold">10-byte bzip2 compression distribution</text>
@@ -16,18 +16,21 @@
 <text x="120" y="191.25" text-anchor="end" class="tick">49,766</text>
 <line x1="130" y1="135.00" x2="1130" y2="135.00" stroke="#d8dfea"/>
 <text x="120" y="140.00" text-anchor="end" class="tick">66,355</text>
-<rect x="240.000" y="339.951" width="180.000" height="0.049" fill="#2669b8"><title>370%: 16 occurrences</title></rect>
-<rect x="440.000" y="328.137" width="180.000" height="11.863" fill="#2669b8"><title>380%: 3,840 occurrences</title></rect>
-<rect x="640.000" y="339.259" width="180.000" height="0.741" fill="#2669b8"><title>390%: 240 occurrences</title></rect>
-<rect x="840.000" y="150.185" width="180.000" height="189.815" fill="#2669b8"><title>400%: 61,440 occurrences</title></rect>
-<text x="130.00" y="363" text-anchor="middle" class="tick">360</text>
-<text x="330.00" y="363" text-anchor="middle" class="tick">370</text>
-<text x="530.00" y="363" text-anchor="middle" class="tick">380</text>
-<text x="730.00" y="363" text-anchor="middle" class="tick">390</text>
-<text x="930.00" y="363" text-anchor="middle" class="tick">400</text>
-<text x="1130.00" y="363" text-anchor="middle" class="tick">410</text>
+<rect x="236.545" y="150.185" width="174.346" height="189.815" fill="#2669b8"><title>0.25×: 61,440 occurrences</title></rect>
+<rect x="430.262" y="339.259" width="174.346" height="0.741" fill="#2669b8"><title>0.25641026×: 240 occurrences</title></rect>
+<rect x="634.175" y="328.137" width="174.346" height="11.863" fill="#2669b8"><title>0.26315789×: 3,840 occurrences</title></rect>
+<rect x="849.110" y="339.951" width="174.346" height="0.049" fill="#2669b8"><title>0.27027027×: 16 occurrences</title></rect>
+<text x="130.00" y="363" text-anchor="middle" class="tick">0.24359</text>
+<text x="255.00" y="363" text-anchor="middle" class="tick">0.247726</text>
+<text x="380.00" y="363" text-anchor="middle" class="tick">0.251862</text>
+<text x="505.00" y="363" text-anchor="middle" class="tick">0.255999</text>
+<text x="630.00" y="363" text-anchor="middle" class="tick">0.260135</text>
+<text x="755.00" y="363" text-anchor="middle" class="tick">0.264271</text>
+<text x="880.00" y="363" text-anchor="middle" class="tick">0.268408</text>
+<text x="1005.00" y="363" text-anchor="middle" class="tick">0.272544</text>
+<text x="1130.00" y="363" text-anchor="middle" class="tick">0.276681</text>
 <line x1="130" y1="340" x2="1130" y2="340" stroke="#536078"/>
-<text x="630.0" y="390" text-anchor="middle" class="label">Compression ratio (%) = compressed bits / 80 x 100</text>
+<text x="630.0" y="390" text-anchor="middle" class="label">Compression ratio (original / compressed)</text>
 <text transform="translate(28,237.5) rotate(-90)" text-anchor="middle" class="label">Occurrences</text>
 <text x="64" y="425" class="heading">Payload (outer framing excluded)</text>
 <line x1="130" y1="645.00" x2="1130" y2="645.00" stroke="#d8dfea"/>
@@ -40,23 +43,23 @@
 <text x="120" y="496.25" text-anchor="end" class="tick">49,766</text>
 <line x1="130" y1="440.00" x2="1130" y2="440.00" stroke="#d8dfea"/>
 <text x="120" y="445.00" text-anchor="end" class="tick">66,355</text>
-<rect x="152.000" y="644.997" width="36.000" height="0.003" fill="#008471"><title>226.25%: 1 occurrences</title></rect>
-<rect x="272.000" y="644.954" width="36.000" height="0.046" fill="#008471"><title>230%: 15 occurrences</title></rect>
-<rect x="432.000" y="633.137" width="36.000" height="11.863" fill="#008471"><title>235%: 3,840 occurrences</title></rect>
-<rect x="912.000" y="644.259" width="36.000" height="0.741" fill="#008471"><title>250%: 240 occurrences</title></rect>
-<rect x="1072.000" y="455.185" width="36.000" height="189.815" fill="#008471"><title>255%: 61,440 occurrences</title></rect>
-<text x="130.00" y="668" text-anchor="middle" class="tick">225</text>
-<text x="250.00" y="668" text-anchor="middle" class="tick">228.75</text>
-<text x="370.00" y="668" text-anchor="middle" class="tick">232.5</text>
-<text x="490.00" y="668" text-anchor="middle" class="tick">236.25</text>
-<text x="610.00" y="668" text-anchor="middle" class="tick">240</text>
-<text x="730.00" y="668" text-anchor="middle" class="tick">243.75</text>
-<text x="850.00" y="668" text-anchor="middle" class="tick">247.5</text>
-<text x="970.00" y="668" text-anchor="middle" class="tick">251.25</text>
-<text x="1090.00" y="668" text-anchor="middle" class="tick">255</text>
+<rect x="191.694" y="455.185" width="100.953" height="189.815" fill="#008471"><title>0.39215686×: 61,440 occurrences</title></rect>
+<rect x="313.776" y="644.259" width="100.953" height="0.741" fill="#008471"><title>0.4×: 240 occurrences</title></rect>
+<rect x="711.192" y="633.137" width="100.953" height="11.863" fill="#008471"><title>0.42553191×: 3,840 occurrences</title></rect>
+<rect x="855.183" y="644.954" width="100.953" height="0.046" fill="#008471"><title>0.43478261×: 15 occurrences</title></rect>
+<rect x="967.353" y="644.997" width="100.953" height="0.003" fill="#008471"><title>0.44198895×: 1 occurrences</title></rect>
+<text x="130.00" y="668" text-anchor="middle" class="tick">0.384951</text>
+<text x="255.00" y="668" text-anchor="middle" class="tick">0.392981</text>
+<text x="380.00" y="668" text-anchor="middle" class="tick">0.401012</text>
+<text x="505.00" y="668" text-anchor="middle" class="tick">0.409042</text>
+<text x="630.00" y="668" text-anchor="middle" class="tick">0.417073</text>
+<text x="755.00" y="668" text-anchor="middle" class="tick">0.425104</text>
+<text x="880.00" y="668" text-anchor="middle" class="tick">0.433134</text>
+<text x="1005.00" y="668" text-anchor="middle" class="tick">0.441165</text>
+<text x="1130.00" y="668" text-anchor="middle" class="tick">0.449195</text>
 <line x1="130" y1="645" x2="1130" y2="645" stroke="#536078"/>
-<text x="630.0" y="695" text-anchor="middle" class="label">Compression ratio (%) = compressed bits / 80 x 100</text>
+<text x="630.0" y="695" text-anchor="middle" class="label">Compression ratio (original / compressed)</text>
 <text transform="translate(28,542.5) rotate(-90)" text-anchor="middle" class="label">Occurrences</text>
-<text x="64" y="756" class="tick">Payload retains internal block headers, CRC, tables and coding controls. Ratios above 100% mean expansion.</text>
+<text x="64" y="756" class="tick">Higher ratios are better; values below 1 mean expansion. Payload retains internal block headers, CRC, tables and controls.</text>
 <text x="64" y="780" class="tick">The exact period-divides-2 family is separate from the proxy sample; neither is the full 2^80-input distribution.</text>
 </svg>
