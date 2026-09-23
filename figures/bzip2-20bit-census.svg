@@ -16,25 +16,25 @@
 <text x="120" y="191.25" text-anchor="end" class="tick">696,730</text>
 <line x1="130" y1="135.00" x2="1130" y2="135.00" stroke="#d8dfea"/>
 <text x="120" y="140.00" text-anchor="end" class="tick">928,973</text>
-<rect x="187.500" y="340.000" width="85.000" height="0.000" fill="#2669b8"><title>370%: 1 occurrences</title></rect>
-<rect x="287.500" y="340.000" width="85.000" height="0.000" fill="#2669b8"><title>380%: 1 occurrences</title></rect>
-<rect x="387.500" y="339.958" width="85.000" height="0.042" fill="#2669b8"><title>390%: 192 occurrences</title></rect>
-<rect x="487.500" y="339.981" width="85.000" height="0.019" fill="#2669b8"><title>400%: 86 occurrences</title></rect>
-<rect x="587.500" y="338.734" width="85.000" height="1.266" fill="#2669b8"><title>410%: 5,736 occurrences</title></rect>
-<rect x="687.500" y="339.894" width="85.000" height="0.106" fill="#2669b8"><title>420%: 480 occurrences</title></rect>
-<rect x="787.500" y="299.855" width="85.000" height="40.145" fill="#2669b8"><title>430%: 181,920 occurrences</title></rect>
-<rect x="987.500" y="150.185" width="85.000" height="189.815" fill="#2669b8"><title>450%: 860,160 occurrences</title></rect>
-<text x="130.00" y="363" text-anchor="middle" class="tick">360</text>
-<text x="255.00" y="363" text-anchor="middle" class="tick">372.5</text>
-<text x="380.00" y="363" text-anchor="middle" class="tick">385</text>
-<text x="505.00" y="363" text-anchor="middle" class="tick">397.5</text>
-<text x="630.00" y="363" text-anchor="middle" class="tick">410</text>
-<text x="755.00" y="363" text-anchor="middle" class="tick">422.5</text>
-<text x="880.00" y="363" text-anchor="middle" class="tick">435</text>
-<text x="1005.00" y="363" text-anchor="middle" class="tick">447.5</text>
-<text x="1130.00" y="363" text-anchor="middle" class="tick">460</text>
+<rect x="996.542" y="340.000" width="79.607" height="0.000" fill="#2669b8"><title>0.27027027×: 1 occurrences</title></rect>
+<rect x="876.242" y="340.000" width="79.607" height="0.000" fill="#2669b8"><title>0.26315789×: 1 occurrences</title></rect>
+<rect x="762.112" y="339.958" width="79.607" height="0.042" fill="#2669b8"><title>0.25641026×: 192 occurrences</title></rect>
+<rect x="653.688" y="339.981" width="79.607" height="0.019" fill="#2669b8"><title>0.25×: 86 occurrences</title></rect>
+<rect x="550.553" y="338.734" width="79.607" height="1.266" fill="#2669b8"><title>0.24390244×: 5,736 occurrences</title></rect>
+<rect x="452.330" y="339.894" width="79.607" height="0.106" fill="#2669b8"><title>0.23809524×: 480 occurrences</title></rect>
+<rect x="358.674" y="299.855" width="79.607" height="40.145" fill="#2669b8"><title>0.23255814×: 181,920 occurrences</title></rect>
+<rect x="183.852" y="150.185" width="79.607" height="189.815" fill="#2669b8"><title>0.22222222×: 860,160 occurrences</title></rect>
+<text x="130.00" y="363" text-anchor="middle" class="tick">0.216685</text>
+<text x="255.00" y="363" text-anchor="middle" class="tick">0.224075</text>
+<text x="380.00" y="363" text-anchor="middle" class="tick">0.231466</text>
+<text x="505.00" y="363" text-anchor="middle" class="tick">0.238856</text>
+<text x="630.00" y="363" text-anchor="middle" class="tick">0.246246</text>
+<text x="755.00" y="363" text-anchor="middle" class="tick">0.253637</text>
+<text x="880.00" y="363" text-anchor="middle" class="tick">0.261027</text>
+<text x="1005.00" y="363" text-anchor="middle" class="tick">0.268417</text>
+<text x="1130.00" y="363" text-anchor="middle" class="tick">0.275807</text>
 <line x1="130" y1="340" x2="1130" y2="340" stroke="#536078"/>
-<text x="630.0" y="390" text-anchor="middle" class="label">Compression ratio (%) = compressed bits / 80 × 100</text>
+<text x="630.0" y="390" text-anchor="middle" class="label">Compression ratio (original / compressed)</text>
 <text transform="translate(28,237.5) rotate(-90)" text-anchor="middle" class="label">Occurrences</text>
 <text x="64" y="425" class="heading">Payload (outer framing excluded)</text>
 <line x1="130" y1="645.00" x2="1130" y2="645.00" stroke="#d8dfea"/>
@@ -47,54 +47,54 @@
 <text x="120" y="496.25" text-anchor="end" class="tick">609,638</text>
 <line x1="130" y1="440.00" x2="1130" y2="440.00" stroke="#d8dfea"/>
 <text x="120" y="445.00" text-anchor="end" class="tick">812,851</text>
-<rect x="139.274" y="645.000" width="13.710" height="0.000" fill="#008471"><title>230%: 1 occurrences</title></rect>
-<rect x="236.048" y="645.000" width="13.710" height="0.000" fill="#008471"><title>237.5%: 1 occurrences</title></rect>
-<rect x="284.435" y="644.999" width="13.710" height="0.001" fill="#008471"><title>241.25%: 2 occurrences</title></rect>
-<rect x="300.565" y="644.994" width="13.710" height="0.006" fill="#008471"><title>242.5%: 24 occurrences</title></rect>
-<rect x="316.694" y="644.996" width="13.710" height="0.004" fill="#008471"><title>243.75%: 17 occurrences</title></rect>
-<rect x="332.823" y="644.997" width="13.710" height="0.003" fill="#008471"><title>245%: 13 occurrences</title></rect>
-<rect x="348.952" y="644.994" width="13.710" height="0.006" fill="#008471"><title>246.25%: 24 occurrences</title></rect>
-<rect x="365.081" y="644.985" width="13.710" height="0.015" fill="#008471"><title>247.5%: 60 occurrences</title></rect>
-<rect x="381.210" y="644.996" width="13.710" height="0.004" fill="#008471"><title>248.75%: 15 occurrences</title></rect>
-<rect x="397.339" y="644.991" width="13.710" height="0.009" fill="#008471"><title>250%: 37 occurrences</title></rect>
-<rect x="413.468" y="644.996" width="13.710" height="0.004" fill="#008471"><title>251.25%: 14 occurrences</title></rect>
-<rect x="429.597" y="644.991" width="13.710" height="0.009" fill="#008471"><title>252.5%: 34 occurrences</title></rect>
-<rect x="445.726" y="644.994" width="13.710" height="0.006" fill="#008471"><title>253.75%: 24 occurrences</title></rect>
-<rect x="461.855" y="644.998" width="13.710" height="0.002" fill="#008471"><title>255%: 8 occurrences</title></rect>
-<rect x="510.242" y="644.999" width="13.710" height="0.001" fill="#008471"><title>258.75%: 3 occurrences</title></rect>
-<rect x="526.371" y="644.999" width="13.710" height="0.001" fill="#008471"><title>260%: 3 occurrences</title></rect>
-<rect x="542.500" y="644.746" width="13.710" height="0.254" fill="#008471"><title>261.25%: 1,007 occurrences</title></rect>
-<rect x="558.629" y="644.569" width="13.710" height="0.431" fill="#008471"><title>262.5%: 1,710 occurrences</title></rect>
-<rect x="574.758" y="644.850" width="13.710" height="0.150" fill="#008471"><title>263.75%: 596 occurrences</title></rect>
-<rect x="590.887" y="644.927" width="13.710" height="0.073" fill="#008471"><title>265%: 289 occurrences</title></rect>
-<rect x="607.016" y="644.822" width="13.710" height="0.178" fill="#008471"><title>266.25%: 705 occurrences</title></rect>
-<rect x="623.145" y="644.882" width="13.710" height="0.118" fill="#008471"><title>267.5%: 468 occurrences</title></rect>
-<rect x="639.274" y="644.939" width="13.710" height="0.061" fill="#008471"><title>268.75%: 241 occurrences</title></rect>
-<rect x="655.403" y="644.818" width="13.710" height="0.182" fill="#008471"><title>270%: 720 occurrences</title></rect>
-<rect x="671.532" y="644.939" width="13.710" height="0.061" fill="#008471"><title>271.25%: 240 occurrences</title></rect>
-<rect x="703.790" y="644.939" width="13.710" height="0.061" fill="#008471"><title>273.75%: 240 occurrences</title></rect>
-<rect x="800.565" y="635.679" width="13.710" height="9.321" fill="#008471"><title>281.25%: 36,960 occurrences</title></rect>
-<rect x="816.694" y="616.249" width="13.710" height="28.751" fill="#008471"><title>282.5%: 114,000 occurrences</title></rect>
-<rect x="832.823" y="641.520" width="13.710" height="3.480" fill="#008471"><title>283.75%: 13,800 occurrences</title></rect>
-<rect x="848.952" y="642.367" width="13.710" height="2.633" fill="#008471"><title>285%: 10,440 occurrences</title></rect>
-<rect x="865.081" y="643.426" width="13.710" height="1.574" fill="#008471"><title>286.25%: 6,240 occurrences</title></rect>
-<rect x="881.210" y="644.879" width="13.710" height="0.121" fill="#008471"><title>287.5%: 480 occurrences</title></rect>
-<rect x="1058.629" y="631.442" width="13.710" height="13.558" fill="#008471"><title>301.25%: 53,760 occurrences</title></rect>
-<rect x="1074.758" y="455.185" width="13.710" height="189.815" fill="#008471"><title>302.5%: 752,640 occurrences</title></rect>
-<rect x="1090.887" y="638.221" width="13.710" height="6.779" fill="#008471"><title>303.75%: 26,880 occurrences</title></rect>
-<rect x="1107.016" y="638.221" width="13.710" height="6.779" fill="#008471"><title>305%: 26,880 occurrences</title></rect>
-<text x="130.00" y="668" text-anchor="middle" class="tick">228.75</text>
-<text x="255.00" y="668" text-anchor="middle" class="tick">238.438</text>
-<text x="380.00" y="668" text-anchor="middle" class="tick">248.125</text>
-<text x="505.00" y="668" text-anchor="middle" class="tick">257.812</text>
-<text x="630.00" y="668" text-anchor="middle" class="tick">267.5</text>
-<text x="755.00" y="668" text-anchor="middle" class="tick">277.188</text>
-<text x="880.00" y="668" text-anchor="middle" class="tick">286.875</text>
-<text x="1005.00" y="668" text-anchor="middle" class="tick">296.562</text>
-<text x="1130.00" y="668" text-anchor="middle" class="tick">306.25</text>
+<rect x="1112.459" y="645.000" width="10.463" height="0.000" fill="#008471"><title>0.43478261×: 1 occurrences</title></rect>
+<rect x="987.200" y="645.000" width="10.463" height="0.000" fill="#008471"><title>0.42105263×: 1 occurrences</title></rect>
+<rect x="927.491" y="644.999" width="10.463" height="0.001" fill="#008471"><title>0.41450777×: 2 occurrences</title></rect>
+<rect x="907.998" y="644.994" width="10.463" height="0.006" fill="#008471"><title>0.41237113×: 24 occurrences</title></rect>
+<rect x="888.705" y="644.996" width="10.463" height="0.004" fill="#008471"><title>0.41025641×: 17 occurrences</title></rect>
+<rect x="869.609" y="644.997" width="10.463" height="0.003" fill="#008471"><title>0.40816327×: 13 occurrences</title></rect>
+<rect x="850.707" y="644.994" width="10.463" height="0.006" fill="#008471"><title>0.40609137×: 24 occurrences</title></rect>
+<rect x="831.996" y="644.985" width="10.463" height="0.015" fill="#008471"><title>0.4040404×: 60 occurrences</title></rect>
+<rect x="813.473" y="644.996" width="10.463" height="0.004" fill="#008471"><title>0.40201005×: 15 occurrences</title></rect>
+<rect x="795.135" y="644.991" width="10.463" height="0.009" fill="#008471"><title>0.4×: 37 occurrences</title></rect>
+<rect x="776.980" y="644.996" width="10.463" height="0.004" fill="#008471"><title>0.39800995×: 14 occurrences</title></rect>
+<rect x="759.004" y="644.991" width="10.463" height="0.009" fill="#008471"><title>0.3960396×: 34 occurrences</title></rect>
+<rect x="741.206" y="644.994" width="10.463" height="0.006" fill="#008471"><title>0.39408867×: 24 occurrences</title></rect>
+<rect x="723.582" y="644.998" width="10.463" height="0.002" fill="#008471"><title>0.39215686×: 8 occurrences</title></rect>
+<rect x="671.731" y="644.999" width="10.463" height="0.001" fill="#008471"><title>0.38647343×: 3 occurrences</title></rect>
+<rect x="654.780" y="644.999" width="10.463" height="0.001" fill="#008471"><title>0.38461538×: 3 occurrences</title></rect>
+<rect x="637.991" y="644.746" width="10.463" height="0.254" fill="#008471"><title>0.38277512×: 1,007 occurrences</title></rect>
+<rect x="621.362" y="644.569" width="10.463" height="0.431" fill="#008471"><title>0.38095238×: 1,710 occurrences</title></rect>
+<rect x="604.891" y="644.850" width="10.463" height="0.150" fill="#008471"><title>0.37914692×: 596 occurrences</title></rect>
+<rect x="588.575" y="644.927" width="10.463" height="0.073" fill="#008471"><title>0.37735849×: 289 occurrences</title></rect>
+<rect x="572.412" y="644.822" width="10.463" height="0.178" fill="#008471"><title>0.37558685×: 705 occurrences</title></rect>
+<rect x="556.401" y="644.882" width="10.463" height="0.118" fill="#008471"><title>0.37383178×: 468 occurrences</title></rect>
+<rect x="540.538" y="644.939" width="10.463" height="0.061" fill="#008471"><title>0.37209302×: 241 occurrences</title></rect>
+<rect x="524.822" y="644.818" width="10.463" height="0.182" fill="#008471"><title>0.37037037×: 720 occurrences</title></rect>
+<rect x="509.251" y="644.939" width="10.463" height="0.061" fill="#008471"><title>0.36866359×: 240 occurrences</title></rect>
+<rect x="478.536" y="644.939" width="10.463" height="0.061" fill="#008471"><title>0.3652968×: 240 occurrences</title></rect>
+<rect x="389.666" y="635.679" width="10.463" height="9.321" fill="#008471"><title>0.35555556×: 36,960 occurrences</title></rect>
+<rect x="375.313" y="616.249" width="10.463" height="28.751" fill="#008471"><title>0.3539823×: 114,000 occurrences</title></rect>
+<rect x="361.086" y="641.520" width="10.463" height="3.480" fill="#008471"><title>0.35242291×: 13,800 occurrences</title></rect>
+<rect x="346.984" y="642.367" width="10.463" height="2.633" fill="#008471"><title>0.35087719×: 10,440 occurrences</title></rect>
+<rect x="333.006" y="643.426" width="10.463" height="1.574" fill="#008471"><title>0.34934498×: 6,240 occurrences</title></rect>
+<rect x="319.149" y="644.879" width="10.463" height="0.121" fill="#008471"><title>0.34782609×: 480 occurrences</title></rect>
+<rect x="174.312" y="631.442" width="10.463" height="13.558" fill="#008471"><title>0.33195021×: 53,760 occurrences</title></rect>
+<rect x="161.798" y="455.185" width="10.463" height="189.815" fill="#008471"><title>0.33057851×: 752,640 occurrences</title></rect>
+<rect x="149.387" y="638.221" width="10.463" height="6.779" fill="#008471"><title>0.32921811×: 26,880 occurrences</title></rect>
+<rect x="137.078" y="638.221" width="10.463" height="6.779" fill="#008471"><title>0.32786885×: 26,880 occurrences</title></rect>
+<text x="130.00" y="668" text-anchor="middle" class="tick">0.32652</text>
+<text x="255.00" y="668" text-anchor="middle" class="tick">0.340221</text>
+<text x="380.00" y="668" text-anchor="middle" class="tick">0.353923</text>
+<text x="505.00" y="668" text-anchor="middle" class="tick">0.367624</text>
+<text x="630.00" y="668" text-anchor="middle" class="tick">0.381326</text>
+<text x="755.00" y="668" text-anchor="middle" class="tick">0.395027</text>
+<text x="880.00" y="668" text-anchor="middle" class="tick">0.408729</text>
+<text x="1005.00" y="668" text-anchor="middle" class="tick">0.42243</text>
+<text x="1130.00" y="668" text-anchor="middle" class="tick">0.436132</text>
 <line x1="130" y1="645" x2="1130" y2="645" stroke="#536078"/>
-<text x="630.0" y="695" text-anchor="middle" class="label">Compression ratio (%) = compressed bits / 80 × 100</text>
+<text x="630.0" y="695" text-anchor="middle" class="label">Compression ratio (original / compressed)</text>
 <text transform="translate(28,542.5) rotate(-90)" text-anchor="middle" class="label">Occurrences</text>
-<text x="64" y="756" class="tick">Smaller ratios are better; every independent 10-byte input expands under bzip2 in this census.</text>
+<text x="64" y="756" class="tick">Higher ratios are better; values below 1 mean every independent 10-byte input expands under bzip2 in this census.</text>
 <text x="64" y="780" class="tick">This is exhaustive for the declared 20-bit subset, not for all 2^80 possible 10-byte inputs.</text>
 </svg>

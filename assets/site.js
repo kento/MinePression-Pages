@@ -37,35 +37,35 @@
     document.getElementById("chart-title").textContent = `${meta[0]}の圧縮率 — ${metric === "total" ? "最終ファイル全体" : "ペイロードのみ"}`;
     const svg = element("svg", {viewBox: "0 0 1050 435", role: "img", "aria-labelledby": "svg-title svg-description"});
     svg.append(element("title", {id: "svg-title"}, `${meta[0]}・${metric === "total" ? "全体" : "ペイロード"}の圧縮率`));
-    svg.append(element("desc", {id: "svg-description"}, "横軸は1 Bから1 GBの元サイズ、縦軸は圧縮率%。両軸は対数目盛。線は6形式。同じ数値は下の開閉式の表で読めます。"));
+    svg.append(element("desc", {id: "svg-description"}, "横軸は1 Bから1 GBの元サイズ、縦軸は圧縮前サイズを圧縮後サイズで割った圧縮率。両軸は対数目盛。線は6形式。同じ数値は下の開閉式の表で読めます。"));
     const left = 78, right = 944, top = 25, bottom = 368;
     const x = n => left + Math.log10(n) / 9 * (right - left);
     // Fixed domains permit honest comparison across all pattern/metric selections.
-    const y = v => top + (4 - Math.log10(v)) / 9 * (bottom - top);
-    for (let exp = -5; exp <= 4; exp++) {
+    const y = v => top + (7 - Math.log10(v)) / 9 * (bottom - top);
+    for (let exp = -2; exp <= 7; exp++) {
       const val = 10 ** exp, py = y(val);
-      svg.append(element("line", {x1: left, x2: right, y1: py, y2: py, stroke: exp === 2 ? "#81998a" : "#e6eae5", "stroke-dasharray": exp === 2 ? "5 4" : ""}));
-      svg.append(element("text", {x: left - 12, y: py + 4, "text-anchor": "end"}, `${ratio(val)}%`));
+      svg.append(element("line", {x1: left, x2: right, y1: py, y2: py, stroke: exp === 0 ? "#81998a" : "#e6eae5", "stroke-dasharray": exp === 0 ? "5 4" : ""}));
+      svg.append(element("text", {x: left - 12, y: py + 4, "text-anchor": "end"}, `${ratio(val)}×`));
     }
     for (let exp = 0; exp <= 9; exp++) {
       const n = 10 ** exp, px = x(n);
       svg.append(element("line", {x1: px, x2: px, y1: top, y2: bottom, stroke: "#f0f2ef"}));
       svg.append(element("text", {x: px, y: bottom + 25, "text-anchor": "middle"}, size(n)));
     }
-    svg.append(element("text", {x: left, y: 13, class: "axis-label"}, "圧縮率 (%)"));
+    svg.append(element("text", {x: left, y: 13, class: "axis-label"}, "圧縮率（圧縮前 ÷ 圧縮後）"));
     svg.append(element("text", {x: (left + right) / 2, y: 426, "text-anchor": "middle", class: "axis-label"}, "元のデータサイズ（10進）"));
-    svg.append(element("text", {x: right + 10, y: y(100) + 4}, "元と同じ"));
+    svg.append(element("text", {x: right + 10, y: y(1) + 4}, "元と同じ"));
     const labels = [];
     for (const tool of tools) {
       const points = selected.filter(r => r.tool === tool).sort((a, b) => a.n - b.n);
-      svg.append(element("polyline", {points: points.map(r => `${x(r.n)},${y(r[metric] / r.n * 100)}`).join(" "), fill: "none", stroke: colors[tool], "stroke-width": 2.4, "stroke-dasharray": dashes[tool], "stroke-linejoin": "round"}));
+      svg.append(element("polyline", {points: points.map(r => `${x(r.n)},${y(r.n / r[metric])}`).join(" "), fill: "none", stroke: colors[tool], "stroke-width": 2.4, "stroke-dasharray": dashes[tool], "stroke-linejoin": "round"}));
       points.forEach(r => {
-        const percent = r[metric] / r.n * 100;
-        const circle = element("circle", {cx: x(r.n), cy: y(percent), r: 3.2, fill: "white", stroke: colors[tool], "stroke-width": 1.6});
-        circle.append(element("title", {}, `${tool} / ${size(r.n)}: ${number(r[metric])} B (${ratio(percent)}%)`));
+        const compressionRatio = r.n / r[metric];
+        const circle = element("circle", {cx: x(r.n), cy: y(compressionRatio), r: 3.2, fill: "white", stroke: colors[tool], "stroke-width": 1.6});
+        circle.append(element("title", {}, `${tool} / ${size(r.n)}: ${number(r[metric])} B (${ratio(compressionRatio)}×)`));
         svg.append(circle);
       });
-      labels.push({tool, py: y(points.at(-1)[metric] / 1e9 * 100)});
+      labels.push({tool, py: y(1e9 / points.at(-1)[metric])});
     }
     labels.sort((a,b) => a.py - b.py);
     let previous = -Infinity;
@@ -77,7 +77,7 @@
     });
     document.getElementById("chart").replaceChildren(svg);
     const best = selected.filter(r => r.n === 1e9).sort((a,b) => a[metric] - b[metric])[0];
-    document.getElementById("chart-summary").textContent = `1 GB / ${meta[0]}：${metric === "total" ? "最終サイズ" : "ペイロード換算"}の最小は ${best.tool} の ${number(best[metric])} B（${ratio(best[metric] / 1e9 * 100)}%）。`;
+    document.getElementById("chart-summary").textContent = `1 GB / ${meta[0]}：${metric === "total" ? "最終サイズ" : "ペイロード換算"}の最小は ${best.tool} の ${number(best[metric])} B（圧縮率 ${ratio(1e9 / best[metric])}×）。`;
     const tbody = document.querySelector("#chart-values tbody");
     tbody.replaceChildren();
     for (const n of [...new Set(selected.map(r => r.n))].sort((a,b) => a-b)) {
@@ -86,11 +86,11 @@
       for (const tool of tools) {
         const r = selected.find(r => r.n === n && r.tool === tool);
         const td = document.createElement("td");
-        td.textContent = `${ratio(r[metric] / n * 100)}%`; tr.append(td);
+        td.textContent = `${ratio(n / r[metric])}×`; tr.append(td);
       }
       tbody.append(tr);
     }
-    document.querySelector("#chart-values caption").textContent = `${meta[0]} / ${metric === "total" ? "最終ファイル全体" : "ペイロードのみ"}の圧縮率（%）`;
+    document.querySelector("#chart-values caption").textContent = `${meta[0]} / ${metric === "total" ? "最終ファイル全体" : "ペイロードのみ"}の圧縮率（圧縮前 ÷ 圧縮後）`;
   }
   for (const control of document.querySelectorAll(".segmented button")) {
     control.addEventListener("click", () => {
