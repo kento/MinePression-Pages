@@ -1,0 +1,105 @@
+{
+  "schema_version": "bzip2-stratified-estimate-validation-v1",
+  "classification": "public",
+  "purpose": "calibration against exact exhaustive 1--4 byte histograms",
+  "acceptance": {
+    "maximum_total_variation_distance": 0.03,
+    "maximum_mean_relative_error": 0.01,
+    "minimum_exact_bin_recall": 0.95
+  },
+  "results": [
+    {
+      "input_bytes": 1,
+      "metrics": {
+        "whole": {
+          "total_variation_distance": 0.0,
+          "mean_compression_ratio_exact": 0.02702702702702703,
+          "mean_compression_ratio_estimated": 0.027027027027014528,
+          "mean_relative_error": 4.625154426118883e-13,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 1,
+          "estimated_bins": 1
+        },
+        "payload": {
+          "total_variation_distance": 0.0,
+          "mean_compression_ratio_exact": 0.0446927374301676,
+          "mean_compression_ratio_estimated": 0.044692737430153395,
+          "mean_relative_error": 3.178126165015449e-13,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 1,
+          "estimated_bins": 1
+        }
+      }
+    },
+    {
+      "input_bytes": 2,
+      "metrics": {
+        "whole": {
+          "total_variation_distance": 0.0015257111762435535,
+          "mean_compression_ratio_exact": 0.05145530145530145,
+          "mean_compression_ratio_estimated": 0.05145953073092805,
+          "mean_relative_error": 8.219319500583e-05,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 2,
+          "estimated_bins": 2
+        },
+        "payload": {
+          "total_variation_distance": 0.0015389265159419096,
+          "mean_compression_ratio_exact": 0.08208810758940446,
+          "mean_compression_ratio_estimated": 0.08209917194697063,
+          "mean_relative_error": 0.00013478636420155996,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 3,
+          "estimated_bins": 3
+        }
+      }
+    },
+    {
+      "input_bytes": 3,
+      "metrics": {
+        "whole": {
+          "total_variation_distance": 0.0017958833281226424,
+          "mean_compression_ratio_exact": 0.07210835712406564,
+          "mean_compression_ratio_estimated": 0.07210285466617332,
+          "mean_relative_error": 7.630818551112606e-05,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 5,
+          "estimated_bins": 5
+        },
+        "payload": {
+          "total_variation_distance": 0.0017958833281226424,
+          "mean_compression_ratio_exact": 0.11070958570177557,
+          "mean_compression_ratio_estimated": 0.11069661822052175,
+          "mean_relative_error": 0.000117130609527782,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 6,
+          "estimated_bins": 6
+        }
+      }
+    },
+    {
+      "input_bytes": 4,
+      "metrics": {
+        "whole": {
+          "total_variation_distance": 0.0045828333774704175,
+          "mean_compression_ratio_exact": 0.08846740139448736,
+          "mean_compression_ratio_estimated": 0.08847298918231108,
+          "mean_relative_error": 6.316211096568341e-05,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 9,
+          "estimated_bins": 9
+        },
+        "payload": {
+          "total_variation_distance": 0.004585367218538625,
+          "mean_compression_ratio_exact": 0.12924760608315974,
+          "mean_compression_ratio_estimated": 0.12925916478094934,
+          "mean_relative_error": 8.94306528367086e-05,
+          "exact_bin_recall": 1.0,
+          "exact_bins": 18,
+          "estimated_bins": 18
+        }
+      }
+    }
+  ],
+  "passed": true
+}
