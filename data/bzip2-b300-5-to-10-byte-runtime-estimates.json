@@ -1,0 +1,101 @@
+{
+  "schema_version": "bzip2-b300-5-to-10-byte-runtime-estimate-v1",
+  "classification": "public",
+  "scope": "exhaustive occurrence histograms for every bit pattern at each actual input length",
+  "status": "analytical extrapolation; no 5--10 B B300 run was executed",
+  "baseline": {
+    "input_bytes": 4,
+    "population": 4294967296,
+    "kernel_seconds": 3.292491699,
+    "inputs_per_second": 1304473234.4517293,
+    "device": "one NVIDIA B300",
+    "implementation": "specialized exact-length model; no compressed stream materialization",
+    "histograms_match_cpu_exactly_for_1_to_4_bytes": true
+  },
+  "scenarios": {
+    "constant_4B_throughput": "Optimistic sensitivity: every longer input retains the measured 4 B inputs/s.",
+    "quadratic_per_input_cost": "Planning estimate: per-input kernel work scales with (input_bytes / 4)^2.",
+    "cubic_per_input_cost": "Conservative sensitivity: per-input kernel work scales with (input_bytes / 4)^3."
+  },
+  "rows": [
+    {
+      "input_bytes": 5,
+      "population": "1099511627776",
+      "population_power_of_two": 40,
+      "constant_4B_throughput_seconds": 842.877874944,
+      "quadratic_per_input_cost_seconds": 1316.9966796,
+      "cubic_per_input_cost_seconds": 1646.2458495,
+      "constant_4B_throughput_years": 2.6709188117727584e-05,
+      "quadratic_per_input_cost_years": 4.1733106433949356e-05,
+      "cubic_per_input_cost_years": 5.216638304243669e-05
+    },
+    {
+      "input_bytes": 6,
+      "population": "281474976710656",
+      "population_power_of_two": 48,
+      "constant_4B_throughput_seconds": 215776.735985664,
+      "quadratic_per_input_cost_seconds": 485497.655967744,
+      "cubic_per_input_cost_seconds": 728246.483951616,
+      "constant_4B_throughput_years": 0.006837552158138261,
+      "quadratic_per_input_cost_years": 0.015384492355811089,
+      "cubic_per_input_cost_years": 0.023076738533716633
+    },
+    {
+      "input_bytes": 7,
+      "population": "72057594037927936",
+      "population_power_of_two": 56,
+      "constant_4B_throughput_seconds": 55238844.41232999,
+      "quadratic_per_input_cost_seconds": 169168961.01276058,
+      "cubic_per_input_cost_seconds": 296045681.772331,
+      "constant_4B_throughput_years": 1.750413352483395,
+      "quadratic_per_input_cost_years": 5.360640891980397,
+      "cubic_per_input_cost_years": 9.381121560965694
+    },
+    {
+      "input_bytes": 8,
+      "population": "18446744073709551616",
+      "population_power_of_two": 64,
+      "constant_4B_throughput_seconds": 14141144169.556477,
+      "quadratic_per_input_cost_seconds": 56564576678.22591,
+      "cubic_per_input_cost_seconds": 113129153356.45181,
+      "constant_4B_throughput_years": 448.1058182357491,
+      "quadratic_per_input_cost_years": 1792.4232729429964,
+      "cubic_per_input_cost_years": 3584.846545885993
+    },
+    {
+      "input_bytes": 9,
+      "population": "4722366482869645213696",
+      "population_power_of_two": 72,
+      "constant_4B_throughput_seconds": 3620132907406.458,
+      "quadratic_per_input_cost_seconds": 18326922843745.195,
+      "cubic_per_input_cost_seconds": 41235576398426.69,
+      "constant_4B_throughput_years": 114715.08946835177,
+      "quadratic_per_input_cost_years": 580745.1404335309,
+      "cubic_per_input_cost_years": 1306676.5659754444
+    },
+    {
+      "input_bytes": 10,
+      "population": "1208925819614629174706176",
+      "population_power_of_two": 80,
+      "constant_4B_throughput_seconds": 926754024296053.2,
+      "quadratic_per_input_cost_seconds": 5792212651850333.0,
+      "cubic_per_input_cost_seconds": 1.4480531629625832e+16,
+      "constant_4B_throughput_years": 29367062.903898053,
+      "quadratic_per_input_cost_years": 183544143.14936286,
+      "cubic_per_input_cost_years": 458860357.8734071
+    }
+  ],
+  "implementation_requirements": [
+    "The current CUDA implementation is specialized to 1--4 B and must be extended and revalidated.",
+    "Five through seven bytes fit a uint64 population counter.",
+    "Eight bytes has exactly 2^64 inputs and therefore requires prefix sharding instead of one uint64 population value.",
+    "Eight through ten bytes need wider host-side total and occurrence aggregation; nine and ten byte populations exceed 2^64.",
+    "Longer fixed arrays and additional per-input work may change register pressure, occupancy, atomics and throughput."
+  ],
+  "limitations": [
+    "The three scenarios are sensitivity calculations, not measurements, confidence intervals, or mathematical bounds.",
+    "Kernel time excludes scheduler queueing, allocation, container conversion, CUDA startup, host transfer, validation and publication.",
+    "Exact CPU agreement is established only for the measured 1--4 B implementations.",
+    "A 5--10 B implementation must be independently checked against libbzip2 fixtures before its histogram is trusted."
+  ]
+}
