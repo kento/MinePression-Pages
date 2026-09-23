@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.8.0",
+  "generator_version": "1.9.0",
   "classification": "public",
   "compression_ratio_definition": "original_size / compressed_size",
-  "generated_at": "2026-09-23T02:09:28+00:00",
+  "generated_at": "2026-09-23T07:17:09Z",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "9a4d577431260f6ec100ebaf1a93e5a264d11954",
+  "control_commit": "01752f67c716ccde6dd159e8aba917986466ae95",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -66,14 +66,20 @@
     "bzip2-1-to-4-byte/20260922_001_b300-gpu-census-1B.jsonl": "74202b51aee7e38c39baa6db670b1c2f6b1f9f3242f90b2d67696e7e3aadb096",
     "bzip2-1-to-4-byte/20260922_002_b300-gpu-census-2B.jsonl": "504033fd71d23a718e9a6e5264e16812973a8f7c30e5e48e4ad8f07003274173",
     "bzip2-1-to-4-byte/20260922_003_b300-gpu-census-3B.jsonl": "79316cc0d7fd98bd07ad390feb31dd35a481cf98cc2cf834fc57fbb825540eab",
-    "bzip2-1-to-4-byte/20260922_004_b300-gpu-census-4B.jsonl": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e"
+    "bzip2-1-to-4-byte/20260922_004_b300-gpu-census-4B.jsonl": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e",
+    "bzip2-5-to-100/20260922_001_bzip2-5-to-100-estimated-histograms.json": "29b0a59e9d0e2ebc379dced92d99b7ca57dd4ac145e90dcedbb1c3c8052a5c1f",
+    "bzip2-5-to-100/20260922_002_estimator-validation.json": "bf3e4c926c2e72776a14b56ab4f37492376939c38bb28cbcf804a6244667c7c3",
+    "bzip2-5-to-100/20260922_003_bzip2-5-to-100-estimated-histograms.svg": "a604ba3299ff36617b489c2cdd7ff238f03ff122055a61a3ad2174caaf45b5fc",
+    "bzip2-5-to-100/estimate.py": "ff891f8b0b9883758faa2f00d2a8cb348bedd23cbd1900ef9d01441b3cb43e2f",
+    "bzip2-5-to-100/validate.py": "dd3e69b376de5838aacbeead9a30a809a2ca17b99139251b8afd213c67984922",
+    "bzip2-5-to-100/plot.py": "1bc88f90d54b39cdd06e70178a4b769e646cc7449bbcbef6d647a9a94e716672"
   },
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "9c2a2b075165dd8ad9430787c3c715b61f4165847f39a2935847d64fbecae125",
-    "assets/site.css": "ca2230c7de06311620a6611dbd1d7a91d9f0dd03677c114ecf1a783849eb7d51",
-    "assets/site.js": "1c6e88db5bf76bfdadbce00a516694ec13c8f3962c332edb5e75094c039d6400",
+    "README.md": "aae521a890fe148023ac6dfe7748f2db1fddd62e23429e409d9058c8eda41133",
+    "assets/site.css": "d14d61c746c73707b1e7c7ed769ef70fb3d29197afd199aeecc44a914c566fd5",
+    "assets/site.js": "ef46e6c9215f0344fac2acd410eea9968ac7a03037c861bd454bf279508a6b4a",
     "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
     "data/bzip2-1-to-4-byte-cpu-run.json": "96222707ccc1aef9febd1230ccdc0bd905e0bf48555db9ffdc2f42a363a6bf3f",
     "data/bzip2-1-to-4-byte-fugaku-run.json": "3b2e6f15388a38e076d4d37dca9f396c6db05cd2cac0505dcf82197a69be1974",
@@ -87,6 +93,8 @@
     "data/bzip2-20bit-census-run.json": "056efa65669bf3fa2e12c68e1857ca416ec690bc71aaf2d337f48cc21d41b653",
     "data/bzip2-20bit-census-summary.json": "78f5640a0463887a2df6cec32819cd9cd8d40fd2c3e127b2cc4ac95c03a4aa45",
     "data/bzip2-20bit-census.jsonl": "ea014406586c076b714019255f736c0da55acedd8d4e234e959b12b2752991a5",
+    "data/bzip2-5-to-100-estimated-histograms.json": "29b0a59e9d0e2ebc379dced92d99b7ca57dd4ac145e90dcedbb1c3c8052a5c1f",
+    "data/bzip2-5-to-100-estimator-validation.json": "bf3e4c926c2e72776a14b56ab4f37492376939c38bb28cbcf804a6244667c7c3",
     "data/bzip2-b300-5-to-10-byte-runtime-estimates.json": "6e6ded80ffc1fef306db62a43b9671ef45c1506bf6e3ab7d0f07f9298d2be9a3",
     "data/bzip2-gpu-census-1B.jsonl": "74202b51aee7e38c39baa6db670b1c2f6b1f9f3242f90b2d67696e7e3aadb096",
     "data/bzip2-gpu-census-2B.jsonl": "504033fd71d23a718e9a6e5264e16812973a8f7c30e5e48e4ad8f07003274173",
@@ -101,8 +109,9 @@
     "figures/bzip2-10byte-period2.svg": "5813be45b2491dac933506b5d012c7f2aec97a8879699ae6aa87f2b4c2ccb1cf",
     "figures/bzip2-10byte-sample.svg": "15de51c8e11d611d89b547e6caad0883cfc4821a3bf8d16f72144564141b1119",
     "figures/bzip2-20bit-census.svg": "164d26f9d15c99c600a53bfb09d3cc6d92132a3f4f708b090aa4bec01fd5a38e",
+    "figures/bzip2-5-to-100-estimated-histograms.svg": "a604ba3299ff36617b489c2cdd7ff238f03ff122055a61a3ad2174caaf45b5fc",
     "figures/three-patterns.svg": "66bde848aa6d9be922aa8e46250cea1f22b735bb94a137ba190a5bdbc68341c1",
-    "index.html": "6558ec9af45fcf090dafa029d410b766cd47c08377f72c57454ea7a9c790d4ec"
+    "index.html": "5f3adfcf95b608cb42c9067d56191723b6f5714af1cc830339edc95780f16b62"
   },
   "validation": {
     "unique_measurements": 288,
@@ -137,6 +146,11 @@
     "gpu_4B_kernel_seconds": 3.292491699,
     "gpu_5_to_10_byte_estimates": 6,
     "gpu_5_to_10_byte_estimate_status": "analytical sensitivity; not measured",
+    "tail_estimate_validation": "passed",
+    "tail_estimate_lengths": 96,
+    "tail_estimate_checked_bins": 17691,
+    "tail_estimate_calibration_maximum_total_variation_distance": 0.004585367218538625,
+    "tail_estimate_calibration_bin_recall": 1.0,
     "gpu_scheduler_receipt": "success reviewed privately; public metadata minimized"
   },
   "limitations": [
@@ -151,6 +165,8 @@
     "The 1--4 byte GPU PoC computes exact lengths and occurrence histograms but does not emit compressed streams.",
     "The 5--10 byte B300 durations are analytical sensitivity scenarios based only on the measured 4-byte kernel, not measurements, confidence intervals, or bounds.",
     "CPU compression-loop versus GPU kernel speedup is problem-specific and not a general bzip2 encoder comparison.",
+    "The 5--100 byte histograms are weighted statistical estimates over a uniform byte-string target, not exhaustive censuses; only the period-at-most-two stratum is exact.",
+    "Tail intervals are conditional on observed proposal support, and zero-hit proposal components do not exclude an unseen structural family.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
     "Manifest file digests exclude the manifest itself."
