@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.12.0",
+  "generator_version": "1.13.0",
   "classification": "public",
   "compression_ratio_definition": "original_size / compressed_size",
-  "generated_at": "2026-09-28T03:23:48.986606+00:00",
+  "generated_at": "2026-09-28T13:15:00+09:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "647c9a34125e7b75f36d382a7dda7c4fc04b56ee",
+  "control_commit": "0bfb3d101e6465f6c913a90a0cdb5c02f0824a8b",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -20,7 +20,10 @@
     "gpu_4B_raw_sha256": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e",
     "compact_mask_result_sha256": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7",
     "canterbury_mask_result_sha256": "b3e835287c69bf4fa887e623c7b2773cb89c61626384f4fe52dabd1b890ded56",
-    "compression_miner_result_sha256": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa"
+    "compression_miner_result_sha256": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa",
+    "staged_multicodec_result_sha256": "4967c554f8471830d8a61e2fdeaf206d592229b58b6245f3baca62fac572c195",
+    "staged_multicodec_environment_sha256": "6c46cfd4ea198d1eb691db3a089d3fdf89713073fe8022b310fd7c5761cd9fc2",
+    "staged_multicodec_corpus_lock_sha256": "d9b6eb182a6ff09676522304744b15193ff58c10b2fcdfd5084fe9cf99b32880"
   },
   "harness": {
     "harness_id": "kento-common",
@@ -98,12 +101,22 @@
     "compression-miner/miner.py": "7d43e059781254bce2329bd0674788458558a31ae9abb7d235b744939311f0e5",
     "compression-miner/validate.py": "89689389b00d50644d7a070b34b0d724829317373a99d5ce65d707f0a1475a00",
     "compression-miner/plot.py": "fae1d6ccb00b993f937b1713e550e9de939fb315046d633fd272dc36cab436f9",
-    "compression-miner/test_miner.py": "9f7fbbac8cae888a01a2d9b5db05810ca0a99aa81ed65aeeb3a90636b1e69a81"
+    "compression-miner/test_miner.py": "9f7fbbac8cae888a01a2d9b5db05810ca0a99aa81ed65aeeb3a90636b1e69a81",
+    "staged-multicodec/20260928_002_staged-multicodec.json": "4967c554f8471830d8a61e2fdeaf206d592229b58b6245f3baca62fac572c195",
+    "staged-multicodec/20260928_003_staged-multicodec.svg": "9218312db2f0d190865605a0dcdf5c434259ee317625c00f5f4bdc420ed90770",
+    "staged-multicodec/20260928_004_v100-environment.json": "6c46cfd4ea198d1eb691db3a089d3fdf89713073fe8022b310fd7c5761cd9fc2",
+    "staged-multicodec/20260928_001_silesia-lock.json": "d9b6eb182a6ff09676522304744b15193ff58c10b2fcdfd5084fe9cf99b32880",
+    "staged-multicodec/README.md": "5a4c5487e2c572145b1aeb61094ef1165447a79d97bc68ea1207928f62ffe099",
+    "staged-multicodec/benchmark.py": "44231f738b372bda71b9a0260670dd278ece4c6b26748b5301b9d197f6e64d28",
+    "staged-multicodec/lock_corpus.py": "47323fc96caee3669511954756bd24d38951698f759fd8b78dafebe7ff414033",
+    "staged-multicodec/validate.py": "c82243af9f090b18fef8d1a4c5f36813b207e32a004c875351aa1b0cb121216f",
+    "staged-multicodec/plot.py": "580fe3454fc1777ac5bef3729b5798535414b07fa7108ea949562e4f702b7390",
+    "staged-multicodec/test_benchmark.py": "b02c8fb8b37356038bb37d59e33cf0c25e1e0be780767d71637f9319bf6a7991"
   },
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "6415bbd13849c654d8205e691b8be06e694e33334e201e5bf07a9248a26418da",
+    "README.md": "a724d9a0ae8c5b931dcb757fe995f6293c89430e8e8726cc6005e8fe93fb7748",
     "assets/site.css": "d14d61c746c73707b1e7c7ed769ef70fb3d29197afd199aeecc44a914c566fd5",
     "assets/site.js": "ef46e6c9215f0344fac2acd410eea9968ac7a03037c861bd454bf279508a6b4a",
     "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
@@ -134,6 +147,8 @@
     "data/compression-miner-poc.json": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa",
     "data/compression-results.csv": "2365239298a23d6e4d5f580edc05368ea9f067c524ed56734e060648ab62a131",
     "data/methodology.json": "8600b99ffba7bb17fe585f0d7218c403eab79dd45f6c3d7ceea7d8ad42ff6d6b",
+    "data/staged-multicodec-benchmark.json": "4967c554f8471830d8a61e2fdeaf206d592229b58b6245f3baca62fac572c195",
+    "data/staged-multicodec-environment.json": "6c46cfd4ea198d1eb691db3a089d3fdf89713073fe8022b310fd7c5761cd9fc2",
     "figures/bzip2-1-to-4-byte-histograms.svg": "f4999966778141061a7f021ec787ec538603325b34348868ccea2629dbced31f",
     "figures/bzip2-10byte-period2.svg": "5813be45b2491dac933506b5d012c7f2aec97a8879699ae6aa87f2b4c2ccb1cf",
     "figures/bzip2-10byte-sample.svg": "15de51c8e11d611d89b547e6caad0883cfc4821a3bf8d16f72144564141b1119",
@@ -142,8 +157,9 @@
     "figures/canterbury-xor-mask-search.svg": "9e7b59b2a3aa17c6147e1d3ac57d5d332de0798aee1252a647b575e78dd352a6",
     "figures/compact-xor-mask-generator-poc.svg": "f78db3bf8c9448732cb92ba7daf1629afc7b0b05cdbd4d165b80d1d37b1a5b29",
     "figures/compression-miner-poc.svg": "28fdcf1f0d9468f57f68f6d9ccd9da52e77bfeea7a9e86b925bd8262080614ae",
+    "figures/staged-multicodec-benchmark.svg": "9218312db2f0d190865605a0dcdf5c434259ee317625c00f5f4bdc420ed90770",
     "figures/three-patterns.svg": "66bde848aa6d9be922aa8e46250cea1f22b735bb94a137ba190a5bdbc68341c1",
-    "index.html": "f52402ae61e3eeb22958c11915c3033ee04a637f676be92c16a8030b9cbb63c5"
+    "index.html": "e89fc75122a8a7440d845ad5db03dc10fd6b72f8ed9058e7aaf13cec1ab443a0"
   },
   "validation": {
     "unique_measurements": 288,
@@ -202,6 +218,16 @@
     "compression_miner_candidates": 464100,
     "compression_miner_real_saved_bytes": 504,
     "compression_miner_random_control_saved_bytes": 0,
+    "staged_multicodec_validation": "passed",
+    "staged_multicodec_real_frames": 72,
+    "staged_multicodec_audit_cells": 48,
+    "staged_multicodec_audit_byte_savings_recall": 0.943905635648755,
+    "staged_multicodec_saved_bytes": {
+      "bzip2": 21992,
+      "gzip": 262216,
+      "xz": 89382,
+      "zstd": 255124
+    },
     "gpu_scheduler_receipt": "success reviewed privately; public metadata minimized"
   },
   "limitations": [
@@ -225,6 +251,10 @@
     "Canterbury source files are external and are identified by official URL, sizes and SHA-256 digests but are not republished in this bundle.",
     "Compression Miner uses a bounded one-instruction language and three hash-selected real-data chunks; its large synthetic gains prove mechanism, not prevalence.",
     "Compression Miner encoder time is measured but excluded from stored size; every decoder-visible opcode and parameter byte is included.",
+    "The staged multi-codec benchmark uses 72 deterministic hash-selected Silesia frames, not the entire corpus or the user's future workload distribution.",
+    "The staged audit is exhaustive only for the fixed 285-program language on twelve selected 4 KiB frames; its 94.391% byte-savings recall is not universal.",
+    "Almost all staged benchmark savings come from two scientific-imaging files and a 2-byte transpose; this supports a type-aware shuffle, not a generic mining claim.",
+    "The V100-machine benchmark used the host CPU, not its GPU; its background launcher did not persist an exit code, so completion is established by final progress, complete result, digests, round trips and independent validation.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
     "Manifest file digests exclude the manifest itself."
