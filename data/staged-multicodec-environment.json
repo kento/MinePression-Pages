@@ -1,0 +1,37 @@
+{
+  "schema_version": "staged-multicodec-environment-v1",
+  "classification": "public-minimized execution receipt",
+  "submitted_at_utc": "2026-09-28T03:52:24Z",
+  "result_generated_at_utc": "2026-09-28T03:55:22.352235+00:00",
+  "resource": {
+    "description": "dedicated Linux machine with V100; CPU execution only",
+    "gpu_used": false,
+    "cpu": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
+    "logical_cpu_count": 12,
+    "os": "Linux 3.10.0-1160.80.1.el7.x86_64",
+    "python": "3.6.8"
+  },
+  "codec_runtime_packages": {
+    "bzip2-libs": "1.0.6-13.el7.x86_64",
+    "xz-libs": "5.2.2-1.el7.x86_64",
+    "zlib": "1.2.7-19.el7_9.x86_64",
+    "libzstd": "1.4.5-3.el7.x86_64"
+  },
+  "provenance": {
+    "source_commit_at_submission": "cf31f14d613efeffc854819d59e4c4bde748bac0",
+    "harness_commit": "a44e4726dde5bb40db18536e33ba64451b093041",
+    "benchmark_sha256": "44231f738b372bda71b9a0260670dd278ece4c6b26748b5301b9d197f6e64d28",
+    "corpus_lock_sha256": "d9b6eb182a6ff09676522304744b15193ff58c10b2fcdfd5084fe9cf99b32880",
+    "result_sha256": "4967c554f8471830d8a61e2fdeaf206d592229b58b6245f3baca62fac572c195",
+    "private_run_log_sha256": "c27afd99b8df00fbfcb1451bb46115201a56d697700e178a45970b4d0c7542db",
+    "private_submission_receipt_sha256": "6de8a517616da2a782b7c765ba72fa4e072f87338359f2840ea372e3f92b096d"
+  },
+  "completion_evidence": {
+    "final_progress_marker": "76/76",
+    "complete_result_present": true,
+    "strict_local_validation": "passed",
+    "background_process_observed_stopped_after_result": true,
+    "process_exit_code": null,
+    "exit_code_limitation": "The background launcher did not persist the child exit code. Completion is established by the final progress marker, complete result, result digest, and strict independent validation."
+  }
+}

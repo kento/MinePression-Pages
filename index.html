@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MinePression研究の現在地。短い可逆プログラムを大量探索するCompression Miner PoC、Canterbury Corpus評価、bzip2分布実験をまとめた研究ノート。">
+  <meta name="description" content="MinePression研究の現在地。Silesiaによる4 codecのheld-out評価、Compression Miner PoC、Canterbury Corpus評価、bzip2分布実験をまとめた研究ノート。">
   <meta name="theme-color" content="#142d35">
   <title>MinePression — 研究の現在地</title>
   <link rel="stylesheet" href="assets/site.css">
@@ -13,7 +13,7 @@
 <a class="skip" href="#main">本文へ移動</a>
 <header class="site-header">
   <a class="brand" href="#"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>MinePression<span class="brand-note">RESEARCH NOTES</span></a>
-  <nav aria-label="主なセクション"><a href="#compression-miner">最新実験</a><a href="#history">研究の経緯</a><a href="#next">再開する</a></nav>
+  <nav aria-label="主なセクション"><a href="#staged-benchmark">最新実験</a><a href="#history">研究の経緯</a><a href="#next">再開する</a></nav>
 </header>
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
@@ -21,8 +21,8 @@
       <p class="eyebrow"><span class="status-dot"></span> RESEARCH IN PROGRESS <span class="edition">研究ノート / 02</span></p>
       <h1 id="hero-title">圧縮の可能性を、<br>小さな実験から。</h1>
       <p class="hero-description">完全版MinePressionに向けた研究の現在地。<br class="desktop-only">分かったこと、まだ分からないこと、次に試すことをここから。</p>
-      <div class="hero-actions"><a class="button primary" href="#compression-miner">最新の結果を見る <span aria-hidden="true">↗</span></a><a class="text-link" href="#corpus-mask">前段の実データ評価へ <span aria-hidden="true">→</span></a></div>
-      <p class="updated">ページ更新 2026-09-28 <span>／</span> Proof-of-Work型Compression Miner PoC</p>
+      <div class="hero-actions"><a class="button primary" href="#staged-benchmark">最新の結果を見る <span aria-hidden="true">↗</span></a><a class="text-link" href="#compression-miner">前段のPoCへ <span aria-hidden="true">→</span></a></div>
+      <p class="updated">ページ更新 2026-09-28 <span>／</span> held-out multi-codec benchmark</p>
     </div>
     <aside class="checkpoint" aria-labelledby="checkpoint-title">
       <div class="checkpoint-top"><p class="eyebrow">30-SECOND CATCH-UP</p><span class="pill">いまは基礎実験</span></div>
@@ -30,20 +30,41 @@
       <ol class="catchup-list">
         <li><span>01</span><div><h3>目的は、完全版の設計を決めること。</h3><p>既存実装を参照しながらPoCを積み重ねる。製品としての完全版は、まだこれから。</p></div></li>
         <li><span>02</span><div><h3>規則的な入力の圧縮特性を測った。</h3><p>6形式を1 B〜1 GBで比較。今回の測定は既存コーデックの基準値で、MinePressionの性能ではない。</p></div></li>
-        <li><span>03</span><div><h3>計算量より、規則とデータの一致が重要。</h3><p>66,300候補を回しても、実データの改善は最初の269候補以内。深い探索が効いたのは探索言語に一致する合成データでした。</p></div></li>
+        <li><span>03</span><div><h3>汎用minerより、型に合う変換。</h3><p>4 codecで改善しましたが、削減byteの97.23〜99.89%はMRI・X-rayへ集中。16-bit値の2 byteを分離する変換が本質でした。</p></div></li>
       </ol>
     </aside>
   </section>
 
-  <div class="metrics" aria-label="Compression Miner実験の規模">
-    <div><span class="metric-number">464,100<small>候補</small></span><span>7 workloadの探索合計</span></div>
-    <div><span class="metric-number">36.72<small>秒</small></span><span>7-process local search</span></div>
-    <div><span class="metric-number">504<small>B</small></span><span>hash選択実データ3 chunkの削減</span></div>
-    <div><span class="metric-number">0<small>B</small></span><span>乱数対照の改善（raw fallback）</span></div>
+  <div class="metrics" aria-label="held-out multi-codec実験の規模">
+    <div><span class="metric-number">72<small>frame</small></span><span>Silesia 12 file・4サイズ</span></div>
+    <div><span class="metric-number">4<small>codec</small></span><span>bzip2・gzip・xz・zstd</span></div>
+    <div><span class="metric-number">94.391<small>%</small></span><span>全探索に対する削減byte回収率</span></div>
+    <div><span class="metric-number">0<small>B</small></span><span>乱数対照の膨張（raw fallback）</span></div>
   </div>
 
+  <section id="staged-benchmark" class="section pilot-section" aria-labelledby="staged-benchmark-title">
+    <div class="section-heading"><div><p class="eyebrow">00 / LATEST · HELD-OUT REPLICATION</p><h2 id="staged-benchmark-title">4 codecで小さくなった。ただし、ほぼ全ては16-bit科学画像だった。</h2></div><span class="badge verified">事前固定・全復号一致</span></div>
+    <p class="section-intro">過去のCanterbury結果を見てから規則を増やすのではなく、方法を先にcommitし、未評価のSilesia 12 fileで検証しました。<br>4/16/64 KiB・1 MiBの72 frameを、raw／直接圧縮／段階選択した可逆変換で比較しています。</p>
+    <div class="pilot-verdict"><div><p class="eyebrow">13,860,864 B · 72 held-out real-data frames</p><p class="pilot-estimate">gzip 4.7445%<span>削減・zstd 4.6243%削減</span></p><p>削減量はbzip2 <strong>21,992 B</strong>、gzip <strong>262,216 B</strong>、xz <strong>89,382 B</strong>、zstd <strong>255,124 B</strong>でした。</p></div><dl><dt>候補</dt><dd>285規則をproxy評価、各族上位2件だけ本圧縮</dd><dt>監査</dt><dd>12 frame × 4 codecで285規則を全探索</dd><dt>実行</dt><dd>V100 machineのCPU・175.188秒（GPU未使用）</dd></dl></div>
+    <p class="pilot-caution">汎用圧縮の成功とは解釈しません。削減byteの97.23〜99.89%がMRI・X-rayに集中しました。2 fileには再現しましたが、他10カテゴリの利得は小さく、将来の利用データ全体を代表する標本でもありません。</p>
+
+    <figure class="pilot-figure"><figcaption><h3>codec別の正味削減率と、その削減byteの由来</h3><p>上段はdescriptorを含む完全保存サイズの削減率。下段は削減byteのうちMRI・X-rayが占めた割合です。大きな棒だけを見て汎用効果と誤解しないため、カテゴリ集中を同時に示します。</p></figcaption><a href="figures/staged-multicodec-benchmark.svg"><img src="figures/staged-multicodec-benchmark.svg" width="1600" height="1120" loading="lazy" alt="Silesia 72 frameに対するbzip2、gzip、xz、zstdの正味削減率と、MRI・X-rayが削減byteに占める割合"></a></figure>
+
+    <div class="table-scroll comparison"><table><caption>完全frame合計。圧縮率は圧縮前サイズ ÷ 完全保存サイズで、大きいほど良い。</caption><thead><tr><th scope="col">codec</th><th scope="col">baseline</th><th scope="col">段階探索</th><th scope="col">削減byte</th><th scope="col">baseline比</th><th scope="col">圧縮率</th><th scope="col">改善frame</th></tr></thead><tbody><tr><th scope="row">bzip2</th><td>4,848,431 B</td><td>4,826,439 B</td><td><strong>21,992 B</strong></td><td>0.4536%</td><td>2.85883× → <strong>2.87186×</strong></td><td>31 / 72</td></tr><tr><th scope="row">gzip</th><td>5,526,777 B</td><td>5,264,561 B</td><td><strong>262,216 B</strong></td><td>4.7445%</td><td>2.50795× → <strong>2.63286×</strong></td><td>27 / 72</td></tr><tr><th scope="row">xz</th><td>4,411,692 B</td><td>4,322,310 B</td><td><strong>89,382 B</strong></td><td>2.0260%</td><td>3.14185× → <strong>3.20682×</strong></td><td>34 / 72</td></tr><tr><th scope="row">zstd</th><td>5,516,991 B</td><td>5,261,867 B</td><td><strong>255,124 B</strong></td><td>4.6243%</td><td>2.51240× → <strong>2.63421×</strong></td><td>51 / 72</td></tr></tbody></table></div>
+
+    <div class="findings-grid">
+      <article class="finding"><span class="finding-index">A</span><h3>効いたのは、2 byteの並べ替え。</h3><p>MRI・X-rayの主な勝者は<code>transpose:2</code>。16-bit sampleの2 byte位置を分離しました。選択した1 MiB X-ray frameではzstdだけで<strong>185,580 B</strong>削減しています。</p></article>
+      <article class="finding"><span class="finding-index">B</span><h3>proxyはbyte利得の94.391%を回収。</h3><p>全探索監査の3,815 Bに対し3,601 Bを回収し、見逃しは<strong>214 B</strong>。ただし最小sizeそのものの一致は27/48で、正確な勝者予測ではありません。</p></article>
+      <article class="finding"><span class="finding-index">C</span><h3>探索より、型情報を使う。</h3><p>proxyだけで83.618秒を消費しました。要素幅が16 bitと分かるなら、285候補を掘らずにbyte shuffleを直接選ぶ方が安く、説明可能です。</p></article>
+    </div>
+
+    <details class="explanation" open><summary>何を事前に固定したか</summary><p>Silesia取得前に、全12 file、SHA-256によるframe選択、4 frame size、4 codec設定、285規則、zlib proxy、各族2件、完全保存size、audit set、停止条件をcommitしました。Canterburyは規則設計に使ったためheld-outとは扱っていません。</p></details>
+    <details class="explanation"><summary>設計判断</summary><p>285規則の汎用minerやrandom seed探索は製品化しません。次は科学配列について、宣言されたdtype・element幅・channel layoutからbyte/bit-plane shuffleを決定し、file全体、held-out dataset、decoder負荷、破損時の挙動まで評価します。</p></details>
+    <div class="download-row"><a href="data/staged-multicodec-benchmark.json" download>全frame・audit JSON ↓</a><a href="data/staged-multicodec-environment.json" download>実行環境・digest JSON ↓</a><a href="figures/staged-multicodec-benchmark.svg">結果図 SVG ↗</a><a href="#compression-miner">前段PoCへ ↓</a></div>
+  </section>
+
   <section id="compression-miner" class="section pilot-section" aria-labelledby="compression-miner-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / LATEST · PROOF-OF-WORK COMPRESSION</p><h2 id="compression-miner-title">66,300個の短いプログラムを採掘する。効いたのは、規則がデータに合うときだけ。</h2></div><span class="badge verified">総サイズ計上・全勝者復号一致</span></div>
+    <div class="section-heading"><div><p class="eyebrow">01 / PRECEDING · PROOF-OF-WORK COMPRESSION</p><h2 id="compression-miner-title">66,300個の短いプログラムを採掘する。効いたのは、規則がデータに合うときだけ。</h2></div><span class="badge verified">総サイズ計上・全勝者復号一致</span></div>
     <p class="section-intro">圧縮側は大量候補を探索し、復号側は勝った1命令だけを実行します。Bitcoinのnonce探索に似ていますが、opcodeとparameterは必ず保存サイズへ含めます。<br>raw・直接bzip2・可逆変換後のbzip2を、完全frameサイズで比較しました。</p>
     <div class="pilot-verdict"><div><p class="eyebrow">実データ3 chunk · SHA-256最小順で事前選択</p><p class="pilot-estimate">504<span>B削減・baseline比 11.43%</span></p><p>完全frame合計は<strong>4,411 B → 3,907 B</strong>、圧縮率は2.78576× → <strong>3.14512×</strong>でした。</p></div><dl><dt>探索言語</dt><dd>定数XOR、lag差分・XOR、転置、affine XOR</dd><dt>探索量</dt><dd>4 KiBごとに66,300候補</dd><dt>復号</dt><dd>1 residualを展開し、勝者1命令を逆変換</dd></dl></div>
     <p class="pilot-caution">3 chunkは再現可能な小標本であり、一般的な改善率ではありません。大きな合成データ利得も、探索言語に意図的に一致する構造を含みます。探索時間は保存サイズから除外しますが、opcode・parameterは全て含みます。</p>
@@ -201,6 +222,7 @@
       <article><div class="timeline-date">2026.09.28<span>COMPACT MASK POC</span></div><div class="timeline-body"><span class="badge verified">短いY規則・可逆性確認</span><h3>Yを保存せず、短い規則から再生成する</h3><p>4族・196,864記述を総当たりし、生成規則、XOR残差、bzip2、frame全体を含むサイズで選択。codebookに一致する正例は大幅に縮み、独立疑似乱数の負例はrawへ戻りました。</p><p class="muted">可能性の実証であり、実データにおける頻度や探索時間を含む製品性能の実証ではありません。</p><a class="text-link" href="#compact-mask">最新PoCへ ↑</a></div></article>
       <article><div class="timeline-date">2026.09.28<span>REAL-DATA CHECK</span></div><div class="timeline-body"><span class="badge verified">Canterbury・693 frames</span><h3>作った正例から、固定実データへ進む</h3><p>11ファイルを4 KiB単位で評価し、643/693 framesで完全保存サイズを削減。主効果はSHAKE seedではなく、256通りの定数byte置換でした。</p><p class="muted">baseline比1.537%の小さな改善。bzip2 level 1とこのframe条件に固有なので、より広いworkloadと他codecでの再現が次です。</p><a class="text-link" href="#corpus-mask">最新実験へ ↑</a></div></article>
       <article><div class="timeline-date">2026.09.28<span>COMPRESSION MINER</span></div><div class="timeline-body"><span class="badge verified">464,100候補・全勝者復号一致</span><h3>高価なencoder探索と、安価なdecoderを分離する</h3><p>7 workloadで短い可逆プログラムを66,300個ずつ評価。規則に一致する合成データは劇的に縮みましたが、hash選択実データの改善はすべて269候補以内で完了しました。</p><p class="muted">計算量そのものではなく、短い規則が実データの構造を説明できるかが本質。次は安価なproxyで探索族を段階選択します。</p><a class="text-link" href="#compression-miner">最新PoCへ ↑</a></div></article>
+      <article><div class="timeline-date">2026.09.28<span>HELD-OUT REPLICATION</span></div><div class="timeline-body"><span class="badge verified">Silesia・4 codec・72 frames</span><h3>段階探索を未知の実データで止めて判定する</h3><p>方法を先に固定し、Silesia 12 fileを4サイズ・4 codecで評価。gzipとzstdは約4.7%縮みましたが、削減byteのほぼ全てが16-bit MRI・X-rayへ集中しました。</p><p class="muted">汎用minerの採用条件は不成立。一方、2 byteを分離するtype-aware shuffleは2 file・4 codecで再現し、対象を絞った次の候補になりました。</p><a class="text-link" href="#staged-benchmark">最新実験へ ↑</a></div></article>
     </div>
   </section>
 
@@ -208,11 +230,11 @@
     <div class="section-heading"><div><p class="eyebrow">09 / PICK UP THE THREAD</p><h2 id="next-title">次は、ここから再開する。</h2></div><span class="badge pending">次の検証候補</span></div>
     <p class="section-intro">今の問いは「小さくできる入力があるか」だけでなく、<br>「それを探す価値が、保存コストと探索時間を含めてあるか」です。</p>
     <div class="next-grid">
-      <article class="next-card first"><span class="step">NEXT 01</span><h3>定数XORだけを、より広い<br>実workloadで再検証する。</h3><p>今回の結果に合わせて後から選ばないcorpusを先に固定し、256候補のhit率、byte利得、CPU費用を測る。</p><div class="done-when"><span>完了の目安</span>Canterbury固有か、実用候補として再現する効果かを区別できる。</div></article>
-      <article class="next-card"><span class="step">THEN 02</span><h3>他codecでもbyte置換の<br>効果を比較する。</h3><p>gzip、zstd、xz等で同じframeとfallbackを使い、bzip2のBWT/Huffman固有の差かを確認する。</p><div class="done-when"><span>完了の目安</span>codecごとの利得と256回探索の費用を同じ指標で比較できる。</div></article>
-      <article class="next-card"><span class="step">THEN 03</span><h3>MinePression形式への<br>採用条件を決める。</h3><p>format version、長さ・checksum、streaming、random access、失敗時fallbackを含め、基準codecより総費用が小さい条件を定義する。</p><div class="done-when"><span>完了の目安</span>完成版へ採用・保留・棄却のいずれかを、事前基準で判断できる。</div></article>
+      <article class="next-card first"><span class="step">NEXT 01</span><h3>科学配列全体で、byte-plane<br>shuffleを再検証する。</h3><p>element幅、endianness、channel layoutを事前宣言し、16/32/64-bit配列と独立したheld-out datasetをfile単位で評価する。</p><div class="done-when"><span>完了の目安</span>hash選択frameだけでなく、dataset全体の総保存量とcodec別利得を説明できる。</div></article>
+      <article class="next-card"><span class="step">THEN 02</span><h3>探索せずに、型から変換を<br>一意に決める。</h3><p>dtypeに対応するbyte/bit-plane規則を固定し、descriptor、長さ、checksum、raw fallback、破損時の失敗を含むframeを試作する。</p><div class="done-when"><span>完了の目安</span>proxy 83.618秒を不要にし、byte利得とdecoder costを再現できる。</div></article>
+      <article class="next-card"><span class="step">THEN 03</span><h3>採用範囲を、科学データに<br>限定して判定する。</h3><p>streaming、random access、metadata信頼境界、既存shuffle filterとの比較まで含め、汎用機能ではなく対象限定機能として評価する。</p><div class="done-when"><span>完了の目安</span>科学配列向けに採用、研究継続、棄却のいずれかを事前基準で判断できる。</div></article>
     </div>
-    <p class="pilot-caution">継続候補：100 B zstdの分布実験も、版・seed・サンプラー・生ログをそろえて再現可能にする。現時点では未実施であり、新たな計算ジョブの投入を意味しません。</p>
+    <p class="pilot-caution">汎用285規則minerとrandom seed空間の拡大は、現時点では停止します。100 B zstd分布の再現整備は別の基礎研究候補であり、この科学配列向け経路の採用判断とは分けます。</p>
   </section>
 
   <section id="method" class="section method-section" aria-labelledby="method-title">
