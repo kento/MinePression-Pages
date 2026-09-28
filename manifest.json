@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.11.0",
+  "generator_version": "1.12.0",
   "classification": "public",
   "compression_ratio_definition": "original_size / compressed_size",
-  "generated_at": "2026-09-28T01:55:04Z",
+  "generated_at": "2026-09-28T03:23:48.986606+00:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "b6660d9f124df02a33178f56a027e9a7cbc4cfa2",
+  "control_commit": "647c9a34125e7b75f36d382a7dda7c4fc04b56ee",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -19,7 +19,8 @@
     "gpu_census_source_sha256": "7788f4afe9a2151bf51430df8e6cc6037189d6089917f8e772d8dc5a21652eae",
     "gpu_4B_raw_sha256": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e",
     "compact_mask_result_sha256": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7",
-    "canterbury_mask_result_sha256": "b3e835287c69bf4fa887e623c7b2773cb89c61626384f4fe52dabd1b890ded56"
+    "canterbury_mask_result_sha256": "b3e835287c69bf4fa887e623c7b2773cb89c61626384f4fe52dabd1b890ded56",
+    "compression_miner_result_sha256": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa"
   },
   "harness": {
     "harness_id": "kento-common",
@@ -89,12 +90,20 @@
     "canterbury-xor-mask/corpus_experiment.py": "b579756a5bdd303a71c68e255299aee17af1a120335880781629bad96816f381",
     "canterbury-xor-mask/validate.py": "c94b1b26a24bb9991ec457f44a3261a08cfdda1a1a7e04bf0ab49692e486dfe4",
     "canterbury-xor-mask/plot.py": "39d1c3aa2d35b41c182a2a25e60f91ea6cc53e418092c4d06d145217433d7a11",
-    "canterbury-xor-mask/test_corpus_experiment.py": "73afa58b9507ec309edca47ae3b9cdcceffa3216a77b76d1715fc7759fa635d6"
+    "canterbury-xor-mask/test_corpus_experiment.py": "73afa58b9507ec309edca47ae3b9cdcceffa3216a77b76d1715fc7759fa635d6",
+    "compression-miner/20260928_001_compression-miner.json": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa",
+    "compression-miner/20260928_002_compression-miner.svg": "28fdcf1f0d9468f57f68f6d9ccd9da52e77bfeea7a9e86b925bd8262080614ae",
+    "compression-miner/20260928_003_compression-miner.png": "3936c79eb3921301419f5227de961560ac82e3c868621fa10ebea6e55e17486c",
+    "compression-miner/README.md": "e675b48ee02edd9a0ea181da1f779b6928cd6a4966ce3e3ede6e3e97e5482edb",
+    "compression-miner/miner.py": "7d43e059781254bce2329bd0674788458558a31ae9abb7d235b744939311f0e5",
+    "compression-miner/validate.py": "89689389b00d50644d7a070b34b0d724829317373a99d5ce65d707f0a1475a00",
+    "compression-miner/plot.py": "fae1d6ccb00b993f937b1713e550e9de939fb315046d633fd272dc36cab436f9",
+    "compression-miner/test_miner.py": "9f7fbbac8cae888a01a2d9b5db05810ca0a99aa81ed65aeeb3a90636b1e69a81"
   },
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "ae7488daffd0a74568ccc8c1d46647e7097b2f643dd587314415113a8cc41a05",
+    "README.md": "6415bbd13849c654d8205e691b8be06e694e33334e201e5bf07a9248a26418da",
     "assets/site.css": "d14d61c746c73707b1e7c7ed769ef70fb3d29197afd199aeecc44a914c566fd5",
     "assets/site.js": "ef46e6c9215f0344fac2acd410eea9968ac7a03037c861bd454bf279508a6b4a",
     "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
@@ -122,6 +131,7 @@
     "data/bzip2-warmed-loops.jsonl": "b872a88de1523040a79682a691f8154a10559c92a2ebe154752fd6e3131f4769",
     "data/canterbury-xor-mask-search.json": "b3e835287c69bf4fa887e623c7b2773cb89c61626384f4fe52dabd1b890ded56",
     "data/compact-xor-mask-generator-poc.json": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7",
+    "data/compression-miner-poc.json": "9c134bae67c02cf55567728fe5d35814065a3dea36a2bf5a86a8fc38cbef11aa",
     "data/compression-results.csv": "2365239298a23d6e4d5f580edc05368ea9f067c524ed56734e060648ab62a131",
     "data/methodology.json": "8600b99ffba7bb17fe585f0d7218c403eab79dd45f6c3d7ceea7d8ad42ff6d6b",
     "figures/bzip2-1-to-4-byte-histograms.svg": "f4999966778141061a7f021ec787ec538603325b34348868ccea2629dbced31f",
@@ -131,8 +141,9 @@
     "figures/bzip2-5-to-100-estimated-histograms.svg": "a604ba3299ff36617b489c2cdd7ff238f03ff122055a61a3ad2174caaf45b5fc",
     "figures/canterbury-xor-mask-search.svg": "9e7b59b2a3aa17c6147e1d3ac57d5d332de0798aee1252a647b575e78dd352a6",
     "figures/compact-xor-mask-generator-poc.svg": "f78db3bf8c9448732cb92ba7daf1629afc7b0b05cdbd4d165b80d1d37b1a5b29",
+    "figures/compression-miner-poc.svg": "28fdcf1f0d9468f57f68f6d9ccd9da52e77bfeea7a9e86b925bd8262080614ae",
     "figures/three-patterns.svg": "66bde848aa6d9be922aa8e46250cea1f22b735bb94a137ba190a5bdbc68341c1",
-    "index.html": "c8c1e84867a299f15873e9644cfaf810af403275342e58a4b32ad428060f0b82"
+    "index.html": "f52402ae61e3eeb22958c11915c3033ee04a637f676be92c16a8030b9cbb63c5"
   },
   "validation": {
     "unique_measurements": 288,
@@ -186,6 +197,11 @@
     "canterbury_period2_targeted_audit_chunks": 21,
     "canterbury_period2_targeted_audit_size_recall": 0.38095238095238093,
     "canterbury_period2_additional_saved_bytes_found": 29,
+    "compression_miner_validation": "passed",
+    "compression_miner_workloads": 7,
+    "compression_miner_candidates": 464100,
+    "compression_miner_real_saved_bytes": 504,
+    "compression_miner_random_control_saved_bytes": 0,
     "gpu_scheduler_receipt": "success reviewed privately; public metadata minimized"
   },
   "limitations": [
@@ -207,6 +223,8 @@
     "Canterbury results use independently framed 4 KiB chunks and are specific to bzip2 level 1; they are not whole-file results or a model of every workload.",
     "The bounded Canterbury search is exact for constants, while all-family exact recall is measured on six hash-selected chunks; the period-2 winner audit is outcome-targeted and not an unbiased population recall estimate.",
     "Canterbury source files are external and are identified by official URL, sizes and SHA-256 digests but are not republished in this bundle.",
+    "Compression Miner uses a bounded one-instruction language and three hash-selected real-data chunks; its large synthetic gains prove mechanism, not prevalence.",
+    "Compression Miner encoder time is measured but excluded from stored size; every decoder-visible opcode and parameter byte is included.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
     "Manifest file digests exclude the manifest itself."
