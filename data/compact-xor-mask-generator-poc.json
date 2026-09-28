@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "classification": "public",
+  "generated_at_utc": "2026-09-28T00:57:02.351028+00:00",
+  "status": "proof-of-concept",
+  "goal": "Test whether a very short generator description can reduce total lossless storage for X by compressing X XOR Y.",
+  "compression_ratio_definition": "original_bytes / stored_bytes; larger is better",
+  "decision_rule": "Choose the lexicographically first shortest complete frame among raw, direct bzip2, and all enumerated transformed candidates.",
+  "frame_contract": {
+    "raw": "1-byte tag || X",
+    "direct": "1-byte tag || bzip2(X)",
+    "transformed": "1-byte family tag || fixed-width parameters || bzip2(X XOR Y)",
+    "length_note": "N is recovered from the decompressed residual and is not stored separately; the outer object supplies the frame boundary."
+  },
+  "generators": {
+    "constant": {
+      "description_bytes": 2,
+      "rule": "Y[i] = v",
+      "candidate_count": 256
+    },
+    "period2": {
+      "description_bytes": 3,
+      "rule": "Y[i] = motif[i mod 2]",
+      "candidate_count": 65536
+    },
+    "affine8": {
+      "description_bytes": 3,
+      "rule": "Y[i] = (a*i + b) mod 256",
+      "candidate_count": 65536
+    },
+    "shake16": {
+      "description_bytes": 3,
+      "rule": "Y = SHAKE256('MinePression-mask-v1\\0' || uint16_be(seed), N)",
+      "candidate_count": 65536,
+      "warning": "A 16-bit seed is a compression codebook index, not a cryptographic secret."
+    }
+  },
+  "codec": {
+    "name": "libbzip2 via Python bz2",
+    "compresslevel": 1,
+    "runtime_version": "Interface to the libbzip2 compression library."
+  },
+  "platform": {
+    "python": "3.13.1",
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "logical_cpu_count": 18,
+    "workers": 8
+  },
+  "oracle_size_sweep": [
+    {
+      "input_bytes": 16,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 17,
+      "baseline_ratio": 0.9411764705882353,
+      "generator_stored_bytes": 40,
+      "generator_ratio": 0.4,
+      "saved_bytes": -23
+    },
+    {
+      "input_bytes": 16,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 17,
+      "baseline_ratio": 0.9411764705882353,
+      "generator_stored_bytes": 40,
+      "generator_ratio": 0.4,
+      "saved_bytes": -23
+    },
+    {
+      "input_bytes": 32,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 33,
+      "baseline_ratio": 0.9696969696969697,
+      "generator_stored_bytes": 42,
+      "generator_ratio": 0.7619047619047619,
+      "saved_bytes": -9
+    },
+    {
+      "input_bytes": 32,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 33,
+      "baseline_ratio": 0.9696969696969697,
+      "generator_stored_bytes": 46,
+      "generator_ratio": 0.6956521739130435,
+      "saved_bytes": -13
+    },
+    {
+      "input_bytes": 64,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 65,
+      "baseline_ratio": 0.9846153846153847,
+      "generator_stored_bytes": 42,
+      "generator_ratio": 1.5238095238095237,
+      "saved_bytes": 23
+    },
+    {
+      "input_bytes": 64,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 65,
+      "baseline_ratio": 0.9846153846153847,
+      "generator_stored_bytes": 48,
+      "generator_ratio": 1.3333333333333333,
+      "saved_bytes": 17
+    },
+    {
+      "input_bytes": 128,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 129,
+      "baseline_ratio": 0.9922480620155039,
+      "generator_stored_bytes": 42,
+      "generator_ratio": 3.0476190476190474,
+      "saved_bytes": 87
+    },
+    {
+      "input_bytes": 128,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 129,
+      "baseline_ratio": 0.9922480620155039,
+      "generator_stored_bytes": 48,
+      "generator_ratio": 2.6666666666666665,
+      "saved_bytes": 81
+    },
+    {
+      "input_bytes": 256,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 257,
+      "baseline_ratio": 0.9961089494163424,
+      "generator_stored_bytes": 42,
+      "generator_ratio": 6.095238095238095,
+      "saved_bytes": 215
+    },
+    {
+      "input_bytes": 256,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 257,
+      "baseline_ratio": 0.9961089494163424,
+      "generator_stored_bytes": 48,
+      "generator_ratio": 5.333333333333333,
+      "saved_bytes": 209
+    },
+    {
+      "input_bytes": 512,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 513,
+      "baseline_ratio": 0.9980506822612085,
+      "generator_stored_bytes": 44,
+      "generator_ratio": 11.636363636363637,
+      "saved_bytes": 469
+    },
+    {
+      "input_bytes": 512,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 513,
+      "baseline_ratio": 0.9980506822612085,
+      "generator_stored_bytes": 53,
+      "generator_ratio": 9.660377358490566,
+      "saved_bytes": 460
+    },
+    {
+      "input_bytes": 1024,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 1025,
+      "baseline_ratio": 0.9990243902439024,
+      "generator_stored_bytes": 45,
+      "generator_ratio": 22.755555555555556,
+      "saved_bytes": 980
+    },
+    {
+      "input_bytes": 1024,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 1025,
+      "baseline_ratio": 0.9990243902439024,
+      "generator_stored_bytes": 60,
+      "generator_ratio": 17.066666666666666,
+      "saved_bytes": 965
+    },
+    {
+      "input_bytes": 2048,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 2049,
+      "baseline_ratio": 0.9995119570522206,
+      "generator_stored_bytes": 46,
+      "generator_ratio": 44.52173913043478,
+      "saved_bytes": 2003
+    },
+    {
+      "input_bytes": 2048,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 2049,
+      "baseline_ratio": 0.9995119570522206,
+      "generator_stored_bytes": 74,
+      "generator_ratio": 27.675675675675677,
+      "saved_bytes": 1975
+    },
+    {
+      "input_bytes": 4096,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 4097,
+      "baseline_ratio": 0.9997559189650964,
+      "generator_stored_bytes": 46,
+      "generator_ratio": 89.04347826086956,
+      "saved_bytes": 4051
+    },
+    {
+      "input_bytes": 4096,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 4097,
+      "baseline_ratio": 0.9997559189650964,
+      "generator_stored_bytes": 91,
+      "generator_ratio": 45.010989010989015,
+      "saved_bytes": 4006
+    },
+    {
+      "input_bytes": 8192,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 8193,
+      "baseline_ratio": 0.9998779445868424,
+      "generator_stored_bytes": 49,
+      "generator_ratio": 167.18367346938774,
+      "saved_bytes": 8144
+    },
+    {
+      "input_bytes": 8192,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 8193,
+      "baseline_ratio": 0.9998779445868424,
+      "generator_stored_bytes": 120,
+      "generator_ratio": 68.26666666666667,
+      "saved_bytes": 8073
+    },
+    {
+      "input_bytes": 16384,
+      "residual_kind": "zero",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 16385,
+      "baseline_ratio": 0.9999389685688129,
+      "generator_stored_bytes": 49,
+      "generator_ratio": 334.3673469387755,
+      "saved_bytes": 16336
+    },
+    {
+      "input_bytes": 16384,
+      "residual_kind": "sparse",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 16385,
+      "baseline_ratio": 0.9999389685688129,
+      "generator_stored_bytes": 162,
+      "generator_ratio": 101.1358024691358,
+      "saved_bytes": 16223
+    }
+  ],
+  "blind_search": [
+    {
+      "name": "hidden-shake-zero",
+      "input_bytes": 4096,
+      "input_sha256": "20b966dc8b405f29a17314492b0f95c519d296d8e9501afe047998e0467425b1",
+      "construction": "SHAKE16 mask XOR zero residual",
+      "injected_family": "shake16",
+      "injected_parameters_hex": "1234",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 4097,
+      "baseline_ratio": 0.9997559189650964,
+      "winner_family": "shake16",
+      "winner_parameters_hex": "1234",
+      "winner_stored_bytes": 46,
+      "winner_ratio": 89.04347826086956,
+      "saved_bytes_vs_baseline": 4051,
+      "round_trip_verified": true,
+      "family_minima": [
+        {
+          "family": "constant",
+          "parameters_hex": "76",
+          "descriptor_hex": "1076",
+          "descriptor_bytes": 2,
+          "compressed_residual_bytes": 4545,
+          "stored_bytes": 4547,
+          "candidate_count": 256
+        },
+        {
+          "family": "period2",
+          "parameters_hex": "8039",
+          "descriptor_hex": "118039",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4522,
+          "stored_bytes": 4525,
+          "candidate_count": 65536
+        },
+        {
+          "family": "affine8",
+          "parameters_hex": "261b",
+          "descriptor_hex": "12261b",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4523,
+          "stored_bytes": 4526,
+          "candidate_count": 65536
+        },
+        {
+          "family": "shake16",
+          "parameters_hex": "1234",
+          "descriptor_hex": "131234",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 43,
+          "stored_bytes": 46,
+          "candidate_count": 65536
+        }
+      ],
+      "shared_search_wall_seconds": 80.10446262499863
+    },
+    {
+      "name": "hidden-shake-sparse",
+      "input_bytes": 4096,
+      "input_sha256": "962a27c1dc47cc82092033d4ffa3b6a5f744e3fb0e979f47c79192ce016af4b3",
+      "construction": "SHAKE16 mask XOR sparse residual",
+      "injected_family": "shake16",
+      "injected_parameters_hex": "beef",
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 4097,
+      "baseline_ratio": 0.9997559189650964,
+      "winner_family": "shake16",
+      "winner_parameters_hex": "beef",
+      "winner_stored_bytes": 91,
+      "winner_ratio": 45.010989010989015,
+      "saved_bytes_vs_baseline": 4006,
+      "round_trip_verified": true,
+      "family_minima": [
+        {
+          "family": "constant",
+          "parameters_hex": "5a",
+          "descriptor_hex": "105a",
+          "descriptor_bytes": 2,
+          "compressed_residual_bytes": 4534,
+          "stored_bytes": 4536,
+          "candidate_count": 256
+        },
+        {
+          "family": "period2",
+          "parameters_hex": "8cc3",
+          "descriptor_hex": "118cc3",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4521,
+          "stored_bytes": 4524,
+          "candidate_count": 65536
+        },
+        {
+          "family": "affine8",
+          "parameters_hex": "1831",
+          "descriptor_hex": "121831",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4523,
+          "stored_bytes": 4526,
+          "candidate_count": 65536
+        },
+        {
+          "family": "shake16",
+          "parameters_hex": "beef",
+          "descriptor_hex": "13beef",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 88,
+          "stored_bytes": 91,
+          "candidate_count": 65536
+        }
+      ],
+      "shared_search_wall_seconds": 80.10446262499863
+    },
+    {
+      "name": "negative-incompressible",
+      "input_bytes": 4096,
+      "input_sha256": "54bb33a4062acbe96ecc987e50fb7dfabe90d8b870776cab4bef18b977baec89",
+      "construction": "independent deterministic SHAKE256 stream",
+      "injected_family": null,
+      "injected_parameters_hex": null,
+      "baseline_mode": "raw",
+      "baseline_stored_bytes": 4097,
+      "baseline_ratio": 0.9997559189650964,
+      "winner_family": "raw",
+      "winner_parameters_hex": "",
+      "winner_stored_bytes": 4097,
+      "winner_ratio": 0.9997559189650964,
+      "saved_bytes_vs_baseline": 0,
+      "round_trip_verified": true,
+      "family_minima": [
+        {
+          "family": "constant",
+          "parameters_hex": "cf",
+          "descriptor_hex": "10cf",
+          "descriptor_bytes": 2,
+          "compressed_residual_bytes": 4541,
+          "stored_bytes": 4543,
+          "candidate_count": 256
+        },
+        {
+          "family": "period2",
+          "parameters_hex": "aa03",
+          "descriptor_hex": "11aa03",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4519,
+          "stored_bytes": 4522,
+          "candidate_count": 65536
+        },
+        {
+          "family": "affine8",
+          "parameters_hex": "5533",
+          "descriptor_hex": "125533",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4520,
+          "stored_bytes": 4523,
+          "candidate_count": 65536
+        },
+        {
+          "family": "shake16",
+          "parameters_hex": "f241",
+          "descriptor_hex": "13f241",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4522,
+          "stored_bytes": 4525,
+          "candidate_count": 65536
+        }
+      ],
+      "shared_search_wall_seconds": 80.10446262499863
+    },
+    {
+      "name": "negative-repetitive-json",
+      "input_bytes": 4096,
+      "input_sha256": "273785e69131e02fd9945bc0deb21edac7f3b5ee7c566e32801d48b2ac662008",
+      "construction": "repeated JSON-like text",
+      "injected_family": null,
+      "injected_parameters_hex": null,
+      "baseline_mode": "direct",
+      "baseline_stored_bytes": 160,
+      "baseline_ratio": 25.6,
+      "winner_family": "period2",
+      "winner_parameters_hex": "1304",
+      "winner_stored_bytes": 153,
+      "winner_ratio": 26.77124183006536,
+      "saved_bytes_vs_baseline": 7,
+      "round_trip_verified": true,
+      "family_minima": [
+        {
+          "family": "constant",
+          "parameters_hex": "3f",
+          "descriptor_hex": "103f",
+          "descriptor_bytes": 2,
+          "compressed_residual_bytes": 156,
+          "stored_bytes": 158,
+          "candidate_count": 256
+        },
+        {
+          "family": "period2",
+          "parameters_hex": "1304",
+          "descriptor_hex": "111304",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 150,
+          "stored_bytes": 153,
+          "candidate_count": 65536
+        },
+        {
+          "family": "affine8",
+          "parameters_hex": "003f",
+          "descriptor_hex": "12003f",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 156,
+          "stored_bytes": 159,
+          "candidate_count": 65536
+        },
+        {
+          "family": "shake16",
+          "parameters_hex": "82e5",
+          "descriptor_hex": "1382e5",
+          "descriptor_bytes": 3,
+          "compressed_residual_bytes": 4524,
+          "stored_bytes": 4527,
+          "candidate_count": 65536
+        }
+      ],
+      "shared_search_wall_seconds": 80.10446262499863
+    }
+  ],
+  "limitations": [
+    "Positive controls are constructed to belong to the SHAKE16 codebook; they demonstrate possibility, not prevalence in real workloads.",
+    "The exhaustive search covers only 196,864 short descriptions and cannot guarantee a gain for arbitrary X.",
+    "Search time is measured but excluded from stored size, as requested; an implementation would need an encoder search budget.",
+    "Results are specific to bzip2 level 1 and the stated framing contract.",
+    "The SHAKE16 family provides no encryption security because its seed space is only 65,536."
+  ]
+}

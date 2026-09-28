@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generator_version": "1.9.0",
+  "generator_version": "1.10.0",
   "classification": "public",
   "compression_ratio_definition": "original_size / compressed_size",
-  "generated_at": "2026-09-23T07:17:09Z",
+  "generated_at": "2026-09-28T01:20:00+00:00",
   "input_commit": "9123839bd20acc9b4b5fd9c7197199791feb9bf4",
-  "control_commit": "01752f67c716ccde6dd159e8aba917986466ae95",
+  "control_commit": "6bccf25e902ee6814280da18f1543481ced3d338",
   "additional_inputs": {
     "bzip2_pilot_source_commit": "c6550a8ad1d81afac5dd118a4d952d8c07d23f57",
     "bzip2_raw_sha256": "5f38676894e20d44bde2bb59aa4559fa575850dc4b4edcdf6a805d43ec4e003b",
@@ -17,7 +17,8 @@
     "byte_census_summary_sha256": "917694a717a043c9c5b7bd2b0cb9cf64014373562f0bdbc51cb17d11d0362727",
     "fugaku_byte_census_summary_sha256": "c071b73f2ad184ad79d9b9c0cd51aca67c14ab520fea5d94ef8046747e4a27bb",
     "gpu_census_source_sha256": "7788f4afe9a2151bf51430df8e6cc6037189d6089917f8e772d8dc5a21652eae",
-    "gpu_4B_raw_sha256": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e"
+    "gpu_4B_raw_sha256": "d58a33a1bdd129deb0ac59c8fd4902aa91cd9b4ec8d6363bda9780cc958b032e",
+    "compact_mask_result_sha256": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7"
   },
   "harness": {
     "harness_id": "kento-common",
@@ -72,12 +73,20 @@
     "bzip2-5-to-100/20260922_003_bzip2-5-to-100-estimated-histograms.svg": "a604ba3299ff36617b489c2cdd7ff238f03ff122055a61a3ad2174caaf45b5fc",
     "bzip2-5-to-100/estimate.py": "ff891f8b0b9883758faa2f00d2a8cb348bedd23cbd1900ef9d01441b3cb43e2f",
     "bzip2-5-to-100/validate.py": "dd3e69b376de5838aacbeead9a30a809a2ca17b99139251b8afd213c67984922",
-    "bzip2-5-to-100/plot.py": "1bc88f90d54b39cdd06e70178a4b769e646cc7449bbcbef6d647a9a94e716672"
+    "bzip2-5-to-100/plot.py": "1bc88f90d54b39cdd06e70178a4b769e646cc7449bbcbef6d647a9a94e716672",
+    "compact-xor-mask/20260928_001_compact-mask-generator-poc.json": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7",
+    "compact-xor-mask/20260928_002_compact-mask-generator-poc.svg": "f78db3bf8c9448732cb92ba7daf1629afc7b0b05cdbd4d165b80d1d37b1a5b29",
+    "compact-xor-mask/README.md": "a780b33282be10a4bcb3ec0d11765699eb55ca70b133b144322d2f2413acda91",
+    "compact-xor-mask/mask_generators.py": "1056bba71e841703e040131386d74ebc92865c3621d53a59bcdcf9bbfb91d1a4",
+    "compact-xor-mask/experiment.py": "3faf77d9bed5a8245ff4e871ff3971e98745cc41f2ada3f604ffac190eba8583",
+    "compact-xor-mask/validate.py": "42ba9509f72c6eb24990e005086ae17de45367619688fd02fceade8cdb92dfdc",
+    "compact-xor-mask/plot.py": "08b46f43ddc2e30cd076bb29af4ff1983d79bcc851887d74f20fe0007cf3bcf4",
+    "compact-xor-mask/test_mask_generators.py": "292a792309ef9915eb2d2b29eda4d522e1079d692dad6224b66b11d854112474"
   },
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "README.md": "aae521a890fe148023ac6dfe7748f2db1fddd62e23429e409d9058c8eda41133",
+    "README.md": "166839cf812e66b2499037d1290fe2e31029219ec57780f9334564b609b54fe7",
     "assets/site.css": "d14d61c746c73707b1e7c7ed769ef70fb3d29197afd199aeecc44a914c566fd5",
     "assets/site.js": "ef46e6c9215f0344fac2acd410eea9968ac7a03037c861bd454bf279508a6b4a",
     "data/bzip2-1-to-10-byte-estimates.json": "16b2d9af6c23c2492d74faf741c385e3e04c95bbceca635ad06121279d91a4d1",
@@ -103,6 +112,7 @@
     "data/bzip2-warmed-loop-run.json": "d2205ffaefc31ea1c0f3cdeaefb8a99935ed21713d7eeacc0e9471665a02f7fe",
     "data/bzip2-warmed-loop-summary.json": "6e75bdb13f37035f641e3a96a2a8b4e28ef793dfdb3f6d6538e6609bdad65ef9",
     "data/bzip2-warmed-loops.jsonl": "b872a88de1523040a79682a691f8154a10559c92a2ebe154752fd6e3131f4769",
+    "data/compact-xor-mask-generator-poc.json": "1335656c66bee48095429f2c571f8ce104580d69216fe239ae94418366a40fc7",
     "data/compression-results.csv": "2365239298a23d6e4d5f580edc05368ea9f067c524ed56734e060648ab62a131",
     "data/methodology.json": "8600b99ffba7bb17fe585f0d7218c403eab79dd45f6c3d7ceea7d8ad42ff6d6b",
     "figures/bzip2-1-to-4-byte-histograms.svg": "f4999966778141061a7f021ec787ec538603325b34348868ccea2629dbced31f",
@@ -110,8 +120,9 @@
     "figures/bzip2-10byte-sample.svg": "15de51c8e11d611d89b547e6caad0883cfc4821a3bf8d16f72144564141b1119",
     "figures/bzip2-20bit-census.svg": "164d26f9d15c99c600a53bfb09d3cc6d92132a3f4f708b090aa4bec01fd5a38e",
     "figures/bzip2-5-to-100-estimated-histograms.svg": "a604ba3299ff36617b489c2cdd7ff238f03ff122055a61a3ad2174caaf45b5fc",
+    "figures/compact-xor-mask-generator-poc.svg": "f78db3bf8c9448732cb92ba7daf1629afc7b0b05cdbd4d165b80d1d37b1a5b29",
     "figures/three-patterns.svg": "66bde848aa6d9be922aa8e46250cea1f22b735bb94a137ba190a5bdbc68341c1",
-    "index.html": "5f3adfcf95b608cb42c9067d56191723b6f5714af1cc830339edc95780f16b62"
+    "index.html": "2247be581ec3cc57972e055732afe97fb3241c52c9404316c565c88ed473a253"
   },
   "validation": {
     "unique_measurements": 288,
@@ -151,6 +162,11 @@
     "tail_estimate_checked_bins": 17691,
     "tail_estimate_calibration_maximum_total_variation_distance": 0.004585367218538625,
     "tail_estimate_calibration_bin_recall": 1.0,
+    "compact_mask_validation": "passed",
+    "compact_mask_blind_cases": 4,
+    "compact_mask_descriptions_per_case": 196864,
+    "compact_mask_positive_controls_recovered": 2,
+    "compact_mask_negative_control_fallback": true,
     "gpu_scheduler_receipt": "success reviewed privately; public metadata minimized"
   },
   "limitations": [
@@ -167,6 +183,8 @@
     "CPU compression-loop versus GPU kernel speedup is problem-specific and not a general bzip2 encoder comparison.",
     "The 5--100 byte histograms are weighted statistical estimates over a uniform byte-string target, not exhaustive censuses; only the period-at-most-two stratum is exact.",
     "Tail intervals are conditional on observed proposal support, and zero-hit proposal components do not exclude an unseen structural family.",
+    "Compact-mask positive controls intentionally belong to the 16-bit codebook; they prove possibility but do not estimate prevalence in real workloads.",
+    "Compact-mask search time is measured but excluded from stored size, and the 16-bit seed is not a cryptographic secret.",
     "Ascending prefixes are zero-heavy and proxies are a sensitivity comparison, not a proven population sample.",
     "100-byte distribution note has no published reproducible sampler or raw log.",
     "Manifest file digests exclude the manifest itself."
