@@ -1,0 +1,1010 @@
+{
+  "schema_version": "compression-miner-poc-v1",
+  "classification": "public; external corpus bytes are not embedded",
+  "generated_at_utc": "2026-09-28T03:12:41.650876+00:00",
+  "status": "proof-of-concept",
+  "research_question": "Can an expensive encoder search over short reversible programs reduce exact total storage while keeping decoding cheap?",
+  "compression_ratio_definition": "original_bytes / complete_stored_frame_bytes; larger is better",
+  "objective": "min(descriptor_bytes + bzip2(residual)_bytes), compared with raw and direct-bzip2 frames",
+  "frame_contract": {
+    "raw": "1-byte tag || X",
+    "direct": "1-byte tag || bzip2(X)",
+    "mined": "1-byte opcode || 1-2 parameter bytes || bzip2(program(X))",
+    "boundary": "An outer object supplies the frame boundary; residual length reconstructs N."
+  },
+  "decoder_contract": "The decoder reads one winning descriptor, decompresses one residual, and applies one inverse instruction; it does not repeat the search.",
+  "program_order": [
+    "all 256 xor-constant values",
+    "delta-lag 1..255",
+    "xor-lag 1..255",
+    "transpose widths 2..255",
+    "xor-affine (a*i+b) mod 256 for a=1..255,b=0..255"
+  ],
+  "codec": {
+    "name": "libbzip2 via Python bz2",
+    "compresslevel": 1
+  },
+  "platform": {
+    "python": "3.13.1",
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "logical_cpu_count": 18,
+    "workers": 7
+  },
+  "search_wall_seconds": 36.71510658299849,
+  "aggregate": {
+    "workloads": 7,
+    "input_bytes": 28672,
+    "baseline_stored_bytes": 11143,
+    "winner_stored_bytes": 8271,
+    "saved_bytes": 2872,
+    "saved_fraction_of_baseline": 0.25774028538095667,
+    "baseline_compression_ratio": 2.5730952167279906,
+    "winner_compression_ratio": 3.4665699431749486,
+    "improved_workloads": 6,
+    "total_candidates_evaluated": 464100,
+    "aggregate_worker_seconds": 216.85602141599884
+  },
+  "aggregate_groups": {
+    "synthetic": {
+      "workloads": 4,
+      "input_bytes": 16384,
+      "baseline_stored_bytes": 6732,
+      "winner_stored_bytes": 4364,
+      "saved_bytes": 2368,
+      "saved_fraction_of_baseline": 0.35175282234105765,
+      "baseline_compression_ratio": 2.433749257278669,
+      "winner_compression_ratio": 3.7543538038496793,
+      "improved_workloads": 3,
+      "total_candidates_evaluated": 265200,
+      "aggregate_worker_seconds": 117.9086840409982
+    },
+    "canterbury_hash_selected": {
+      "workloads": 3,
+      "input_bytes": 12288,
+      "baseline_stored_bytes": 4411,
+      "winner_stored_bytes": 3907,
+      "saved_bytes": 504,
+      "saved_fraction_of_baseline": 0.11425980503287236,
+      "baseline_compression_ratio": 2.785762865563364,
+      "winner_compression_ratio": 3.145124136165856,
+      "improved_workloads": 3,
+      "total_candidates_evaluated": 198900,
+      "aggregate_worker_seconds": 98.94733737500064
+    }
+  },
+  "workloads": [
+    {
+      "name": "hidden-affine-sparse",
+      "kind": "synthetic-positive",
+      "construction": "XOR-affine program (a=73,b=19) with one nonzero residual byte every 257 bytes",
+      "source": null,
+      "source_offset": null,
+      "input_bytes": 4096,
+      "input_sha256": "8f40043c066dbfaa3a3a81e50f9fc6a98b411296d65c144413c40afa1cc7df34",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 17.697436208,
+      "candidates_per_second": 3746.305352977035,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 748,
+        "stored_bytes": 749
+      },
+      "winner": {
+        "mode": "xor-affine:b7ec",
+        "descriptor_hex": "14b7ec",
+        "descriptor_bytes": 3,
+        "compressed_residual_bytes": 86,
+        "stored_bytes": 89
+      },
+      "baseline_compression_ratio": 5.468624833110814,
+      "winner_compression_ratio": 46.02247191011236,
+      "saved_bytes": 660,
+      "saved_fraction_of_baseline": 0.8811748998664887,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 749,
+          "best_compression_ratio": 5.468624833110814,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.0003194579985574819,
+          "best_stored_bytes": 749,
+          "best_compression_ratio": 5.468624833110814,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.005298415999277495,
+          "best_stored_bytes": 743,
+          "best_compression_ratio": 5.51278600269179,
+          "best_mode": "xor-constant:0f"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.02099837499918067,
+          "best_stored_bytes": 723,
+          "best_compression_ratio": 5.665283540802213,
+          "best_mode": "xor-constant:10"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.08363429099881614,
+          "best_stored_bytes": 723,
+          "best_compression_ratio": 5.665283540802213,
+          "best_mode": "xor-constant:10"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.15501450000010664,
+          "best_stored_bytes": 122,
+          "best_compression_ratio": 33.57377049180328,
+          "best_mode": "delta-lag:01"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.3858526659987547,
+          "best_stored_bytes": 122,
+          "best_compression_ratio": 33.57377049180328,
+          "best_mode": "delta-lag:01"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.6512342079986411,
+          "best_stored_bytes": 122,
+          "best_compression_ratio": 33.57377049180328,
+          "best_mode": "delta-lag:01"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.1881780000003346,
+          "best_stored_bytes": 122,
+          "best_compression_ratio": 33.57377049180328,
+          "best_mode": "delta-lag:01"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 2.2472475829999894,
+          "best_stored_bytes": 122,
+          "best_compression_ratio": 33.57377049180328,
+          "best_mode": "delta-lag:01"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 4.419121875000201,
+          "best_stored_bytes": 106,
+          "best_compression_ratio": 38.64150943396226,
+          "best_mode": "xor-affine:37ec"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 8.715912165998816,
+          "best_stored_bytes": 91,
+          "best_compression_ratio": 45.010989010989015,
+          "best_mode": "xor-affine:4913"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 17.513100957999995,
+          "best_stored_bytes": 89,
+          "best_compression_ratio": 46.02247191011236,
+          "best_mode": "xor-affine:b7ec"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 17.697433707999153,
+          "best_stored_bytes": 89,
+          "best_compression_ratio": 46.02247191011236,
+          "best_mode": "xor-affine:b7ec"
+        }
+      ]
+    },
+    {
+      "name": "repeated-record",
+      "kind": "synthetic-structured",
+      "construction": "Repeated 67-byte telemetry-like record",
+      "source": null,
+      "source_offset": null,
+      "input_bytes": 4096,
+      "input_sha256": "2ba7e9e6008727c9688235c8ff53882af27e59541dcf97b17bad1bfb6dd9b08c",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 33.24779329199919,
+      "candidates_per_second": 1994.117306304192,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 175,
+        "stored_bytes": 176
+      },
+      "winner": {
+        "mode": "delta-lag:43",
+        "descriptor_hex": "1143",
+        "descriptor_bytes": 2,
+        "compressed_residual_bytes": 118,
+        "stored_bytes": 120
+      },
+      "baseline_compression_ratio": 23.272727272727273,
+      "winner_compression_ratio": 34.13333333333333,
+      "saved_bytes": 56,
+      "saved_fraction_of_baseline": 0.3181818181818182,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 176,
+          "best_compression_ratio": 23.272727272727273,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.00023787499958416447,
+          "best_stored_bytes": 176,
+          "best_compression_ratio": 23.272727272727273,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.0033900419985002372,
+          "best_stored_bytes": 176,
+          "best_compression_ratio": 23.272727272727273,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.013438209000014467,
+          "best_stored_bytes": 176,
+          "best_compression_ratio": 23.272727272727273,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.053082208998603164,
+          "best_stored_bytes": 176,
+          "best_compression_ratio": 23.272727272727273,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.15477124999961234,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.3390329589983594,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.8306424169986713,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.8073884589994123,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 3.817221333998532,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 7.949017124999955,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 16.26113133399849,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 32.89172241699998,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 33.24778999999944,
+          "best_stored_bytes": 120,
+          "best_compression_ratio": 34.13333333333333,
+          "best_mode": "delta-lag:43"
+        }
+      ]
+    },
+    {
+      "name": "interleaved-ramps",
+      "kind": "synthetic-structured",
+      "construction": "Four byte ramps interleaved sample by sample",
+      "source": null,
+      "source_offset": null,
+      "input_bytes": 4096,
+      "input_sha256": "6e9a3776d301c824916e1909dc8c7c515b8a7973942fa8890ba1542820430bb3",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 30.4722338749998,
+      "candidates_per_second": 2175.751219026781,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 1709,
+        "stored_bytes": 1710
+      },
+      "winner": {
+        "mode": "delta-lag:04",
+        "descriptor_hex": "1104",
+        "descriptor_bytes": 2,
+        "compressed_residual_bytes": 56,
+        "stored_bytes": 58
+      },
+      "baseline_compression_ratio": 2.3953216374269006,
+      "winner_compression_ratio": 70.62068965517241,
+      "saved_bytes": 1652,
+      "saved_fraction_of_baseline": 0.9660818713450292,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 1710,
+          "best_compression_ratio": 2.3953216374269006,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.0005085410011815839,
+          "best_stored_bytes": 1710,
+          "best_compression_ratio": 2.3953216374269006,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.00742141600130708,
+          "best_stored_bytes": 1706,
+          "best_compression_ratio": 2.4009378663540444,
+          "best_mode": "xor-constant:03"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.0309011660010583,
+          "best_stored_bytes": 1702,
+          "best_compression_ratio": 2.406580493537015,
+          "best_mode": "xor-constant:2a"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.11615337500006717,
+          "best_stored_bytes": 1699,
+          "best_compression_ratio": 2.4108298999411417,
+          "best_mode": "xor-constant:7a"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.2647959580008319,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.5416268330009189,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.9953287910011568,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.8953752079996775,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 3.7570851250002306,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 7.475703333000638,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 14.965901708001184,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 30.108928875000856,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 30.472229625000182,
+          "best_stored_bytes": 58,
+          "best_compression_ratio": 70.62068965517241,
+          "best_mode": "delta-lag:04"
+        }
+      ]
+    },
+    {
+      "name": "deterministic-random",
+      "kind": "synthetic-negative",
+      "construction": "Independent deterministic SHAKE256 stream",
+      "source": null,
+      "source_offset": null,
+      "input_bytes": 4096,
+      "input_sha256": "8209d024b3bdd66daf76d46bba52ca1657d6a9f38e7380a7c0b16e1ea985ce19",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 36.49122066599921,
+      "candidates_per_second": 1816.8753686492928,
+      "baseline": {
+        "mode": "raw",
+        "descriptor_hex": "00",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 4096,
+        "stored_bytes": 4097
+      },
+      "winner": {
+        "mode": "raw",
+        "descriptor_hex": "00",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 4096,
+        "stored_bytes": 4097
+      },
+      "baseline_compression_ratio": 0.9997559189650964,
+      "winner_compression_ratio": 0.9997559189650964,
+      "saved_bytes": 0,
+      "saved_fraction_of_baseline": 0.0,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.0005783749984402675,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.009766832999957842,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.035818874999677064,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.1389616249998653,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.3261350829998264,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.6598962079988269,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 1.2048344999984693,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 2.3033891659997607,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 4.542046832999404,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 8.985401040999932,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 18.043995290998282,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 36.09475254099925,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 36.491212540999186,
+          "best_stored_bytes": 4097,
+          "best_compression_ratio": 0.9997559189650964,
+          "best_mode": "raw"
+        }
+      ]
+    },
+    {
+      "name": "canterbury-kennedy.xls-16",
+      "kind": "external-real-data",
+      "construction": "Hash-selected complete 4 KiB chunk from the fixed Canterbury Corpus",
+      "source": "kennedy.xls",
+      "source_offset": 65536,
+      "input_bytes": 4096,
+      "input_sha256": "0024e03c2151465408bb2a7b1e254ec2eead83f93d9f63719b4847a728a4f021",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 32.34101779199955,
+      "candidates_per_second": 2050.0282466806334,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 791,
+        "stored_bytes": 792
+      },
+      "winner": {
+        "mode": "delta-lag:0d",
+        "descriptor_hex": "110d",
+        "descriptor_bytes": 2,
+        "compressed_residual_bytes": 326,
+        "stored_bytes": 328
+      },
+      "baseline_compression_ratio": 5.171717171717172,
+      "winner_compression_ratio": 12.487804878048781,
+      "saved_bytes": 464,
+      "saved_fraction_of_baseline": 0.5858585858585859,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 792,
+          "best_compression_ratio": 5.171717171717172,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.00034416699963912833,
+          "best_stored_bytes": 792,
+          "best_compression_ratio": 5.171717171717172,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.005280499999571475,
+          "best_stored_bytes": 782,
+          "best_compression_ratio": 5.2378516624040925,
+          "best_mode": "xor-constant:03"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.0209216249986639,
+          "best_stored_bytes": 781,
+          "best_compression_ratio": 5.2445582586427655,
+          "best_mode": "xor-constant:37"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.08514945899878512,
+          "best_stored_bytes": 773,
+          "best_compression_ratio": 5.298835705045279,
+          "best_mode": "xor-constant:ff"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.23039045899895427,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.48677904199939803,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.9753322919987113,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.9365561249996972,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 3.912294583999028,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 7.836554208999587,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 15.859207583998796,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 31.96400424999956,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 32.34100920899982,
+          "best_stored_bytes": 328,
+          "best_compression_ratio": 12.487804878048781,
+          "best_mode": "delta-lag:0d"
+        }
+      ]
+    },
+    {
+      "name": "canterbury-lcet10.txt-95",
+      "kind": "external-real-data",
+      "construction": "Hash-selected complete 4 KiB chunk from the fixed Canterbury Corpus",
+      "source": "lcet10.txt",
+      "source_offset": 389120,
+      "input_bytes": 4096,
+      "input_sha256": "01205595bf5255997248f68a5ed22421b2e6ac9af08772654d98e930a2031578",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 33.35132900000099,
+      "candidates_per_second": 1987.9267779703182,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 1862,
+        "stored_bytes": 1863
+      },
+      "winner": {
+        "mode": "xor-constant:15",
+        "descriptor_hex": "1015",
+        "descriptor_bytes": 2,
+        "compressed_residual_bytes": 1840,
+        "stored_bytes": 1842
+      },
+      "baseline_compression_ratio": 2.198604401502952,
+      "winner_compression_ratio": 2.223669923995657,
+      "saved_bytes": 21,
+      "saved_fraction_of_baseline": 0.011272141706924315,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 1863,
+          "best_compression_ratio": 2.198604401502952,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.00032279200058837887,
+          "best_stored_bytes": 1863,
+          "best_compression_ratio": 2.198604401502952,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.004966917000274407,
+          "best_stored_bytes": 1850,
+          "best_compression_ratio": 2.214054054054054,
+          "best_mode": "xor-constant:03"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.01998187500066706,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.07857220799996867,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.24639366700102983,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.47824137499992503,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.9695385830000305,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.962309374999677,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 3.9863031250006316,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 8.058383458001117,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 16.34743179200086,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 32.9985525000011,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 33.351318750001155,
+          "best_stored_bytes": 1842,
+          "best_compression_ratio": 2.223669923995657,
+          "best_mode": "xor-constant:15"
+        }
+      ]
+    },
+    {
+      "name": "canterbury-lcet10.txt-77",
+      "kind": "external-real-data",
+      "construction": "Hash-selected complete 4 KiB chunk from the fixed Canterbury Corpus",
+      "source": "lcet10.txt",
+      "source_offset": 315392,
+      "input_bytes": 4096,
+      "input_sha256": "01ce8320f4d72f27fbfcf93e8f7276624862a0218d4a02f3b03ca12409f0b142",
+      "available_programs": 66300,
+      "candidates_evaluated": 66300,
+      "search_seconds": 33.25499058300011,
+      "candidates_per_second": 1993.6857246891673,
+      "baseline": {
+        "mode": "direct",
+        "descriptor_hex": "01",
+        "descriptor_bytes": 1,
+        "compressed_residual_bytes": 1755,
+        "stored_bytes": 1756
+      },
+      "winner": {
+        "mode": "xor-constant:2b",
+        "descriptor_hex": "102b",
+        "descriptor_bytes": 2,
+        "compressed_residual_bytes": 1735,
+        "stored_bytes": 1737
+      },
+      "baseline_compression_ratio": 2.3325740318906605,
+      "winner_compression_ratio": 2.3580886586067935,
+      "saved_bytes": 19,
+      "saved_fraction_of_baseline": 0.01082004555808656,
+      "round_trip_verified": true,
+      "curve": [
+        {
+          "candidates_evaluated": 0,
+          "elapsed_seconds": 0.0,
+          "best_stored_bytes": 1756,
+          "best_compression_ratio": 2.3325740318906605,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 1,
+          "elapsed_seconds": 0.0003068750011152588,
+          "best_stored_bytes": 1756,
+          "best_compression_ratio": 2.3325740318906605,
+          "best_mode": "direct"
+        },
+        {
+          "candidates_evaluated": 16,
+          "elapsed_seconds": 0.004776540999955614,
+          "best_stored_bytes": 1743,
+          "best_compression_ratio": 2.3499713138267353,
+          "best_mode": "xor-constant:0b"
+        },
+        {
+          "candidates_evaluated": 64,
+          "elapsed_seconds": 0.01916108300065389,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 256,
+          "elapsed_seconds": 0.07612808300109464,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 512,
+          "elapsed_seconds": 0.24187754100057646,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 1024,
+          "elapsed_seconds": 0.46980833300040103,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 2048,
+          "elapsed_seconds": 0.9597385830002167,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 4096,
+          "elapsed_seconds": 1.9469985410014488,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 8192,
+          "elapsed_seconds": 3.970604458001617,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 16384,
+          "elapsed_seconds": 8.037386083000456,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 32768,
+          "elapsed_seconds": 16.306230458001664,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 65536,
+          "elapsed_seconds": 32.90480062500137,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        },
+        {
+          "candidates_evaluated": 66300,
+          "elapsed_seconds": 33.25498250000055,
+          "best_stored_bytes": 1737,
+          "best_compression_ratio": 2.3580886586067935,
+          "best_mode": "xor-constant:2b"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The language contains one instruction per frame; it is a bounded PoC, not universal program synthesis.",
+    "The positive affine case is constructed to be expressible in the search language and demonstrates possibility, not prevalence.",
+    "Only three predeclared hash-selected Canterbury chunks represent real data; they do not characterize a workload distribution.",
+    "Encoder timing is machine-specific. Stored size includes every decoder-visible opcode and parameter but excludes search time.",
+    "The search cannot improve incompressible data in expectation; it always falls back to the smaller raw/direct frame."
+  ]
+}
